@@ -1,5 +1,6 @@
 import React, {useEffect} from 'react';
 import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
 
 function App() {
   useEffect(() => {
@@ -34,8 +35,10 @@ function App() {
 
   return (
    <div>
-      <Button variant="contained">Home</Button>    
-      <Button variant="contained" onClick={handleLogout}>Logout</Button>    
+         <Typography component="h1" variant="h5">
+            Welcome!
+          </Typography>      
+          <Button variant="contained" onClick={handleLogout}>Logout</Button>    
    </div>
   );
 }
