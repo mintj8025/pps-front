@@ -1,0 +1,22 @@
+@font-face {
+    font-family: Kanit;
+    src: url(D:\pps\pps-front\public\Kanit-SemiBold.ttf);
+} 
+
+.App {
+    height: 100vh;
+    background-color: #F3F2FD;
+    font-family: Kanit;
+}
+
+.MuiInputBase-input  {
+    background: white;
+  }
+  
+.MuiTextField-root {
+    background: white;
+  }
+
+.MuiButton-outlined {
+    border-color: chartreuse !important;
+}

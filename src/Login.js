@@ -1,33 +1,14 @@
 import * as React from 'react';
-import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
-import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import img1 from './img/bloom-scientist-with-clipboard.png';
+import './Login.css';
 
-
-function Copyright(props) {
-  return (
-    <Typography variant="body2" color="text.secondary" align="center" {...props}>
-      {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
-
-// TODO remove, this demo shouldn't need to reset the theme.
 
 const defaultTheme = createTheme();
 
@@ -48,7 +29,7 @@ export default function SignIn() {
     })
     .then(response => response.json())
     .then(data => {
-        if(data.status == 'ok'){
+        if(data.status === 'ok'){
             localStorage.setItem('token', data.token);
             window.location = '/home'
             alert('login sucess')
@@ -62,72 +43,85 @@ export default function SignIn() {
   };
 
   return (
+    <div className='App'>
     <ThemeProvider theme={defaultTheme}>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Box
           sx={{
-            marginTop: 8,
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
           }}
         >
-          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-            <LockOutlinedIcon />
-          </Avatar>
-          <Typography component="h1" variant="h5">
-            Sign in
-          </Typography>
+          <div style={{alignSelf: "center",
+             marginTop: 100,
+             fontSize: 32,
+             color: 'black',
+             fontWeight: 'bold', }}>
+              SirirajPain
+              </div>
+              <div style={{alignSelf: "center",
+             fontSize: 64,
+             color: 'black',
+            fontWeight: 'bold', }}>
+              ยินดีต้อนรับ!
+              </div>
+              
           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
-            <TextField
+            <TextField 
               margin="normal"
               required
               fullWidth
               id="assessor_username"
-              label="Email Address"
+              label="enter your email"
               name="assessor_username"
               autoComplete="email"
               autoFocus
             />
+
             <TextField
+        
               margin="normal"
               required
               fullWidth
               name="assessor_password"
-              label="Password"
+              label="enter your password"
               type="password"
               id="assessor_password"
               autoComplete="current-password"
             />
-            <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
-            />
-            <Button
+           
+              <Button
+              size="large"
               type="submit"
-              fullWidth
+              maxWidth= "45"
               variant="contained"
-              sx={{ mt: 3, mb: 2 }}
+              sx={{ mt: 3, mb: 2 , ml:18}}
             >
-              Sign In
+              เข้าสู่ระบบ
             </Button>
+
             <Grid container>
               <Grid item xs>
-                <Link href="#" variant="body2">
-                  Forgot password?
-                </Link>
-              </Grid>
+             </Grid>
               <Grid item>
-                <Link href="#" variant="body2">
-                  {"Don't have an account? Sign Up"}
-                </Link>
+
+              <img style={{ 
+                width: 226, 
+                height: 295,
+                position: 'absolute',
+                marginTop: -190,
+                right: 280
+              }} 
+              src={img1} className="App-logo" alt="img1" />
+
               </Grid>
             </Grid>
           </Box>
         </Box>
-        <Copyright sx={{ mt: 8, mb: 4 }} />
       </Container>
     </ThemeProvider>
+    </div>
   );
 }
