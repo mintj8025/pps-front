@@ -1,4 +1,7 @@
-
+@font-face {
+    font-family: Kanit;
+    src: url(./font/Kanit-SemiBold.ttf);
+} 
 
 .App {
     height: 100vh;
@@ -14,6 +17,3 @@
     background: white;
   }
 
-.MuiButton-outlined {
-    border-color: chartreuse !important;
-}
