@@ -5,10 +5,11 @@ import TextField from '@mui/material/TextField';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
+import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import img1 from './img/bloom-scientist-with-clipboard.png';
 import './Login.css';
-
+import Swal from 'sweetalert2'
 
 const defaultTheme = createTheme();
 
@@ -30,12 +31,19 @@ export default function SignIn() {
     .then(response => response.json())
     .then(data => {
         if(data.status === 'ok'){
+          Swal.fire({
+            title: 'Login success!',
+            icon: 'success',
+          }).then((value) => {
             localStorage.setItem('token', data.token);
             window.location = '/home'
-            alert('login sucess')
-        }else{
-            alert('login failed')
-        }
+          })
+          }else{
+            Swal.fire({
+              title: 'Login failed!',
+              icon: 'error',
+            })
+          }
     })
     .catch((error) => {
         console.error('Error:', error);
@@ -99,7 +107,9 @@ export default function SignIn() {
               variant="contained"
               sx={{ mt: 3, mb: 2 , ml:18}}
             >
-              เข้าสู่ระบบ
+               <Typography variant="h5" component="div" fontFamily={'kanit'}>
+                  เข้าสู่ระบบ
+                </Typography>
             </Button>
 
             <Grid container>
