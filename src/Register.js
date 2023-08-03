@@ -1,16 +1,20 @@
 import React, {useEffect , useState} from 'react';
 import Button from '@mui/material/Button';
-import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Swal from 'sweetalert2'
+import PermIdentityIcon from '@mui/icons-material/PermIdentity';
+import IconButton from '@mui/material/IconButton';
+import LogoutIcon from '@mui/icons-material/Logout';
+import HomeIcon from '@mui/icons-material/Home';
+import List from '@mui/material/List';
+import PersonAddAltIcon from '@mui/icons-material/PersonAddAlt';
+import AssignmentIcon from '@mui/icons-material/Assignment';
+import UpdateIcon from '@mui/icons-material/Update';
+import './Register.css'
 
-
-const defaultTheme = createTheme();
 
 export default function SignUp() {
   const handleSubmit = (event) => {
@@ -78,69 +82,137 @@ fetch("https://enchanting-fatigues-bull.cyclic.app/authen", requestOptions)
   .catch(error => console.log('error', error));
   }, [])
 
+  const handleLogout = (event) => {
+    event.preventDefault();
+    localStorage.removeItem('token');
+    window.location = '/login'
+  }
+
+  const handleRegister = (event) => {
+    window.location = '/register'
+  }
+
+  const handleHome = (event) => {
+    window.location = '/Home'
+  }
 
   return (       
-    <ThemeProvider theme={defaultTheme}>
-      <Container component="main" maxWidth="xs">
-        <CssBaseline />
-        {decoded.assessor_fname}
-        <Box
-          sx={{
-            marginTop: 8,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-          }}
-        >
-         
-          <Typography component="h1" variant="h5">
-            ลงทะเบียนคนไข้ใหม่
-          </Typography>
-          <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
-            <Grid container spacing={2}>
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  autoComplete="given-name"
-                  name="patient_fname"
-                  required
-                  fullWidth
-                  id="patient_fname"
-                  label="First Name"
-                  autoFocus
-                />
+  <div>
+    <div class="fullscreen-block">
+    <div class="username">
+            <IconButton
+            sx={{color: 'black'}}>
+              <Typography variant="h5" component="div" fontFamily={'kanit'}>
+              {decoded.assessor_fname} {decoded.assessor_lname}<PermIdentityIcon  sx={{ fontSize: 35 }} /></Typography> </IconButton></div>
+            <div className='registerPatient'>
+            <Box
+            sx={{
+              marginTop: 8,
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+            }}
+          >
+          <Typography component="h1" variant="h3" fontFamily={'kanit'}>
+              ลงทะเบียนคนไข้ใหม่
+            </Typography>
+            <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
+              <Grid container spacing={2}>
+                <Grid item xs={12} sm={6}>
+                <Typography variant="h6" fontFamily={'lightKanit'} >
+                  ชื่อ
+                </Typography>
+                  <TextField
+                    autoComplete="given-name"
+                    name="patient_fname"
+                    required
+                    fullWidth
+                    id="patient_fname"
+                    label="ชื่อ"
+                    autoFocus
+                  />
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                <Typography variant="h6" fontFamily={'lightKanit'}>
+                  นามสกุล
+                </Typography>
+                  <TextField
+                    required
+                    fullWidth
+                    id="patient_lname"
+                    label="นามสกุล"
+                    name="patient_lname"
+                    autoComplete="family-name"
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                <Typography variant="h6" fontFamily={'lightKanit'}>
+                  เลข HN
+                </Typography>
+                  <TextField
+                    required
+                    fullWidth
+                    id="patient_HN"
+                    label="เลข HN"
+                    name="patient_HN"
+                    autoComplete="email"
+                  />
+                </Grid>             
               </Grid>
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  required
-                  fullWidth
-                  id="patient_lname"
-                  label="Last Name"
-                  name="patient_lname"
-                  autoComplete="family-name"
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  id="patient_HN"
-                  label="Email Address"
-                  name="patient_HN"
-                  autoComplete="email"
-                />
-              </Grid>             
-            </Grid>
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              sx={{ mt: 3, mb: 2 }}
-            >
-              Sign Up
-            </Button>
+              <Button
+                type="submit"
+                maxWidth= "45"
+                variant="contained"
+                sx={{ mt: 4, mb: 2 , ml:33}}
+              >
+                <Typography variant="h5" fontFamily={'kanit'}>
+                ลงทะเบียน
+                </Typography>
+              </Button>
+            </Box>
           </Box>
-        </Box>
-      </Container>
-    </ThemeProvider>
+        </div>
+
+         <List sx={{ maxWidth: 180 , height: '97.4vh' , margin: '0' , bgcolor: '#5246E9' }}>           
+            <div class="profile">
+            <IconButton aria-label="Profile">
+             <PermIdentityIcon  sx={{ fontSize: 40 }} color="disabled"/>
+            </IconButton> 
+            </div>          
+            
+            <div class="home">
+            <IconButton aria-label="Home">
+             <HomeIcon onClick={handleHome} sx={{ fontSize: 40 }} style={{ color: "disabled" }} />
+            </IconButton>      
+            </div>
+
+            <div class="register">
+            <IconButton aria-label="Register">
+            <PersonAddAltIcon onClick={handleRegister} sx={{ fontSize: 40 }} style={{ color: 'white' }} />
+            </IconButton> 
+            </div>
+
+            <div class="assessment">
+            <IconButton aria-label="Assessment">
+            <AssignmentIcon  sx={{ fontSize: 40 }} style={{ color: 'disabled' }} />
+            </IconButton> 
+            </div>
+
+            <div class="history">
+            <IconButton aria-label="History">
+            <UpdateIcon  sx={{ fontSize: 40 }} style={{ color: 'disabled' }} />
+            </IconButton> 
+            </div>
+            
+            <div class="logout">
+            <IconButton aria-label="Logout">
+             <LogoutIcon  onClick={handleLogout} sx={{ fontSize: 40 }} color="disabled"/>
+            </IconButton>   
+            </div>
+
+            </List>
+        
+    </div>
+    </div>
   );
 }
