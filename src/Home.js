@@ -41,7 +41,7 @@ function App() {
         Swal.fire({
           icon: 'error',
           title: 'Sorry...',
-          text: 'Access Token Invalid!',
+          text: 'Authen failed!',
         }).then((value) => {
           localStorage.removeItem('token');
           window.location = '/login'

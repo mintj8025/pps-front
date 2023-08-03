@@ -7,6 +7,7 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import Swal from 'sweetalert2'
 
 
 const defaultTheme = createTheme();
@@ -44,12 +45,45 @@ export default function SignUp() {
   })
 };
   
+const [decoded, setAssessor] = useState([]);
+  
+useEffect(() => {
+  const token = localStorage.getItem('token')
+  var myHeaders = new Headers();
+  myHeaders.append("Authorization", "Bearer " + token);
+
+  var requestOptions = {
+    method: 'POST',
+    headers: myHeaders,
+    redirect: 'follow'
+  };
+
+fetch("https://enchanting-fatigues-bull.cyclic.app/authen", requestOptions)
+  .then(response => response.json())
+  .then(result => {
+    if(result.status === 'ok'){
+      setAssessor(result.decoded)
+    }else{
+      Swal.fire({
+        icon: 'error',
+        title: 'Sorry...',
+        text: 'Authen failed!',
+      }).then((value) => {
+        localStorage.removeItem('token');
+        window.location = '/login'
+      })
+    }
+    console.log(result)
+  })
+  .catch(error => console.log('error', error));
+  }, [])
 
 
   return (       
     <ThemeProvider theme={defaultTheme}>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
+        {decoded.assessor_fname}
         <Box
           sx={{
             marginTop: 8,
