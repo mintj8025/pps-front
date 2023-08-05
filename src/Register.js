@@ -17,6 +17,14 @@ import './Register.css'
 
 
 export default function SignUp() {
+
+  const [num, setNum] = useState('');
+
+  const handleNumChange = event => {
+    const limit = 8;
+    setNum(event.target.value.slice(0, limit));
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -37,9 +45,22 @@ export default function SignUp() {
   .then(response => response.json())
   .then(data => {
       if(data.status === 'ok'){
-          localStorage.setItem('token', data.token);
-          window.location = '/home'
-          alert('register sucess')
+        Swal.fire({
+          title: 'Do you want to save the changes?',
+          showDenyButton: true,
+          showCancelButton: true,
+          confirmButtonText: 'Save',
+          denyButtonText: `Don't save`,
+        }).then((result) => {
+          /* Read more about isConfirmed, isDenied below */
+          if (result.isConfirmed) {
+            Swal.fire('Saved!', '', 'success')
+          } else if (result.isDenied) {
+            Swal.fire('Changes are not saved', '', 'info')
+          }
+          }).then((value) => {
+            window.location = '/home'
+          })
       }else{
           alert('register failed')
       }
@@ -47,7 +68,7 @@ export default function SignUp() {
   .catch((error) => {
       console.error('Error:', error);
   })
-};
+};  
   
 const [decoded, setAssessor] = useState([]);
   
@@ -152,10 +173,13 @@ fetch("https://enchanting-fatigues-bull.cyclic.app/authen", requestOptions)
                   <TextField
                     required
                     fullWidth
+                    type="number"
                     id="patient_HN"
                     label="เลข HN"
                     name="patient_HN"
-                    autoComplete="email"
+                    autoComplete="HN"
+                    value={num}
+                    onChange={handleNumChange}
                   />
                 </Grid>             
               </Grid>
