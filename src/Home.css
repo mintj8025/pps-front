@@ -3,6 +3,11 @@
   src: url(./font/Kanit-Light.ttf);
 } 
 
+@font-face {
+  font-family: lightKanit;
+  src: url(./font/Kanit-Light.ttf);
+} 
+
 .fullscreen-block{
     background-color: #F3F2FD;
     height: 100vh;

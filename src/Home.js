@@ -62,6 +62,10 @@ function App() {
     window.location = '/register'
   }
 
+  const handleAssessment = (event) => {
+    window.location = '/assessment'
+  }
+
   if (isLoaded) return (<div>Loading</div>)
   else {
   return (
@@ -70,7 +74,7 @@ function App() {
             <div class="username">
             <IconButton
             sx={{color: 'black'}}>
-              <Typography variant="h5" component="div" fontFamily={'kanit'}>
+              <Typography variant="h5" component="div" fontFamily={'lightkanit'}>
               {decoded.assessor_fname} {decoded.assessor_lname}<PermIdentityIcon  sx={{ fontSize: 35 }} /></Typography> </IconButton></div>
                 
             <div className='head-rectangle'>
@@ -127,7 +131,7 @@ function App() {
               <div class="assessment-menu">
               <IconButton>
               <Card sx={{ minWidth: 245 , borderRadius: 10}}>
-              <AssignmentIcon onClick={handleRegister} sx={{ fontSize: 100 }} 
+              <AssignmentIcon onClick={handleAssessment} sx={{ fontSize: 100 }} 
               style={{ color: 'black' , position: 'relative' , marginTop: 20}} />
                 <CardContent>
                   <Typography variant="h5" component="div" fontFamily={'kanit'}>
@@ -185,7 +189,7 @@ function App() {
 
             <div class="assessment">
             <IconButton aria-label="Assessment">
-            <AssignmentIcon  sx={{ fontSize: 40 }} style={{ color: 'disabled' }} />
+            <AssignmentIcon onClick={handleAssessment} sx={{ fontSize: 40 }} style={{ color: 'disabled' }} />
             </IconButton> 
             </div>
 

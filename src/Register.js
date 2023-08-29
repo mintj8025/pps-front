@@ -34,7 +34,8 @@ export default function SignUp() {
       patient_HN: data.get('patient_HN'),
       patient_status: "new"
   }
-  
+
+  try{
   fetch('https://enchanting-fatigues-bull.cyclic.app/register_patient' , {
       method: 'POST',
       headers: {
@@ -42,34 +43,31 @@ export default function SignUp() {
       },
       body: JSON.stringify(jsonData),
   })
-  .then(response => response.json())
+  .then(response => {
+    if(!response.status === 'ok'){
+      throw Error ('could not fetch the data')
+    }
+      return response.json();
+  })
   .then(data => {
       if(data.status === 'ok'){
         Swal.fire({
-          title: 'Do you want to save the changes?',
-          showDenyButton: true,
-          showCancelButton: true,
-          confirmButtonText: 'Save',
-          denyButtonText: `Don't save`,
-        }).then((result) => {
-          /* Read more about isConfirmed, isDenied below */
-          if (result.isConfirmed) {
-            Swal.fire('Saved!', '', 'success')
-          } else if (result.isDenied) {
-            Swal.fire('Changes are not saved', '', 'info')
-          }
+          icon: 'success',
+          title: 'Your register has been saved',
+          showConfirmButton: false,
+          timer: 2000
           }).then((value) => {
             window.location = '/home'
           })
       }else{
-          alert('register failed')
+        alert(data.message)
       }
   })
-  .catch((error) => {
-      console.error('Error:', error);
-  })
+  }catch(err) {
+      console.error('Error:', err);
+  }
 };  
-  
+
 const [decoded, setAssessor] = useState([]);
   
 useEffect(() => {
@@ -123,7 +121,7 @@ fetch("https://enchanting-fatigues-bull.cyclic.app/authen", requestOptions)
     <div class="username">
             <IconButton
             sx={{color: 'black'}}>
-              <Typography variant="h5" component="div" fontFamily={'kanit'}>
+              <Typography variant="h5" component="div" fontFamily={'lightkanit'}>
               {decoded.assessor_fname} {decoded.assessor_lname}<PermIdentityIcon  sx={{ fontSize: 35 }} /></Typography> </IconButton></div>
             <div className='registerPatient'>
             <Box
