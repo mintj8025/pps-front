@@ -8,6 +8,7 @@ import Home from './Home.js'
 import Register from './Register.js'
 import AssPatientFound from './AssPatientFound.js'
 import AssComferm from './AssComferm'
+import AssRegister from './AssRegister'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -19,6 +20,7 @@ root.render(
     <Route path="/home" element={<Home />} /> 
     <Route path="/asspatientfound" element={<AssPatientFound />} /> 
     <Route path="/asscomferm" element={<AssComferm />} /> 
+    <Route path="/assregister" element={<AssRegister />} /> 
     </Routes>
   </BrowserRouter>
 );

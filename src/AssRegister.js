@@ -7,42 +7,19 @@ import List from '@mui/material/List';
 import PersonAddAltIcon from '@mui/icons-material/PersonAddAlt';
 import AssignmentIcon from '@mui/icons-material/Assignment';
 import UpdateIcon from '@mui/icons-material/Update';
+import img from './img/bloom-doctor-woman-waving-hand-in-greeting.png'
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
-import './AssComferm.css';
+import './Home.css';
 import Swal from 'sweetalert2'
-import Button from '@mui/material/Button';
 
 function App() {
-
-const [decoded2, setPatient] = useState([]);
-  
-const handleSubmit = (event) => {
-  useEffect(() => {
-    const token2 = localStorage.getItem('token2')
-    var myHeaders = new Headers();
-    myHeaders.append("Authorization", "Bearer " + token2);
-    var requestOptions = {
-      method: 'POST',
-      headers: myHeaders,
-      redirect: 'follow'
-    };
-
-  fetch("https://enchanting-fatigues-bull.cyclic.app/patientAuthen", requestOptions)
-    .then(response => response.json())
-    .then(data => {
-        if(data.status === 'ok'){
-        setPatient(data.decoded2)
-        localStorage.setItem('token2', data.token2); 
-        window.location = '/AssRegister'
-        }
-        console.log(data)          
-      })
-      })
-    }
 
   const [isLoaded, setIsLoaded] = useState(true);
   const [decoded, setAssessor] = useState([]);
   
+
   useEffect(() => {
     const token = localStorage.getItem('token')
     var myHeaders = new Headers();
@@ -94,56 +71,13 @@ const handleSubmit = (event) => {
   return (
    <div>
             <div class="fullscreen-block">
-            <div class="username">
+            <div class="username"
             <IconButton
             sx={{color: 'black'}}>
               <Typography variant="h5" component="div" fontFamily={'lightkanit'}>
-              {decoded.assessor_fname} {decoded.assessor_lname} <PermIdentityIcon  sx={{ fontSize: 35 }} /></Typography> </IconButton></div>
-            
-            <div className='sqare'>
-            <div className='Title'>
-            <Typography component="h1" variant="h3" fontFamily={'Kanit'}>
-                คุณต้องการประเมินคนไข้คนนี้ใช่หรือไม่
-            </Typography></div>
+              {decoded.assessor_fname} {decoded.assessor_lname}<PermIdentityIcon  sx={{ fontSize: 35 }} /></Typography> </IconButton></div>
+              </div>
 
-            <div className='info'>
-            <Typography sx={{ fontSize: 25 , marginTop: 2 }}  fontFamily={'lightKanit'}>
-                ชื่อ - นามสกุล
-            </Typography>
-            <Typography sx={{ fontSize: 23 }}  fontFamily={'lightKanit'} color={'#808080'}>
-                {decoded2.patient_fname} {decoded2.patient_lname}
-            </Typography>
-            
-            <Typography sx={{ fontSize: 25 , marginTop: 2 }}  fontFamily={'lightKanit'}>
-                เลข HN
-            </Typography>
-            <Typography sx={{ fontSize: 23 }}  fontFamily={'lightKanit'} color={'#808080'}>
-                {decoded2.patient_HN}
-            </Typography>
-
-            <Typography sx={{ fontSize: 25 , marginTop: 2 }}  fontFamily={'lightKanit'}>
-                ประเมินไปแล้ว (ครั้ง)
-            </Typography>
-            <Typography sx={{ fontSize: 23 }}  fontFamily={'lightKanit'} color={'#808080'}>
-                {decoded2.patient_visit}
-            </Typography>
-            </div>
-           
-              <Button
-              size="large"
-              type="submit"
-              maxWidth= "45"
-              variant="contained"
-              sx={{ mt: 4, mb: 2 , ml:33 }}
-              onSubmit={handleSubmit}
-            >
-               <Typography variant="h5" component="div" fontFamily={'kanit'}>
-                  ใช่
-                </Typography>
-            </Button>        
-            </div>
-   
-           
             <List sx={{ maxWidth: 180 , height: '97.4vh' , margin: '0' , bgcolor: '#5246E9' }}>           
             <div class="profile">
             <IconButton aria-label="Profile">
