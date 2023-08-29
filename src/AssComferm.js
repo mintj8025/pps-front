@@ -8,52 +8,36 @@ import PersonAddAltIcon from '@mui/icons-material/PersonAddAlt';
 import AssignmentIcon from '@mui/icons-material/Assignment';
 import UpdateIcon from '@mui/icons-material/Update';
 import Typography from '@mui/material/Typography';
-import './Assessment.css';
+import './Home.css';
 import Swal from 'sweetalert2'
-import TextField from '@mui/material/TextField';
-import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-
 
 function App() {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    const jsonData = {
-        patient_HN: data.get(patient_HN)
-      }
-    fetch('https://enchanting-fatigues-bull.cyclic.app/register_patient' , {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(jsonData),
-    })
+
+const [decoded2, setPatient] = useState([]);
+  
+  useEffect(() => {
+    const token2 = localStorage.getItem('token2')
+    var myHeaders = new Headers();
+    myHeaders.append("Authorization", "Bearer " + token2);
+    var requestOptions = {
+      method: 'POST',
+      headers: myHeaders,
+      redirect: 'follow'
+    };
+
+  fetch("https://enchanting-fatigues-bull.cyclic.app/patientAuthen", requestOptions)
     .then(response => response.json())
     .then(data => {
         if(data.status === 'ok'){
-          Swal.fire({
-            title: 'Login success!',
-            icon: 'success',
-          }).then((value) => {
-            localStorage.setItem('token', data.token);
-            window.location = '/home'
-          })
-          }else{
-            Swal.fire({
-              title: 'Login failed!',
-              icon: 'error',
-            })
-          }
-    })
-    .catch((error) => {
-        console.error('Error:', error);
-    })
-  };
-
+        setPatient(data.decoded2)
+        }
+        console.log(data)          
+      })
+      })
+    
   const [isLoaded, setIsLoaded] = useState(true);
-  const [decoded, setAssessor] = useState([]); 
-
+  const [decoded, setAssessor] = useState([]);
+  
   useEffect(() => {
     const token = localStorage.getItem('token')
     var myHeaders = new Headers();
@@ -96,8 +80,8 @@ function App() {
     window.location = '/register'
   }
 
-  const handleAssessment = (event) => {
-    window.location = '/assessment'
+  const handleAssPatientFound = (event) => {
+    window.location = '/asspatientfound'
   }
 
   if (isLoaded) return (<div>Loading</div>)
@@ -109,47 +93,10 @@ function App() {
             <IconButton
             sx={{color: 'black'}}>
               <Typography variant="h5" component="div" fontFamily={'lightkanit'}>
-              {decoded.assessor_fname} {decoded.assessor_lname}<PermIdentityIcon  sx={{ fontSize: 35 }} /></Typography> </IconButton></div>
+              {decoded.assessor_fname} {decoded.assessor_lname} <PermIdentityIcon  sx={{ fontSize: 35 }} /></Typography> </IconButton></div>
+            
                 
-            <div className='assessmentAuth'>
-            <Typography component="h1" variant="h3" fontFamily={'kanit'}>
-              แบบประเมินผู้ป่วยที่มีความปวดจากโรคมะเร็ง
-            </Typography>
-            <Typography component="h1" variant="h3" fontFamily={'kanit'}>
-              หน่วยระงับปวด โรงพยาบาลศิริราช
-            </Typography>
-
-            <Typography sx={{ fontSize: 25 , marginTop: 5 }} fontFamily={'lightkanit'}>
-              เลข HN
-            </Typography>
-
-            <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
-            <TextField 
-              margin="normal"
-              required
-              fullWidth
-              id="patient_HN"
-              label="enter your email"
-              name="patient_HN"
-              autoComplete="เลข HN"
-              autoFocus
-            />
            
-              <Button
-              size="large"
-              type="submit"
-              maxWidth= "45"
-              variant="contained"
-              sx={{ mt: 4, mb: 2 , ml:33 }}
-            >
-               <Typography variant="h5" component="div" fontFamily={'kanit'}>
-                  ต่อไป
-                </Typography>
-            </Button>
-          </Box>
-
-            </div>
-
             <List sx={{ maxWidth: 180 , height: '97.4vh' , margin: '0' , bgcolor: '#5246E9' }}>           
             <div class="profile">
             <IconButton aria-label="Profile">
@@ -171,7 +118,7 @@ function App() {
 
             <div class="assessment">
             <IconButton aria-label="Assessment">
-            <AssignmentIcon onClick={handleAssessment} sx={{ fontSize: 40 }} style={{ color: 'disabled' }} />
+            <AssignmentIcon onClick={handleAssPatientFound} sx={{ fontSize: 40 }} style={{ color: 'disabled' }} />
             </IconButton> 
             </div>
 

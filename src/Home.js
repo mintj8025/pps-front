@@ -62,8 +62,8 @@ function App() {
     window.location = '/register'
   }
 
-  const handleAssessment = (event) => {
-    window.location = '/assessment'
+  const handleAssPatientFound = (event) => {
+    window.location = '/asspatientfound'
   }
 
   if (isLoaded) return (<div>Loading</div>)
@@ -131,7 +131,7 @@ function App() {
               <div class="assessment-menu">
               <IconButton>
               <Card sx={{ minWidth: 245 , borderRadius: 10}}>
-              <AssignmentIcon onClick={handleAssessment} sx={{ fontSize: 100 }} 
+              <AssignmentIcon onClick={handleAssPatientFound} sx={{ fontSize: 100 }} 
               style={{ color: 'black' , position: 'relative' , marginTop: 20}} />
                 <CardContent>
                   <Typography variant="h5" component="div" fontFamily={'kanit'}>
@@ -189,7 +189,7 @@ function App() {
 
             <div class="assessment">
             <IconButton aria-label="Assessment">
-            <AssignmentIcon onClick={handleAssessment} sx={{ fontSize: 40 }} style={{ color: 'disabled' }} />
+            <AssignmentIcon onClick={handleAssPatientFound} sx={{ fontSize: 40 }} style={{ color: 'disabled' }} />
             </IconButton> 
             </div>
 
