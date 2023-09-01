@@ -32,23 +32,18 @@ export default function SignUp() {
       patient_fname: data.get('patient_fname'),
       patient_lname: data.get('patient_lname'),
       patient_HN: data.get('patient_HN'),
-      patient_status: "new"
+      patient_status: "new",
+      patient_visit: "0"
   }
 
-  try{
-  fetch('https://enchanting-fatigues-bull.cyclic.app/register_patient' , {
+  fetch('http://localhost:7000/register_patient' , {
       method: 'POST',
       headers: {
           'Content-Type': 'application/json',
       },
       body: JSON.stringify(jsonData),
   })
-  .then(response => {
-    if(!response.status === 'ok'){
-      throw Error ('could not fetch the data')
-    }
-      return response.json();
-  })
+  .then(response => response.json())
   .then(data => {
       if(data.status === 'ok'){
         Swal.fire({
@@ -63,10 +58,10 @@ export default function SignUp() {
         alert(data.message)
       }
   })
-  }catch(err) {
-      console.error('Error:', err);
-  }
-};  
+  .catch((error) => {
+    console.error('Error:', error);
+})
+};
 
 const [decoded, setAssessor] = useState([]);
   
@@ -81,7 +76,7 @@ useEffect(() => {
     redirect: 'follow'
   };
 
-fetch("https://enchanting-fatigues-bull.cyclic.app/authen", requestOptions)
+fetch("http://localhost:7000/authen", requestOptions)
   .then(response => response.json())
   .then(result => {
     if(result.status === 'ok'){

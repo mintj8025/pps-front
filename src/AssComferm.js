@@ -16,7 +16,6 @@ function App() {
 
 const [decoded2, setPatient] = useState([]);
   
-const handleSubmit = (event) => {
   useEffect(() => {
     const token2 = localStorage.getItem('token2')
     var myHeaders = new Headers();
@@ -27,18 +26,17 @@ const handleSubmit = (event) => {
       redirect: 'follow'
     };
 
-  fetch("https://enchanting-fatigues-bull.cyclic.app/patientAuthen", requestOptions)
+  fetch("http://localhost:7000/patientAuthen", requestOptions)
     .then(response => response.json())
     .then(data => {
         if(data.status === 'ok'){
         setPatient(data.decoded2)
         localStorage.setItem('token2', data.token2); 
-        window.location = '/AssRegister'
         }
         console.log(data)          
       })
       })
-    }
+    
 
   const [isLoaded, setIsLoaded] = useState(true);
   const [decoded, setAssessor] = useState([]);
@@ -54,7 +52,7 @@ const handleSubmit = (event) => {
       redirect: 'follow'
     };
 
-  fetch("https://enchanting-fatigues-bull.cyclic.app/authen", requestOptions)
+  fetch("http://localhost:7000/authen", requestOptions)
     .then(response => response.json())
     .then(result => {
       if(result.status === 'ok'){
@@ -79,6 +77,10 @@ const handleSubmit = (event) => {
     event.preventDefault();
     localStorage.removeItem('token');
     window.location = '/login'
+  }
+
+  const handleYes = (event) => {
+    window.location = '/assregister'
   }
 
   const handleRegister = (event) => {
@@ -135,7 +137,7 @@ const handleSubmit = (event) => {
               maxWidth= "45"
               variant="contained"
               sx={{ mt: 4, mb: 2 , ml:33 }}
-              onSubmit={handleSubmit}
+              onClick={handleYes} 
             >
                <Typography variant="h5" component="div" fontFamily={'kanit'}>
                   ใช่

@@ -7,11 +7,8 @@ import List from '@mui/material/List';
 import PersonAddAltIcon from '@mui/icons-material/PersonAddAlt';
 import AssignmentIcon from '@mui/icons-material/Assignment';
 import UpdateIcon from '@mui/icons-material/Update';
-import img from './img/bloom-doctor-woman-waving-hand-in-greeting.png'
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
-import './Home.css';
+import './AssRegister.css';
 import Swal from 'sweetalert2'
 
 function App() {
@@ -31,7 +28,7 @@ function App() {
       redirect: 'follow'
     };
 
-  fetch("https://enchanting-fatigues-bull.cyclic.app/authen", requestOptions)
+  fetch("http://localhost:7000/authen", requestOptions)
     .then(response => response.json())
     .then(result => {
       if(result.status === 'ok'){
@@ -71,12 +68,35 @@ function App() {
   return (
    <div>
             <div class="fullscreen-block">
-            <div class="username"
+            <div class="username">
             <IconButton
             sx={{color: 'black'}}>
               <Typography variant="h5" component="div" fontFamily={'lightkanit'}>
               {decoded.assessor_fname} {decoded.assessor_lname}<PermIdentityIcon  sx={{ fontSize: 35 }} /></Typography> </IconButton></div>
-              </div>
+            
+            <div className='assessmentForm'>
+            <Typography component="h1" variant="h3" fontFamily={'kanit'}>
+            ประเมินว่าคะแนนความปวดโดยเฉลี่ย ในรอบ 7 วันที่ผ่านมา
+            </Typography>
+          
+            <h1>โปรดเลือกความปวดที่ผ่านมา</h1>
+              <label class="container">ดีขึ้นมากกว่า 30%
+                <input type="radio" name="pain" />
+                <span class="checkmark"></span>
+              </label>
+              <label class="container">พอๆเดิม
+                <input type="radio" name="pain" />
+                <span class="checkmark"></span>
+              </label>
+              <label class="container">ปวดมากกว่าเดิม 30%
+                <input type="radio" name="pain" />
+                <span class="checkmark"></span>
+              </label>
+              <label class="container">มาครั้งแรกยังไม่ทราบผล
+                <input type="radio" name="pain" />
+                <span class="checkmark"></span>
+              </label>
+            </div>
 
             <List sx={{ maxWidth: 180 , height: '97.4vh' , margin: '0' , bgcolor: '#5246E9' }}>           
             <div class="profile">

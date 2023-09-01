@@ -21,7 +21,7 @@ export default function SignIn() {
         assessor_username: data.get('assessor_username'),
         assessor_password: data.get('assessor_password'),
     }
-    fetch('https://enchanting-fatigues-bull.cyclic.app/login' , {
+    fetch('http://localhost:7000/login' , {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

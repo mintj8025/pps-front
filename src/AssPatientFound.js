@@ -17,14 +17,17 @@ import Button from '@mui/material/Button';
 
 function App() {
 
-
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     const jsonData = {
+        patient_fname: data.get('patient_fname'),
+        patient_lname: data.get('patient_lname'),
         patient_HN: data.get('patient_HN'),
+        patient_status: 'new',
+        patient_visit: '0'
     }
-    fetch('https://enchanting-fatigues-bull.cyclic.app/patientFound' , {
+    fetch('http://localhost:7000/patientFound' , {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -33,16 +36,17 @@ function App() {
     })
     .then(response => response.json())
     .then(data => {
-        if(data.status === 'ok'){        
-            localStorage.setItem('token2', data.token2); 
-            window.location = '/AssComferm'
-          }else{
-            Swal.fire({
-              title: 'No patient found!',
-              icon: 'error',
-            })
-          }
-    })
+      if(data.status === 'ok'){
+        localStorage.setItem('token2', data.token2);
+        window.location = '/AssComferm'
+      }else{
+      Swal.fire({
+          icon: 'error',
+          title: 'Sorry...',
+          text: (data.message),
+        })
+        }
+      })
     .catch((error) => {
         console.error('Error:', error);
     })
@@ -62,7 +66,7 @@ function App() {
       redirect: 'follow'
     };
 
-  fetch("https://enchanting-fatigues-bull.cyclic.app/authen", requestOptions)
+  fetch("http://localhost:7000/authen", requestOptions)
     .then(response => response.json())
     .then(result => {
       if(result.status === 'ok'){
@@ -126,7 +130,7 @@ function App() {
               required
               fullWidth
               id="patient_HN"
-              label="enter your email"
+              label="enter your HN"
               name="patient_HN"
               autoComplete="เลข HN"
               autoFocus

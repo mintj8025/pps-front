@@ -31,7 +31,7 @@ function App() {
       redirect: 'follow'
     };
 
-  fetch("https://enchanting-fatigues-bull.cyclic.app/authen", requestOptions)
+  fetch("http://localhost:7000/authen", requestOptions)
     .then(response => response.json())
     .then(result => {
       if(result.status === 'ok'){
