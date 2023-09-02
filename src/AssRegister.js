@@ -1,4 +1,9 @@
 import React, {useEffect , useState} from 'react';
+import Button from '@mui/material/Button';
+import Radio from '@mui/material/Radio';
+import RadioGroup from '@mui/material/RadioGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import FormControl from '@mui/material/FormControl';
 import PermIdentityIcon from '@mui/icons-material/PermIdentity';
 import IconButton from '@mui/material/IconButton';
 import LogoutIcon from '@mui/icons-material/Logout';
@@ -12,6 +17,20 @@ import './AssRegister.css';
 import Swal from 'sweetalert2'
 
 function App() {
+
+  const [selectedValue, setSelectedValue] = React.useState('a');
+
+  const handleChange = (event) => {
+    setSelectedValue(event.target.value);
+  };
+  
+  const controlProps = (item) => ({
+    checked: selectedValue === item,
+    onChange: handleChange,
+    value: item,
+    name: 'color-radio-button-demo',
+    inputProps: { 'aria-label': item },
+  });
 
   const [isLoaded, setIsLoaded] = useState(true);
   const [decoded, setAssessor] = useState([]);
@@ -79,24 +98,169 @@ function App() {
             ประเมินว่าคะแนนความปวดโดยเฉลี่ย ในรอบ 7 วันที่ผ่านมา
             </Typography>
           
-            <h1>โปรดเลือกความปวดที่ผ่านมา</h1>
-              <label class="container">ดีขึ้นมากกว่า 30%
-                <input type="radio" name="pain" />
-                <span class="checkmark"></span>
-              </label>
-              <label class="container">พอๆเดิม
-                <input type="radio" name="pain" />
-                <span class="checkmark"></span>
-              </label>
-              <label class="container">ปวดมากกว่าเดิม 30%
-                <input type="radio" name="pain" />
-                <span class="checkmark"></span>
-              </label>
-              <label class="container">มาครั้งแรกยังไม่ทราบผล
-                <input type="radio" name="pain" />
-                <span class="checkmark"></span>
-              </label>
+            <Typography component="h1"  sx={{ fontSize: 35 }} fontFamily={'kanit'} marginTop={2}>
+            โปรดเลือกความปวดที่ผ่านมา
+            </Typography>
+           
+            <div className='radioForm'>
+            <Radio
+              {...controlProps('0')}
+              sx={{
+                '& .MuiSvgIcon-root': {
+                  fontSize: 80,
+                },
+                color: '#33AC74',
+                '&.Mui-checked': {
+                 color: '#33AC74',
+                },
+              }}
+            />
+
+            <Radio
+              {...controlProps('1')}
+              sx={{
+                '& .MuiSvgIcon-root': {
+                  fontSize: 80,
+                },
+                color: '#33AC74',
+                '&.Mui-checked': {
+                 color: '#33AC74',
+                },
+              }}
+            />
+
+            <Radio
+              {...controlProps('2')}
+              sx={{
+                '& .MuiSvgIcon-root': {
+                  fontSize: 80,
+                },
+                color: '#33AC74',
+                '&.Mui-checked': {
+                 color: '#33AC74',
+                },
+              }}
+            />
+
+            <Radio
+              {...controlProps('3')}
+              sx={{
+                '& .MuiSvgIcon-root': {
+                  fontSize: 80,
+                },
+                color: '#3DC988',
+                '&.Mui-checked': {
+                 color: '#3DC988',
+                },
+              }}
+            />
+            
+            <Radio
+              {...controlProps('4')}
+              sx={{
+                '& .MuiSvgIcon-root': {
+                  fontSize: 80,
+                },
+                color: '#3DC988',
+                '&.Mui-checked': {
+                 color: '#3DC988',
+                },
+              }}
+            />
+            
+            <Radio
+              {...controlProps('5')}
+              sx={{
+                '& .MuiSvgIcon-root': {
+                  fontSize: 80,
+                },
+                color: '#737B89',
+                '&.Mui-checked': {
+                 color: '#737B89',
+                },
+              }}
+            />
+
+            <Radio
+              {...controlProps('6')}
+              sx={{
+                '& .MuiSvgIcon-root': {
+                  fontSize: 80,
+                },
+                color: '#F69994',
+                '&.Mui-checked': {
+                 color: '#F69994',
+                },
+              }}
+            />
+
+            <Radio
+              {...controlProps('7')}
+              sx={{
+                '& .MuiSvgIcon-root': {
+                  fontSize: 80,
+                },
+                color: '#F69994',
+                '&.Mui-checked': {
+                 color: '#F69994',
+                },
+              }}
+            />
+
+            <Radio
+              {...controlProps('8')}
+              sx={{
+                '& .MuiSvgIcon-root': {
+                  fontSize: 80,
+                },
+                color: '#F26660',
+                '&.Mui-checked': {
+                 color: '#F26660',
+                },
+              }}
+            />
+
+            <Radio
+              {...controlProps('9')}
+              sx={{
+                '& .MuiSvgIcon-root': {
+                  fontSize: 80,
+                },
+                color: '#F26660',
+                '&.Mui-checked': {
+                 color: '#F26660',
+                },
+              }}
+            />
+
+            <Radio
+              {...controlProps('10')}
+              sx={{
+                '& .MuiSvgIcon-root': {
+                  fontSize: 80,
+                },
+                color: '#E92623',
+                '&.Mui-checked': {
+                 color: '#E92623',
+                },
+              }}
+            />
             </div>
+
+            <Typography style={{display: 'inline-block'}} fontFamily={'kanit'} fontSize={35} marginLeft={4}>0</Typography>
+            <Typography style={{display: 'inline-block'}} fontSize={35} marginLeft={10} fontFamily={'kanit'}>1</Typography>
+            <Typography style={{display: 'inline-block'}} fontSize={35} marginLeft={10} fontFamily={'kanit'}>2</Typography>
+            <Typography style={{display: 'inline-block'}} fontSize={35} marginLeft={10} fontFamily={'kanit'}>3</Typography>
+            <Typography style={{display: 'inline-block'}} fontSize={35} marginLeft={10} fontFamily={'kanit'}>4</Typography>
+            <Typography style={{display: 'inline-block'}} fontSize={35} marginLeft={10} fontFamily={'kanit'}>5</Typography>
+            <Typography style={{display: 'inline-block'}} fontSize={35} marginLeft={10} fontFamily={'kanit'}>6</Typography>
+            <Typography style={{display: 'inline-block'}} fontSize={35} marginLeft={10} fontFamily={'kanit'}>7</Typography>
+            <Typography style={{display: 'inline-block'}} fontSize={35} marginLeft={10} fontFamily={'kanit'}>8</Typography>
+            <Typography style={{display: 'inline-block'}} fontSize={35} marginLeft={10} fontFamily={'kanit'}>9</Typography>
+            <Typography style={{display: 'inline-block'}} fontSize={35} marginLeft={8} fontFamily={'kanit'}>10</Typography>
+
+            </div>
+
 
             <List sx={{ maxWidth: 180 , height: '97.4vh' , margin: '0' , bgcolor: '#5246E9' }}>           
             <div class="profile">
