@@ -1,9 +1,7 @@
 import React, {useEffect , useState} from 'react';
-import Button from '@mui/material/Button';
+import Button from '@mui/material/Button'
+import Box from '@mui/material/Box';
 import Radio from '@mui/material/Radio';
-import RadioGroup from '@mui/material/RadioGroup';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import FormControl from '@mui/material/FormControl';
 import PermIdentityIcon from '@mui/icons-material/PermIdentity';
 import IconButton from '@mui/material/IconButton';
 import LogoutIcon from '@mui/icons-material/Logout';
@@ -18,7 +16,7 @@ import Swal from 'sweetalert2'
 
 function App() {
 
-  const [selectedValue, setSelectedValue] = React.useState('a');
+  const [selectedValue, setSelectedValue] = React.useState('0');
 
   const handleChange = (event) => {
     setSelectedValue(event.target.value);
@@ -32,9 +30,14 @@ function App() {
     inputProps: { 'aria-label': item },
   });
 
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    localStorage.setItem("nrs", JSON.stringify(selectedValue));
+    window.location = '/AssPps'
+  };
+
   const [isLoaded, setIsLoaded] = useState(true);
-  const [decoded, setAssessor] = useState([]);
-  
+  const [decoded, setAssessor] = useState([]);  
 
   useEffect(() => {
     const token = localStorage.getItem('token')
@@ -102,6 +105,7 @@ function App() {
             โปรดเลือกความปวดที่ผ่านมา
             </Typography>
            
+            <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
             <div className='radioForm'>
             <Radio
               {...controlProps('0')}
@@ -245,7 +249,19 @@ function App() {
                 },
               }}
             />
+
+            <Button
+                type="submit"
+                maxWidth= "45"
+                variant="contained"
+                sx={{ mt: 4, mb: 2 , ml:33}}
+              >
+                <Typography variant="h5" fontFamily={'kanit'}>
+                ต่อไป
+                </Typography>
+              </Button>
             </div>
+            </Box>
 
             <Typography style={{display: 'inline-block'}} fontFamily={'kanit'} fontSize={35} marginLeft={4}>0</Typography>
             <Typography style={{display: 'inline-block'}} fontSize={35} marginLeft={10} fontFamily={'kanit'}>1</Typography>

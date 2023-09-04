@@ -9,6 +9,7 @@ import Register from './Register.js'
 import AssPatientFound from './AssPatientFound.js'
 import AssComferm from './AssComferm'
 import AssRegister from './AssRegister'
+import AssPps from './AssPps.js'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -21,6 +22,7 @@ root.render(
     <Route path="/asspatientfound" element={<AssPatientFound />} /> 
     <Route path="/asscomferm" element={<AssComferm />} /> 
     <Route path="/assregister" element={<AssRegister />} /> 
+    <Route path="/asspps" element={<AssPps />} /> 
     </Routes>
   </BrowserRouter>
 );
