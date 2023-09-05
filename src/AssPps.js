@@ -13,6 +13,7 @@ import Swal from 'sweetalert2'
 import Radio from '@mui/material/Radio';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
+import { positions } from '@mui/system';
 
 
 function App() {
@@ -1390,7 +1391,7 @@ function App() {
           </Box>
            </div>
 
-            <div className='navbar'>
+            <div className='navbar' sx={{positions: 'sticky'}}>
             <List sx={{ maxWidth: 180 , height: '97.4vh' , margin: '0' , bgcolor: '#5246E9' }}>           
             <div class="profile">
             <IconButton aria-label="Profile">
