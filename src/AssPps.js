@@ -1390,6 +1390,7 @@ function App() {
           </Box>
            </div>
 
+            <div className='navbar'>
             <List sx={{ maxWidth: 180 , height: '97.4vh' , margin: '0' , bgcolor: '#5246E9' }}>           
             <div class="profile">
             <IconButton aria-label="Profile">
@@ -1428,7 +1429,7 @@ function App() {
             </div>
 
             </List>
-
+</div>
             </div> 
    </div>
   );
