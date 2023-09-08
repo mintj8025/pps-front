@@ -13,7 +13,6 @@ import Swal from 'sweetalert2'
 import Radio from '@mui/material/Radio';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import { positions } from '@mui/system';
 
 
 function App() {
@@ -121,10 +120,34 @@ function App() {
     localStorage.setItem("relationship", JSON.stringify(relationship));
     localStorage.setItem("sleep", JSON.stringify(sleep));
     localStorage.setItem("happy", JSON.stringify(happy));
+    window.location = '/SideEffect'
   };
 
   const [isLoaded, setIsLoaded] = useState(true);
   const [decoded, setAssessor] = useState([]); 
+
+  const [decoded2, setPatient] = useState([]);
+      
+    useEffect(() => {
+      const token2 = localStorage.getItem('token2')
+      var myHeaders = new Headers();
+      myHeaders.append("Authorization", "Bearer " + token2);
+      var requestOptions = {
+        method: 'POST',
+        headers: myHeaders,
+        redirect: 'follow'
+      };
+
+    fetch("http://localhost:7000/patientAuthen", requestOptions)
+      .then(response => response.json())
+      .then(data => {
+          if(data.status === 'ok'){
+          setPatient(data.decoded2)
+          localStorage.setItem('token2', data.token2); 
+          }
+          console.log(data)          
+        })
+        })
 
   useEffect(() => {
     const token = localStorage.getItem('token')
@@ -1391,8 +1414,8 @@ function App() {
           </Box>
            </div>
 
-            <div className='navbar' sx={{positions: 'sticky'}}>
-            <List sx={{ maxWidth: 180 , height: '97.4vh' , margin: '0' , bgcolor: '#5246E9' }}>           
+            <div className='navbar' sx={{position: 'sticky'}}>
+            <List sx={{maxWidth: 180 , height: '97.4vh' , margin: '0' , bgcolor: '#5246E9' }}>           
             <div class="profile">
             <IconButton aria-label="Profile">
              <PermIdentityIcon  sx={{ fontSize: 40 }} color="disabled"/>

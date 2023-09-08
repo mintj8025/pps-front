@@ -21,11 +21,7 @@ function App() {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     const jsonData = {
-        patient_fname: data.get('patient_fname'),
-        patient_lname: data.get('patient_lname'),
-        patient_HN: data.get('patient_HN'),
-        patient_status: 'new',
-        patient_visit: '0'
+        patient_HN: data.get('patient_HN')
     }
     fetch('http://localhost:7000/patientFound' , {
         method: 'POST',
