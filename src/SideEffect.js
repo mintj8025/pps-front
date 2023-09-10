@@ -14,12 +14,12 @@ import Radio from '@mui/material/Radio';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 
-
 function App() {
   
   const [ss, setSs] = React.useState('0');
   const [nv, setNv] = React.useState('0');
   const [sfi72, setSfi72] = React.useState('0');
+  const [satisfied, setSatisfied] = React.useState('0');
 
   const handleSs = (event) => {
     setSs(event.target.value);
@@ -31,6 +31,10 @@ function App() {
 
   const handleSfi72 = (event) => {
     setSfi72(event.target.value);
+  };
+
+   const handleSatisfied = (event) => {
+    setSatisfied(event.target.value);
   };
 
   const controlProps1 = (item) => ({
@@ -57,15 +61,47 @@ function App() {
     inputProps: { 'aria-label': item },
   });
 
+    const controlProps4 = (item) => ({
+    checked: satisfied === item,
+    onChange: handleSatisfied,
+    value: item,
+    name: 'color-radio-button-demo',
+    inputProps: { 'aria-label': item },
+  });
+  
+  const [decoded2, setPatient] = useState([]);
+  
+  useEffect(() => {
+    const token2 = localStorage.getItem('token2')
+    var myHeaders = new Headers();
+    myHeaders.append("Authorization", "Bearer " + token2);
+    var requestOptions = {
+      method: 'POST',
+      headers: myHeaders,
+      redirect: 'follow'
+    };
 
-  const handleSubmit = (event) => {
+  fetch("http://localhost:7000/patientAuthen", requestOptions)
+    .then(response => response.json())
+    .then(data => {
+        if(data.status === 'ok'){
+        setPatient(data.decoded2)
+        }
+        console.log(data)          
+      })
+      .catch(error => console.log('error', error));
+      }, [])
+
+
+const handleSubmit = async (event) => {
     event.preventDefault();
     const savedNrs = localStorage.getItem('nrs');
     const parsedNrs = JSON.parse(savedNrs);
     const jsonData = {
+      patient_fname: decoded2.patient_fname,
       nrs: parsedNrs
     }
-  fetch('http://localhost:7000/nrstest' , {
+  fetch('http://localhost:7000/nrsandpatient' , {
       method: 'POST',
       headers: {
           'Content-Type': 'application/json',
@@ -128,6 +164,7 @@ function App() {
     .catch(error => console.log('error', error));
     }, [])
 
+  
   const handleLogout = (event) => {
     event.preventDefault();
     localStorage.removeItem('token');
@@ -405,9 +442,95 @@ function App() {
             <Typography  fontSize={25} marginTop={2} marginLeft={5} fontFamily={'kanit'}>0 = มีการถ่ายอุจจาระภายใน 72 ชั่วโมงที่ผ่านมา</Typography>
             <Typography  fontSize={25} marginLeft={5} fontFamily={'kanit'}>1 = ไม่มีอาการถ่ายอุจจาระกายใน 72 ชั่วโมงที่ผ่านมา (ท้องผูกเล็กน้อย)</Typography>
             <Typography  fontSize={25} marginLeft={5} fontFamily={'kanit'}>2 = ไม่มีการถ่ายอุจจาระภายใน 72 ชั่วโมงถึงแม้ว่าจะได้รับยาระบาย 3 ชนิด</Typography>
-            <Typography  fontSize={25} marginLeft={5} fontFamily={'kanit'}>3 = ไม่มีการถ่ายอุจจาระภายใน 72 ชั่วมโมงถึงแม้ว่าจะได้รับยาระบายมากกว่า 3 ชนิดขึ้นไป</Typography>
+            <Typography  fontSize={25} marginLeft={5} fontFamily={'kanit'}>3 = ไม่มีการถ่ายอุจจาระภายใน 72 ชั่วโมงถึงแม้ว่าจะได้รับยาระบายมากกว่า 3 ชนิดขึ้นไป</Typography>
             <Typography  fontSize={25} marginLeft={5} fontFamily={'kanit'}>4 = ไม่มีการถ่ายอุจจาระและมีอาการท้องอืดถึงแม้ว่าจะได้รับยาระบายทั้งหมด</Typography>
             </div>
+
+            <Typography component="h1"  sx={{ fontSize: 40 }} marginLeft={'10'} marginTop={'20px'} align="center" color={'black'} fontFamily={'kanit'}>
+            ระดับความพึงพอใจต่อประสิทธิภาพการระงับปวด
+            </Typography>
+
+            <div className='radioSatisfied'>
+            <Radio
+              {...controlProps4('1')}
+              sx={{
+                '& .MuiSvgIcon-root': {
+                  fontSize: 80,
+                },
+                color: '#33AC74',
+                '&.Mui-checked': {
+                 color: '#33AC74',
+                },
+              }}
+            />
+
+            <Radio
+              {...controlProps4('2')}
+              sx={{
+                '& .MuiSvgIcon-root': {
+                  fontSize: 80,
+                },
+                color: '#33AC74',
+                '&.Mui-checked': {
+                 color: '#33AC74',
+                },
+              }}
+            />
+
+            <Radio
+              {...controlProps4('3')}
+              sx={{
+                '& .MuiSvgIcon-root': {
+                  fontSize: 80,
+                },
+                color: '#33AC74',
+                '&.Mui-checked': {
+                 color: '#33AC74',
+                },
+              }}
+            />
+
+            <Radio
+              {...controlProps4('4')}
+              sx={{
+                '& .MuiSvgIcon-root': {
+                  fontSize: 80,
+                },
+                color: '#3DC988',
+                '&.Mui-checked': {
+                 color: '#3DC988',
+                },
+              }}
+            />
+            
+            <Radio
+              {...controlProps4('5')}
+              sx={{
+                '& .MuiSvgIcon-root': {
+                  fontSize: 80,
+                },
+                color: '#3DC988',
+                '&.Mui-checked': {
+                 color: '#3DC988',
+                },
+              }}
+            />
+
+            </div>
+
+            <div className='label4'>
+            <Typography style={{display: 'inline-block'}} fontFamily={'kanit'} fontSize={35} marginLeft={5}>1</Typography>
+            <Typography style={{display: 'inline-block'}} fontSize={35} marginLeft={10} fontFamily={'kanit'}>2</Typography>
+            <Typography style={{display: 'inline-block'}} fontSize={35} marginLeft={10} fontFamily={'kanit'}>3</Typography>
+            <Typography style={{display: 'inline-block'}} fontSize={35} marginLeft={10} fontFamily={'kanit'}>4</Typography>
+            <Typography style={{display: 'inline-block'}} fontSize={35} marginLeft={10} fontFamily={'kanit'}>5</Typography>
+            </div>
+
+            <div className='description4'>
+            <Typography  fontSize={25} marginTop={2} marginLeft={5} fontFamily={'kanit'}>(1 = ไม่พึงพอใจ....2.....3.....4....5 = พึงพอใจมากที่สุด)</Typography>
+            </div>            
+
+
 
             <Button
                 type="submit"

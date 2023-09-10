@@ -126,29 +126,6 @@ function App() {
   const [isLoaded, setIsLoaded] = useState(true);
   const [decoded, setAssessor] = useState([]); 
 
-  const [decoded2, setPatient] = useState([]);
-      
-    useEffect(() => {
-      const token2 = localStorage.getItem('token2')
-      var myHeaders = new Headers();
-      myHeaders.append("Authorization", "Bearer " + token2);
-      var requestOptions = {
-        method: 'POST',
-        headers: myHeaders,
-        redirect: 'follow'
-      };
-
-    fetch("http://localhost:7000/patientAuthen", requestOptions)
-      .then(response => response.json())
-      .then(data => {
-          if(data.status === 'ok'){
-          setPatient(data.decoded2)
-          localStorage.setItem('token2', data.token2); 
-          }
-          console.log(data)          
-        })
-        })
-
   useEffect(() => {
     const token = localStorage.getItem('token')
     var myHeaders = new Headers();

@@ -31,7 +31,6 @@ const [decoded2, setPatient] = useState([]);
     .then(data => {
         if(data.status === 'ok'){
         setPatient(data.decoded2)
-        localStorage.setItem('token2', data.token2); 
         }
         console.log(data)          
       })

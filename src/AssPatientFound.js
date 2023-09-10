@@ -83,6 +83,7 @@ function App() {
     .catch(error => console.log('error', error));
     }, [])
 
+  
   const handleLogout = (event) => {
     event.preventDefault();
     localStorage.removeItem('token');
