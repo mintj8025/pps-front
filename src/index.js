@@ -13,6 +13,7 @@ import AssPps from './AssPps.js'
 import SideEffect from './SideEffect.js'
 import Pps100 from './Pps100.js'
 import Pps90 from './Pps90.js'
+import History from './History.js'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -29,6 +30,8 @@ root.render(
     <Route path="/sideeffect" element={<SideEffect />} /> 
     <Route path="/pps100" element={<Pps100 />} /> 
     <Route path="/pps90" element={<Pps90 />} /> 
+    <Route path="/history" element={<History />} /> 
+
     </Routes>
   </BrowserRouter>
 );

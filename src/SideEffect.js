@@ -19,7 +19,7 @@ function App() {
   const [ss, setSs] = React.useState('0');
   const [nv, setNv] = React.useState('0');
   const [sfi72, setSfi72] = React.useState('0');
-  const [satisfied, setSatisfied] = React.useState('0');
+  const [satisfied, setSatisfied] = React.useState('1');
 
   const handleSs = (event) => {
     setSs(event.target.value);
@@ -133,7 +133,7 @@ const handleSubmit = async (event) => {
       assessor_fname: decoded.assessor_fname,
       assessor_lname: decoded.assessor_lname
     }
-  fetch('http://localhost:7000/assessment_withoutdate' , {
+  fetch('http://localhost:7000/assessment' , {
       method: 'POST',
       headers: {
           'Content-Type': 'application/json',
