@@ -26,8 +26,7 @@ export function App() {
   const [rowsPerPage, setRowsPerPage] = useState(10);
 
   useEffect(() => {
-    // ส่งคำขอ HTTP ไปยังเซิร์ฟเวอร์ฐานข้อมูลของคุณเพื่อดึงข้อมูล
-    fetch('http://localhost:7000/history') // เปลี่ยน URL ตามที่คุณตั้งค่า API
+    fetch('http://localhost:7000/history') 
       .then((response) => response.json())
       .then((responseData) => {
         setData(responseData.results);
@@ -47,7 +46,6 @@ export function App() {
   };
 
   const slicedData = data.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage);
-
  
   const [isLoaded, setIsLoaded] = useState(true);
   const [decoded, setAssessor] = useState([]);  
@@ -137,7 +135,6 @@ export function App() {
                   <TableCell>Sfi72</TableCell>
                   <TableCell>Date of First</TableCell>
                   <TableCell>Duration</TableCell>
-                  {/* เพิ่มคอลัมน์อื่น ๆ ตามต้องการ */}
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -162,7 +159,6 @@ export function App() {
                     <TableCell>{row.sfi72}</TableCell>
                     <TableCell>{new Date(row.date_of_first).toLocaleDateString()}</TableCell>
                     <TableCell>{row.duration}</TableCell>
-                    {/* เพิ่มคอลัมน์อื่น ๆ ตามต้องการ */}
                   </TableRow>
                 ))}
               </TableBody>

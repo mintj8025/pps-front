@@ -66,6 +66,10 @@ function App() {
     window.location = '/asspatientfound'
   }
 
+  const handleHistory = (event) => {
+    window.location = '/history'
+  }
+
   if (isLoaded) return (<div>Loading</div>)
   else {
   return (
@@ -150,7 +154,7 @@ function App() {
               <div class="history-menu">
               <IconButton>
               <Card sx={{ minWidth: 245 , borderRadius: 10}}>
-              <UpdateIcon onClick={handleRegister} sx={{ fontSize: 100 }} 
+              <UpdateIcon onClick={handleHistory} sx={{ fontSize: 100 }} 
               style={{ color: 'black' , position: 'relative' , marginTop: 20}} />
                 <CardContent>
                   <Typography variant="h5" component="div" fontFamily={'kanit'}>
@@ -195,7 +199,7 @@ function App() {
 
             <div class="history">
             <IconButton aria-label="History">
-            <UpdateIcon  sx={{ fontSize: 40 }} style={{ color: 'disabled' }} />
+            <UpdateIcon onClick={handleHistory} sx={{ fontSize: 40 }} style={{ color: 'disabled' }} />
             </IconButton> 
             </div>
             

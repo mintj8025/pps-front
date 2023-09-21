@@ -8,8 +8,15 @@ import PersonAddAltIcon from '@mui/icons-material/PersonAddAlt';
 import AssignmentIcon from '@mui/icons-material/Assignment';
 import UpdateIcon from '@mui/icons-material/Update';
 import Typography from '@mui/material/Typography';
-import './Pps100.css';
+import './Profile.css';
 import Swal from 'sweetalert2'
+import Avatar from '@mui/material/Avatar';
+import Box from '@mui/material/Box';
+import Card from '@mui/material/Card';
+import CardActions from '@mui/material/CardActions';
+import CardContent from '@mui/material/CardContent';
+import Button from '@mui/material/Button';
+
 
 function App() {
 
@@ -82,10 +89,20 @@ function App() {
             sx={{color: 'black'}}>
               <Typography variant="h5" component="div" fontFamily={'lightkanit'}>
               {decoded.assessor_fname} {decoded.assessor_lname}<PermIdentityIcon  sx={{ fontSize: 35 }} /></Typography> </IconButton></div>
-                
-              <div className='pps100'>
-              <h1>pps100!</h1>
-              </div>
+           
+            <div className='profile-card'>
+            <Card sx={{ minWidth: 325, minHeight: 400  }}>
+            <CardContent>
+                <Avatar sx={{ width: 76, height: 76 }} src="/broken-image.jpg" />
+                <Typography variant="h5" component="div" sx={{ mt: 3 }} fontFamily={'Kanit'}>
+                {decoded.assessor_fname} {decoded.assessor_lname}
+                </Typography>
+                <Typography sx={{ mb: 1.5 }} color="text.secondary" fontFamily={'lightKanit'}>
+                {decoded.assessor_username}
+                </Typography>
+              </CardContent>
+             </Card>
+            </div>
 
 
             <List sx={{ maxWidth: 180 , height: '97.4vh' , margin: '0' , bgcolor: '#5246E9' }}>           
