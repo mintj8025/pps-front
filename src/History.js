@@ -237,11 +237,11 @@ export function App() {
               label="HN"
             />
             <FormControlLabel
-              control={<Checkbox checked={showPatientFname} onChange={handleChangeCheckbox} name="patientFirstname" />}
+              control={<Checkbox checked={showPatientFname} onChange={handleChangeCheckbox} name="patientFname" />}
               label="Firstname"
             />
             <FormControlLabel
-              control={<Checkbox checked={showPatientLname} onChange={handleChangeCheckbox} name="patientLastname" />}
+              control={<Checkbox checked={showPatientLname} onChange={handleChangeCheckbox} name="patientLname" />}
               label="Lastname"
             />
             <FormControlLabel
