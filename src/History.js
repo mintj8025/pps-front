@@ -8,7 +8,7 @@ import PersonAddAltIcon from '@mui/icons-material/PersonAddAlt';
 import AssignmentIcon from '@mui/icons-material/Assignment';
 import UpdateIcon from '@mui/icons-material/Update';
 import Typography from '@mui/material/Typography';
-import './Home.css';
+import './History.css';
 import Swal from 'sweetalert2'
 import TableContainer from '@mui/material/TableContainer';
 import Table from '@mui/material/Table';
@@ -21,6 +21,7 @@ import TablePagination from '@mui/material/TablePagination';
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
+
 
 export function App() {
 
@@ -51,8 +52,9 @@ export function App() {
 
   const slicedData = data.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage);
  
+  const [selectAll, setSelectAll] = useState(false);
   const [showDate, setShowDate] = useState(true);
-  const [showPatientHN, setShowPatientHN] = useState(false);
+  const [showPatientHN, setShowPatientHN] = useState(true);
   const [showPatientFname, setShowPatientFname] = useState(false);
   const [showPatientLname, setShowPatientLname] = useState(false);
   const [showPatientStatus, setShowPatientStatus] = useState(false);
@@ -74,8 +76,8 @@ export function App() {
   const [showSfi72, setShowSfi72] = useState(false);
   const [showDateOfFirst, setShowDateOfFirst] = useState(false);
   const [showDuration, setShowDuration] = useState(false);
-  const [showAsessorFname, setShowAssessorFname] = useState(false);
-  const [showAsessorLname, setShowAssessorLname] = useState(false);
+  const [showAssessorFname, setShowAssessorFname] = useState(false);
+  const [showAssessorLname, setShowAssessorLname] = useState(false);
 
 
   const handleChangeCheckbox = (event) => {
@@ -156,7 +158,34 @@ export function App() {
       case 'assessorLname':
         setShowAssessorLname(checked);
         break;
-      // เพิ่ม case สำหรับ checkbox อื่น ๆ ที่คุณมี
+        case 'selectAll':
+          setSelectAll(checked);
+          setShowDate(checked);
+          setShowPatientHN(checked);
+          setShowPatientFname(checked);
+          setShowPatientLname(checked);
+          setShowPatientStatus(checked);
+          setShowPatientVisit(checked);
+          setShowAssessmentStatus(checked);
+          setShowNrs(checked);
+          setShowActivity(checked);
+          setShowEmotion(checked);
+          setShowWalk(checked);
+          setShowWork(checked);
+          setShowRelationship(checked);
+          setShowSleep(checked);
+          setShowHappy(checked);
+          setShowSatisfied(checked);
+          setShowBpi(checked);
+          setShowPps(checked);
+          setShowSs(checked);
+          setShowNv(checked);
+          setShowSfi72(checked);
+          setShowDateOfFirst(checked);
+          setShowDuration(checked);
+          setShowAssessorFname(checked);
+          setShowAssessorLname(checked);  
+          break;
       default:
         break;
     }
@@ -227,7 +256,15 @@ export function App() {
             ประวัติการประเมิน
             </Typography>
 
-            <FormGroup>
+            <FormGroup aria-label="position" row>
+            <FormControlLabel
+              control={<Checkbox checked={selectAll} onChange={handleChangeCheckbox} name="selectAll" />}
+              label="Select All"
+              style={{
+                fontWeight: 'bold', // ตัวอย่าง: ทำให้ตัวหนา
+                color: 'blue', // ตัวอย่าง: เปลี่ยนสีข้อความเป็นสีน้ำเงิน
+                // เพิ่มสไตล์เพิ่มเติมตามต้องการ
+              }}            />
             <FormControlLabel
               control={<Checkbox checked={showDate} onChange={handleChangeCheckbox} name="date" />}
               label="Date"
@@ -321,14 +358,13 @@ export function App() {
               label="Duration"
             />
             <FormControlLabel
-              control={<Checkbox checked={showAsessorFname} onChange={handleChangeCheckbox} name="assessorFname" />}
+              control={<Checkbox checked={showAssessorFname} onChange={handleChangeCheckbox} name="assessorFname" />}
               label="Assessor Firstname"
             />
             <FormControlLabel
-              control={<Checkbox checked={showAsessorLname} onChange={handleChangeCheckbox} name="assessorLname" />}
+              control={<Checkbox checked={showAssessorLname} onChange={handleChangeCheckbox} name="assessorLname" />}
               label="Assessor Lastname"
             />
-            {/* เพิ่ม checkbox อื่น ๆ ที่คุณมี */}
           </FormGroup>
 
             <TableContainer component={Paper}>
@@ -356,16 +392,19 @@ export function App() {
                 {showSs && <TableCell>SS</TableCell>}
                 {showNv && <TableCell>NV</TableCell>}
                 {showSfi72 && <TableCell>Sfi72</TableCell>}
-                {showDateOfFirst && <TableCell>Date of fist visit</TableCell>}
+                {showDateOfFirst && <TableCell>Date of first visit</TableCell>}
                 {showDuration && <TableCell>Duration</TableCell>}
-                {showAsessorFname && <TableCell>Assessor Firstname</TableCell>}
-                {showAsessorLname && <TableCell>Assessor Lastname</TableCell>}
-                {/* เพิ่มเงื่อนไขแสดง table header ตาม checkbox อื่น ๆ ที่คุณมี */}
+                {showAssessorFname && <TableCell>Assessor Firstname</TableCell>}
+                {showAssessorLname && <TableCell>Assessor Lastname</TableCell>}
               </TableRow>
             </TableHead>
 
             <TableBody>
-                {slicedData.map((row) => (
+              {slicedData.sort((a, b) => {
+                  if (a.date < b.date) return -1;
+                  if (a.date > b.date) return 1;
+                  return 0;
+                }).map((row) => (
                   <TableRow key={row.date}>
                     {showDate && (
                       <TableCell>
@@ -392,27 +431,27 @@ export function App() {
                         {showPatientStatus ? row.patient_status : null}
                       </TableCell>
                     )}
-                    {showPatientStatus && (
+                    {showPatientVisit && (
                       <TableCell>
                         {showPatientVisit ? row.patient_visit : null}
                       </TableCell>
                     )}
-                    {showPatientStatus && (
+                    {showAssessmentStatus && (
                       <TableCell>
                         {showAssessmentStatus ? row.assessment_status : null}
                       </TableCell>
                     )}
-                    {showPatientStatus && (
+                    {showNrs && (
                       <TableCell>
                         {showNrs ? row.nrs : null}
                       </TableCell>
                     )}
-                    {showPatientStatus && (
+                    {showActivity && (
                       <TableCell>
                         {showActivity ? row.activity : null}
                       </TableCell>
                     )}
-                    {showPatientStatus && (
+                    {showEmotion && (
                       <TableCell>
                         {showEmotion ? row.emotion : null}
                       </TableCell>
@@ -474,7 +513,7 @@ export function App() {
                     )}
                     {showDateOfFirst && (
                       <TableCell>
-                        {showDateOfFirst ? row.date_of_first : null}
+                        {showDateOfFirst ? new Date(row.date_of_first).toLocaleDateString() : null}
                       </TableCell>
                     )}
                     {showDuration && (
@@ -482,53 +521,20 @@ export function App() {
                         {showDuration ? row.duration : null}
                       </TableCell>
                     )}
-                    {showAsessorFname && (
+                    {showAssessorFname && (
                       <TableCell>
-                        {showAsessorFname ? row.assessor_fname : null}
+                        {showAssessorFname ? row.assessor_fname : null}
                       </TableCell>
                     )}
-                    {showAsessorLname && (
+                    {showAssessorLname && (
                       <TableCell>
-                        {showAsessorLname ? row.assessor_lname : null}
+                        {showAssessorLname ? row.assessor_lname : null}
                       </TableCell>
                     )}
-                    {/* เพิ่มเงื่อนไขแสดงข้อมูลตาม checkbox อื่น ๆ ที่คุณมี */}
                   </TableRow>
                 ))}
-              </TableBody>
-
-              <TableBody>
-              {slicedData.map((row) => (
-                <TableRow key={row.date}>
-                  {showDate && <TableCell>{new Date(row.date).toLocaleDateString()}</TableCell>}
-                  {showPatientHN && <TableCell>{row.patient_HN}</TableCell>}
-                  {showPatientFname && <TableCell>{row.patient_fname}</TableCell>}
-                  {showPatientLname && <TableCell>{row.patient_lname}</TableCell>}
-                  {showPatientStatus && <TableCell>{row.patient_status}</TableCell>}
-                  {showPatientVisit && <TableCell>{row.patient_visit}</TableCell>}
-                  {showAssessmentStatus && <TableCell>{row.assessment_status}</TableCell>}
-                  {showNrs && <TableCell>{row.nrs}</TableCell>}
-                  {showActivity && <TableCell>{row.activity}</TableCell>}
-                  {showEmotion && <TableCell>{row.emotion}</TableCell>}
-                  {showWalk && <TableCell>{row.walk}</TableCell>}
-                  {showWork && <TableCell>{row.work}</TableCell>}
-                  {showRelationship && <TableCell>{row.relationship}</TableCell>}
-                  {showSleep && <TableCell>{row.sleep}</TableCell>}
-                  {showHappy && <TableCell>{row.happy}</TableCell>}
-                  {showSatisfied && <TableCell>{row.satisfied}</TableCell>}
-                  {showBpi && <TableCell>{row.bpi}</TableCell>}
-                  {showPps && <TableCell>{row.pps}</TableCell>}
-                  {showSs && <TableCell>{row.ss}</TableCell>}
-                  {showNv && <TableCell>{row.nv}</TableCell>}
-                  {showSfi72 && <TableCell>{row.sfi72}</TableCell>}
-                  {showDateOfFirst && <TableCell>{row.date_of_first}</TableCell>}
-                  {showDuration && <TableCell>{row.duration}</TableCell>}
-                  {showAsessorFname && <TableCell>{row.assessor_fname}</TableCell>}
-                  {showAsessorLname && <TableCell>{row.assessor_lname}</TableCell>}
-                  {/* เพิ่มเงื่อนไขแสดงข้อมูลตาม checkbox อื่น ๆ ที่คุณมี */}
-                </TableRow>
-              ))}
             </TableBody>
+
             </Table>
           </TableContainer>
           <TablePagination
