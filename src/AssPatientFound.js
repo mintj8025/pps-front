@@ -36,11 +36,15 @@ function App() {
         localStorage.setItem('token2', data.token2);
         window.location = '/AssComferm'
       }else{
-      Swal.fire({
+        Swal.fire({
           icon: 'error',
-          title: 'Sorry...',
-          text: (data.message),
-        })
+          title: 'ขออภัย...',
+          text: 'ไม่พบข้อมูลคนไข้',
+          customClass: {
+            title: 'lightKanit', // กำหนดฟ้อนต์เป็น "lightKanit" สำหรับข้อความหัวเรื่อง
+            content: 'lightKanit', // กำหนดฟ้อนต์เป็น "lightKanit" สำหรับข้อความเนื้อหา
+          }
+        });        
         }
       })
     .catch((error) => {
@@ -84,19 +88,31 @@ function App() {
     }, [])
 
   
-  const handleLogout = (event) => {
-    event.preventDefault();
-    localStorage.removeItem('token');
-    window.location = '/login'
-  }
+    const handleProfile = (event) => {
+      window.location = '/Profile'
+    }
 
-  const handleRegister = (event) => {
-    window.location = '/register'
-  }
-
-  const handleAssessment = (event) => {
-    window.location = '/asspatientfound'
-  }
+    const handleHome = (event) => {
+      window.location = '/Home'
+    }
+  
+    const handleRegister = (event) => {
+      window.location = '/register'
+    }
+  
+    const handleAssPatientFound = (event) => {
+      window.location = '/asspatientfound'
+    }
+  
+    const handleHistory = (event) => {
+      window.location = '/History'
+    }
+  
+    const handleLogout = (event) => {
+      event.preventDefault();
+      localStorage.removeItem('token');
+      window.location = '/login'
+    }
 
   if (isLoaded) return (<div>Loading</div>)
   else {
@@ -106,7 +122,7 @@ function App() {
             <div class="username">
             <IconButton
             sx={{color: 'black'}}>
-              <Typography variant="h5" component="div" fontFamily={'lightkanit'}>
+              <Typography onClick={handleProfile} variant="h5" component="div" fontFamily={'lightkanit'}>
               {decoded.assessor_fname} {decoded.assessor_lname}<PermIdentityIcon  sx={{ fontSize: 35 }} /></Typography> </IconButton></div>
                 
             <div className='assessmentAuth'>
@@ -151,13 +167,13 @@ function App() {
             <List sx={{ maxWidth: 180 , height: '97.4vh' , margin: '0' , bgcolor: '#5246E9' }}>           
             <div class="profile">
             <IconButton aria-label="Profile">
-             <PermIdentityIcon  sx={{ fontSize: 40 }} color="disabled"/>
+             <PermIdentityIcon onClick={handleProfile} sx={{ fontSize: 40 }} color="disabled"/>
             </IconButton> 
             </div>          
             
             <div class="home">
             <IconButton aria-label="Home">
-             <HomeIcon  sx={{ fontSize: 40 }} style={{ color: 'white' }} />
+             <HomeIcon onClick={handleHome} sx={{ fontSize: 40 }} style={{ color: 'disabled' }} />
             </IconButton>      
             </div>
 
@@ -169,13 +185,13 @@ function App() {
 
             <div class="assessment">
             <IconButton aria-label="Assessment">
-            <AssignmentIcon onClick={handleAssessment} sx={{ fontSize: 40 }} style={{ color: 'disabled' }} />
+            <AssignmentIcon onClick={handleAssPatientFound} sx={{ fontSize: 40 }} style={{ color: 'disabled' }} />
             </IconButton> 
             </div>
 
             <div class="history">
             <IconButton aria-label="History">
-            <UpdateIcon  sx={{ fontSize: 40 }} style={{ color: 'disabled' }} />
+            <UpdateIcon onClick={handleHistory} sx={{ fontSize: 40 }} style={{ color: 'disabled' }} />
             </IconButton> 
             </div>
             

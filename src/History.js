@@ -15,6 +15,7 @@ import {
   GridToolbar
 } from '@mui/x-data-grid';
 
+
 export function App() {
 
   const [data, setData] = useState([]);
@@ -31,32 +32,55 @@ export function App() {
   }, []);
 
   const columns = [
-    { field: 'date', headerName: 'Date', flex: 1 },
-    { field: 'patient_HN', headerName: 'HN', flex: 1 },
-    { field: 'patient_fname', headerName: 'Firstname', flex: 1 },
-    { field: 'patient_lname', headerName: 'Lastname', flex: 1 },
-    { field: 'patient_status', headerName: 'Status', flex: 1 },
-    { field: 'patient_visit', headerName: 'Visit', flex: 1 },
-    { field: 'assessment_status', headerName: 'Assessment status', flex: 1 },
-    { field: 'nrs', headerName: 'NRS', flex: 1 },
-    { field: 'activity', headerName: 'กิจกรรม', flex: 1 },
-    { field: 'emotion', headerName: 'อารมณ์', flex: 1 },
-    { field: 'walk', headerName: 'การเดิน', flex: 1 },
-    { field: 'work', headerName: 'งาน', flex: 1 },
-    { field: 'relationship', headerName: 'ความสัมพันธ์', flex: 1 },
-    { field: 'sleep', headerName: 'การนอน', flex: 1 },
-    { field: 'happy', headerName: 'ความสุข', flex: 1 },
-    { field: 'satisfied', headerName: 'ความพึงพอใจ', flex: 1 },
-    { field: 'bpi', headerName: 'BPI', flex: 1 },
-    { field: 'pps', headerName: 'PPS', flex: 1 },
-    { field: 'ss', headerName: 'SS', flex: 1 },
-    { field: 'nv', headerName: 'NV', flex: 1 },
-    { field: 'sfi72', headerName: 'Sfi72', flex: 1 },
-    { field: 'date_of_first', headerName: 'Date of first', flex: 1 },
-    { field: 'duration', headerName: 'Duration', flex: 1 },
-    { field: 'assessor_fname', headerName: 'Assessor firstname', flex: 1 },
-    { field: 'assessor_lname', headerName: 'Assessor lastname', flex: 1 },
+    { 
+      field: 'date', 
+      headerName: 'Date', 
+      flex: 1,
+      minWidth: 100,
+      valueGetter: (params) => {
+        return new Date(params.row.date).toLocaleDateString();
+      },
+    },
+    { field: 'patient_HN', headerName: 'HN', flex: 1 , minWidth: 100 },
+    { field: 'patient_fname', headerName: 'Firstname', flex: 1 , minWidth: 140 },
+    { field: 'patient_lname', headerName: 'Lastname', flex: 1 , minWidth: 140 },
+    { field: 'patient_status', headerName: 'Status', flex: 1 , minWidth: 80 },
+    { field: 'patient_visit', headerName: 'Visit', flex: 1 , minWidth: 80 },
+    { field: 'assessment_status', headerName: 'Assessment status', flex: 1 , minWidth: 220 },
+    { field: 'nrs', headerName: 'NRS', flex: 1 , minWidth: 90 },
+    { field: 'activity', headerName: 'กิจกรรม', flex: 1 , minWidth: 90 },
+    { field: 'emotion', headerName: 'อารมณ์', flex: 1 , minWidth: 90 },
+    { field: 'walk', headerName: 'การเดิน', flex: 1 , minWidth: 90 },
+    { field: 'work', headerName: 'งาน', flex: 1 , minWidth: 90 },
+    { field: 'relationship', headerName: 'ความสัมพันธ์', flex: 1 , minWidth: 90 },
+    { field: 'sleep', headerName: 'การนอน', flex: 1 , minWidth: 90 },
+    { field: 'happy', headerName: 'ความสุข', flex: 1 , minWidth: 90 },
+    { field: 'satisfied', headerName: 'ความพึงพอใจ', flex: 1 , minWidth: 100 },
+    { field: 'bpi', headerName: 'BPI', flex: 1 , minWidth: 90 },
+    { field: 'pps', headerName: 'PPS', flex: 1 , minWidth: 90  },
+    { field: 'ss', headerName: 'SS', flex: 1 , minWidth: 90 },
+    { field: 'nv', headerName: 'NV', flex: 1 , minWidth: 90 },
+    { field: 'sfi72', headerName: 'Sfi72', flex: 1 , minWidth: 90 },
+    { 
+      field: 'date_of_first', 
+      headerName: 'Date of first', 
+      flex: 1,
+      minWidth: 100,
+      valueGetter: (params) => {
+        return new Date(params.row.date_of_first).toLocaleDateString();
+      },
+    },
+    { field: 'duration', headerName: 'Duration', flex: 1 , minWidth: 90 },
+    { field: 'assessor_fname', headerName: 'Assessor firstname', flex: 1 , minWidth: 140 },
+    { field: 'assessor_lname', headerName: 'Assessor lastname', flex: 1 , minWidth: 140 },
   ];
+
+  const [selectedRow, setSelectedRow] = useState(null);
+
+  const handleRowClick = (params) => {
+    setSelectedRow(params.row.patient_HN === selectedRow ? null : params.row.patient_HN);
+  };
+
 
   const [isLoaded, setIsLoaded] = useState(true);
   const [decoded, setAssessor] = useState([]);
@@ -117,7 +141,7 @@ export function App() {
               <Typography variant="h5" component="div" fontFamily={'lightkanit'}>
                 {decoded.assessor_fname} {decoded.assessor_lname}
                 <PermIdentityIcon sx={{ fontSize: 35 }} />
-              </Typography>{' '}
+              </Typography>
             </IconButton>
           </div>
 
@@ -127,14 +151,31 @@ export function App() {
             </Typography>
 
             <DataGrid
-              rows={data}
-              columns={columns}
-              getRowId={(row) => row.patient_HN.toString()}
-              components={{
-                Toolbar: GridToolbar, // เพิ่ม GridToolbar ที่นี่
-              }}
-            />
-          </div>
+  rows={data}
+  columns={columns}
+  getRowId={(row) => row.patient_HN} // หรือใช้ฟิลด์ที่เหมาะสมที่เป็น ID ของแถว
+  components={{
+    Toolbar: GridToolbar,
+  }}
+  rowThreshold={0}
+  onRowClick={handleRowClick}
+/>
+
+{selectedRow && (
+  <div>
+    {/* แสดงรายละเอียดของแถวที่ถูกคลิก */}
+    {data.find((row) => row.patient_HN === selectedRow) && (
+      <div>
+        <Typography variant="h6">รายละเอียดของแถว {selectedRow}</Typography>
+        {/* เพิ่มองค์ประกอบที่คุณต้องการแสดงเพิ่มเติมของแถวที่ถูกคลิก */}
+      </div>
+    )}
+  </div>
+)}
+
+
+
+            </div>
 
           <List sx={{ maxWidth: 180, height: '97.4vh', margin: '0', bgcolor: '#5246E9' }}>
             <div class="profile">

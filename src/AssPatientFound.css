@@ -16,6 +16,10 @@
       font-family: Kanit;
     }
 
+    .swal2-popup {
+      font-family: lightKanit, sans-serif;
+    }
+
     .assessmentAuth {
     position: absolute;
     right: 150px;

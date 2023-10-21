@@ -17,6 +17,10 @@ import './Register.css'
 
 
 export default function SignUp() {
+    
+  const [fnameError, setFnameError] = React.useState('');
+  const [lnameError, setLnameError] = React.useState('');
+  const [hnError, setHnError] = React.useState('');
 
   const [num, setNum] = useState('');
 
@@ -36,32 +40,56 @@ export default function SignUp() {
       patient_visit: "0"
   }
 
-  fetch('http://localhost:7000/register_patient' , {
+  if (!jsonData.patient_fname) {
+    setFnameError('กรุณากรอกชื่อคนไข้');
+  } else {
+    setFnameError('');
+  }
+
+  if (!jsonData.patient_lname) {
+    setLnameError('กรุณากรอกนามสกุลคนไข้');
+  } else {
+    setLnameError('');
+  }
+
+  const hnRegex = /^[0-9]{8}$/; // This regex matches 8 digits
+  if (!jsonData.patient_HN || !hnRegex.test(jsonData.patient_HN)) {
+    setHnError('กรุณากรอกเลข HN ที่มี 8 ตัวเป็นตัวเลข');
+  } else {
+    setHnError('');
+  }
+
+  
+  if (jsonData.patient_fname && jsonData.patient_lname && jsonData.patient_HN) {
+    fetch('http://localhost:7000/register_patient', {
       method: 'POST',
       headers: {
-          'Content-Type': 'application/json',
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify(jsonData),
-  })
-  .then(response => response.json())
-  .then(data => {
-      if(data.status === 'ok'){
-        Swal.fire({
-          icon: 'success',
-          title: 'Your register has been saved',
-          showConfirmButton: false,
-          timer: 2000
+    })
+      .then(response => response.json())
+      .then(data => {
+        if (data.status === 'ok') {
+          Swal.fire({
+            icon: 'success',
+            title: 'Your register has been saved',
+            showConfirmButton: false,
+            timer: 2000
           }).then((value) => {
             window.location = '/home'
           })
-      }else{
-        alert(data.message)
-      }
-  })
-  .catch((error) => {
-    console.error('Error:', error);
-})
+        } else if (data.status === 'error' && data.message === 'เลข HN นี้มีอยู่ในระบบแล้ว') {
+          // ถ้า HN ซ้ำแสดงเตือน
+          setHnError('HN นี้มีอยู่ในระบบแล้ว');
+        }
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+  }
 };
+
 
 const [decoded, setAssessor] = useState([]);
   
@@ -96,19 +124,32 @@ fetch("http://localhost:7000/authen", requestOptions)
   .catch(error => console.log('error', error));
   }, [])
 
-  const handleLogout = (event) => {
-    event.preventDefault();
-    localStorage.removeItem('token');
-    window.location = '/login'
+  const handleProfile = (event) => {
+    window.location = '/Profile'
+  }
+
+  const handleHome = (event) => {
+    window.location = '/Home'
   }
 
   const handleRegister = (event) => {
     window.location = '/register'
   }
 
-  const handleHome = (event) => {
-    window.location = '/Home'
+  const handleAssPatientFound = (event) => {
+    window.location = '/asspatientfound'
   }
+
+  const handleHistory = (event) => {
+    window.location = '/History'
+  }
+
+  const handleLogout = (event) => {
+    event.preventDefault();
+    localStorage.removeItem('token');
+    window.location = '/login'
+  }
+
 
   return (       
   <div>
@@ -116,7 +157,7 @@ fetch("http://localhost:7000/authen", requestOptions)
     <div class="username">
             <IconButton
             sx={{color: 'black'}}>
-              <Typography variant="h5" component="div" fontFamily={'lightkanit'}>
+              <Typography onClick={handleProfile} variant="h5" component="div" fontFamily={'lightkanit'}>
               {decoded.assessor_fname} {decoded.assessor_lname}<PermIdentityIcon  sx={{ fontSize: 35 }} /></Typography> </IconButton></div>
             <div className='registerPatient'>
             <Box
@@ -144,6 +185,8 @@ fetch("http://localhost:7000/authen", requestOptions)
                     id="patient_fname"
                     label="ชื่อ"
                     autoFocus
+                    error={!!fnameError} // Add error prop
+                    helperText={fnameError} // Display error message
                   />
                 </Grid>
                 <Grid item xs={12} sm={6}>
@@ -157,6 +200,8 @@ fetch("http://localhost:7000/authen", requestOptions)
                     label="นามสกุล"
                     name="patient_lname"
                     autoComplete="family-name"
+                    error={!!lnameError} // Add error prop
+                    helperText={lnameError} // Display error message
                   />
                 </Grid>
                 <Grid item xs={12}>
@@ -171,6 +216,8 @@ fetch("http://localhost:7000/authen", requestOptions)
                     label="เลข HN"
                     name="patient_HN"
                     autoComplete="HN"
+                    error={!!hnError} // Add error prop
+                    helperText={hnError} // Display error message
                     value={num}
                     onChange={handleNumChange}
                   />
@@ -193,7 +240,7 @@ fetch("http://localhost:7000/authen", requestOptions)
          <List sx={{ maxWidth: 180 , height: '97.4vh' , margin: '0' , bgcolor: '#5246E9' }}>           
             <div class="profile">
             <IconButton aria-label="Profile">
-             <PermIdentityIcon  sx={{ fontSize: 40 }} color="disabled"/>
+             <PermIdentityIcon onClick={handleProfile} sx={{ fontSize: 40 }} color="disabled"/>
             </IconButton> 
             </div>          
             
@@ -211,13 +258,13 @@ fetch("http://localhost:7000/authen", requestOptions)
 
             <div class="assessment">
             <IconButton aria-label="Assessment">
-            <AssignmentIcon  sx={{ fontSize: 40 }} style={{ color: 'disabled' }} />
+            <AssignmentIcon onClick={handleAssPatientFound} sx={{ fontSize: 40 }} style={{ color: 'disabled' }} />
             </IconButton> 
             </div>
 
             <div class="history">
             <IconButton aria-label="History">
-            <UpdateIcon  sx={{ fontSize: 40 }} style={{ color: 'disabled' }} />
+            <UpdateIcon onClick={handleHistory} sx={{ fontSize: 40 }} style={{ color: 'disabled' }} />
             </IconButton> 
             </div>
             

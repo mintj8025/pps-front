@@ -71,19 +71,27 @@ function App() {
     .catch(error => console.log('error', error));
     }, [])
 
-  const handleLogout = (event) => {
-    event.preventDefault();
-    localStorage.removeItem('token');
-    window.location = '/login'
-  }
-
-  const handleRegister = (event) => {
-    window.location = '/register'
-  }
-
-  const handleAssPatientFound = (event) => {
-    window.location = '/asspatientfound'
-  }
+    const handleHome = (event) => {
+      window.location = '/Home'
+    }
+  
+    const handleRegister = (event) => {
+      window.location = '/register'
+    }
+  
+      const handleAssessment = (event) => {
+      window.location = '/asspatientfound'
+    }
+  
+        const handleHistory = (event) => {
+      window.location = '/History'
+    }
+  
+      const handleLogout = (event) => {
+      event.preventDefault();
+      localStorage.removeItem('token');
+      window.location = '/login'
+    }
 
   if (isLoaded) return (<div>Loading</div>)
   else {
@@ -287,7 +295,7 @@ function App() {
             
             <div class="home">
             <IconButton aria-label="Home">
-             <HomeIcon  sx={{ fontSize: 40 }} style={{ color: 'white' }} />
+             <HomeIcon onClick={handleHome} sx={{ fontSize: 40 }} style={{ color: 'white' }} />
             </IconButton>      
             </div>
 
@@ -299,13 +307,13 @@ function App() {
 
             <div class="assessment">
             <IconButton aria-label="Assessment">
-            <AssignmentIcon onClick={handleAssPatientFound} sx={{ fontSize: 40 }} style={{ color: 'disabled' }} />
+            <AssignmentIcon onClick={handleAssessment} sx={{ fontSize: 40 }} style={{ color: 'disabled' }} />
             </IconButton> 
             </div>
 
             <div class="history">
             <IconButton aria-label="History">
-            <UpdateIcon  sx={{ fontSize: 40 }} style={{ color: 'disabled' }} />
+            <UpdateIcon onClick={handleHistory} sx={{ fontSize: 40 }} style={{ color: 'disabled' }} />
             </IconButton> 
             </div>
             
