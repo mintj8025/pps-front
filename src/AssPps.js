@@ -25,7 +25,6 @@ function App() {
   const [sleep, setSleep] = React.useState('0');
   const [happy, setHappy] = React.useState('0');
 
-
   
   const handleActivity = (event) => {
     setActivity(event.target.value);
