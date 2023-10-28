@@ -11,7 +11,7 @@ import PersonAddAltIcon from '@mui/icons-material/PersonAddAlt';
 import AssignmentIcon from '@mui/icons-material/Assignment';
 import UpdateIcon from '@mui/icons-material/Update';
 import Typography from '@mui/material/Typography';
-import './AssRegister.css';
+import './AssNRS.css';
 import Swal from 'sweetalert2'
 
 function App() {
@@ -33,7 +33,7 @@ function App() {
   const handleSubmit = (event) => {
     event.preventDefault();
     localStorage.setItem("nrs", JSON.stringify(selectedValue));
-    window.location = '/AssPps'
+    window.location = '/AssBPI'
   };
 
   const [isLoaded, setIsLoaded] = useState(true);

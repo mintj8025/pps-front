@@ -56,7 +56,7 @@ export default function SignIn() {
               icon: 'success',
             }).then((value) => {
               localStorage.setItem('token', data.token);
-              window.location = '/home';
+              window.location = '/home'
             });
           } else {
             Swal.fire({

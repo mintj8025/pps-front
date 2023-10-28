@@ -8,7 +8,7 @@ import PersonAddAltIcon from '@mui/icons-material/PersonAddAlt';
 import AssignmentIcon from '@mui/icons-material/Assignment';
 import UpdateIcon from '@mui/icons-material/Update';
 import Typography from '@mui/material/Typography';
-import './AssPPS.css';
+import './AssBPI.css';
 import Swal from 'sweetalert2'
 import Radio from '@mui/material/Radio';
 import Box from '@mui/material/Box';

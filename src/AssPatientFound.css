@@ -19,10 +19,47 @@
     .swal2-popup {
       font-family: lightKanit, sans-serif;
     }
-
-    .assessmentAuth {
-    position: absolute;
-    right: 150px;
-    top: 110px;
+   
+    .assessment-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh; /* ให้ส่วนนี้เต็มความสูงของหน้าเว็บ */
     }
+    
+    .assessmentAuth {
+      background-color: #f2f2f2;
+      border-radius: 10px;
+      padding: 20px;
+      position: absolute;
+      margin-left: 250px;
+      margin-top: 80px;
+    }
+    
 
+    .assessmentAuth h1 {
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+    
+    .assessmentAuth .search-results {
+      margin-top: 20px;
+    }
+    
+    .assessmentAuth .search-results ul {
+      list-style: none;
+      padding: 0;
+    }
+    
+    .assessmentAuth .search-results li {
+      background-color: #fff;
+      border: 1px solid #ddd;
+      margin-bottom: 10px;
+      padding: 10px;
+      border-radius: 5px;
+    }
+    
+    .assessmentAuth .search-results li .Typography {
+      font-size: 16px;
+    }
+    

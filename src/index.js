@@ -7,10 +7,10 @@ import Login from './Login.js'
 import Home from './Home.js'
 import Register from './Register.js'
 import AssPatientFound from './AssPatientFound.js'
-import AssComferm from './AssComferm'
-import AssRegister from './AssRegister'
-import AssPps from './AssPps.js'
+import AssNRS from './AssNRS.js'
+import AssBPI from './AssBPI.js'
 import SideEffect from './SideEffect.js'
+import AssPPS from './AssPPS.js'
 import Pps100 from './Pps100.js'
 import Pps90 from './Pps90.js'
 import History from './History.js'
@@ -25,10 +25,10 @@ root.render(
     <Route path="/register" element={<Register />} /> 
     <Route path="/home" element={<Home />} /> 
     <Route path="/asspatientfound" element={<AssPatientFound />} /> 
-    <Route path="/asscomferm" element={<AssComferm />} /> 
-    <Route path="/assregister" element={<AssRegister />} /> 
-    <Route path="/asspps" element={<AssPps />} /> 
+    <Route path="/assnrs" element={<AssNRS />} /> 
+    <Route path="/assbpi" element={<AssBPI />} /> 
     <Route path="/sideeffect" element={<SideEffect />} /> 
+    <Route path="/asspps" element={<AssPPS />} /> 
     <Route path="/pps100" element={<Pps100 />} /> 
     <Route path="/pps90" element={<Pps90 />} /> 
     <Route path="/history" element={<History />} /> 
