@@ -69,106 +69,15 @@ function App() {
     inputProps: { 'aria-label': item },
   });
   
-  const [decoded2, setPatient] = useState([]);
-  
-  useEffect(() => {
-    const token2 = localStorage.getItem('token2')
-    var myHeaders = new Headers();
-    myHeaders.append("Authorization", "Bearer " + token2);
-    var requestOptions = {
-      method: 'POST',
-      headers: myHeaders,
-      redirect: 'follow'
-    };
-
-  fetch("http://localhost:7000/patientAuthen", requestOptions)
-    .then(response => response.json())
-    .then(data => {
-        if(data.status === 'ok'){
-        setPatient(data.decoded2)
-        }
-        console.log(data)          
-      })
-      .catch(error => console.log('error', error));
-      }, [])
-
 
 const handleSubmit = async (event) => {
     event.preventDefault();
-    const savedNrs = localStorage.getItem('nrs');
-    const parsedNrs = JSON.parse(savedNrs);
-    const savedActivity = localStorage.getItem('activity');
-    const parsedActivity = JSON.parse(savedActivity);
-    const savedEmotion = localStorage.getItem('emotion');
-    const parsedEmotion = JSON.parse(savedEmotion);
-    const savedWalk = localStorage.getItem('walk');
-    const parsedWalk = JSON.parse(savedWalk);
-    const savedWork = localStorage.getItem('work');
-    const parsedWork = JSON.parse(savedWork);
-    const savedRelationship = localStorage.getItem('relationship');
-    const parsedRelationship = JSON.parse(savedRelationship);
-    const savedSleep = localStorage.getItem('sleep');
-    const parsedSleep = JSON.parse(savedSleep);
-    const savedHappy = localStorage.getItem('happy');
-    const parsedHappy = JSON.parse(savedHappy);
-    const jsonData = {
-      patient_fname: decoded2.patient_fname,
-      patient_lname: decoded2.patient_lname,
-      patient_HN: decoded2.patient_HN,
-      patient_status: decoded2.patient_status,
-      patient_visit: decoded2.patient_visit,
-      assessment_status: "ยังไม่บันทึกเข้าระบบโรงพยาบาล", 
-      nrs: parsedNrs,
-      activity: parsedActivity,
-      emotion: parsedEmotion,
-      walk: parsedWalk,
-      work: parsedWork,
-      relationship: parsedRelationship,
-      sleep: parsedSleep,
-      happy: parsedHappy,
-      ss: ss,
-      nv: nv,
-      sfi72: sfi72,
-      satisfied: satisfied,
-      assessor_fname: decoded.assessor_fname,
-      assessor_lname: decoded.assessor_lname
-    }
-  fetch('http://localhost:7000/assessment' , {
-      method: 'POST',
-      headers: {
-          'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(jsonData),
-  })
-  .then(response => response.json())
-  .then(data => {
-      if(data.status === 'pps100'){
-        Swal.fire({
-          icon: 'success',
-          title: 'Your register has been saved',
-          showConfirmButton: false,
-          timer: 2000
-          }).then((value) => {
-            window.location = '/pps100'
-          })
-      }else if(data.status === 'pps90'){    
-        Swal.fire({
-          icon: 'success',
-          title: 'Your register has been saved',
-          showConfirmButton: false,
-          timer: 2000
-          }).then((value) => {
-            window.location = '/pps90'
-          })
-      }else{
-        alert(data.message)
-      }
-  })
-  .catch((error) => {
-    console.error('Error:', error);
-})
-};
-
+    localStorage.setItem("ss", JSON.stringify(ss));
+    localStorage.setItem("nv", JSON.stringify(nv));
+    localStorage.setItem("sfi72", JSON.stringify(sfi72));
+    localStorage.setItem("satisfied", JSON.stringify(satisfied));
+    window.location'/AssPPS'
+  };
 
   const [isLoaded, setIsLoaded] = useState(true);
   const [decoded, setAssessor] = useState([]); 
