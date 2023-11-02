@@ -76,7 +76,7 @@ const handleSubmit = async (event) => {
     localStorage.setItem("nv", JSON.stringify(nv));
     localStorage.setItem("sfi72", JSON.stringify(sfi72));
     localStorage.setItem("satisfied", JSON.stringify(satisfied));
-    window.location'/AssPPS'
+    window.location = '/asspps'
   };
 
   const [isLoaded, setIsLoaded] = useState(true);

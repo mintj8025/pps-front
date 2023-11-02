@@ -8,19 +8,23 @@ import PersonAddAltIcon from '@mui/icons-material/PersonAddAlt';
 import AssignmentIcon from '@mui/icons-material/Assignment';
 import UpdateIcon from '@mui/icons-material/Update';
 import Typography from '@mui/material/Typography';
-import './SideEffect.css';
+import './AssPPS.css';
 import Swal from 'sweetalert2'
+import RadioGroup from '@mui/material/RadioGroup';
 import Radio from '@mui/material/Radio';
-import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import FormControl from '@mui/material/FormControl';
+import FormLabel from '@mui/material/FormLabel';
+import Box from '@mui/material/Box';
 
 function App() {
   
-  const [movement, setMovement] = React.useState('0');
-  const [activityAndDisease, setActivityAndDisease] = React.useState('0');
-  const [dailyRoutines, setDailyRoutines] = React.useState('0');
-  const [eating, setEating] = React.useState('0');
-  const [awareness, setAwareness] = React.useState('0');
+  const [movement, setMovement] = React.useState('90');
+  const [activityAndDisease, setActivityAndDisease] = React.useState('90');
+  const [dailyRoutines, setDailyRoutines] = React.useState('90');
+  const [eating, setEating] = React.useState('90');
+  const [awareness, setAwareness] = React.useState('90');
 
   const handleMovement = (event) => {
     setMovement(event.target.value);
@@ -42,51 +46,11 @@ function App() {
     setAwareness(event.target.value);
   };
 
-
-  const controlProps1 = (item) => ({
-    checked: movement === item,
-    onChange: handleMovement,
-    value: item,
-    name: 'color-radio-button-demo',
-    inputProps: { 'aria-label': item },
-  });
-
-  const controlProps2 = (item) => ({
-    checked: activityAndDisease === item,
-    onChange: handleActivityAndDisease,
-    value: item,
-    name: 'color-radio-button-demo',
-    inputProps: { 'aria-label': item },
-  });
-
-  const controlProps3 = (item) => ({
-    checked: dailyRoutines === item,
-    onChange: handleDailyRoutines,
-    value: item,
-    name: 'color-radio-button-demo',
-    inputProps: { 'aria-label': item },
-  });
-
-    const controlProps4 = (item) => ({
-    checked: eating === item,
-    onChange: handleEating,
-    value: item,
-    name: 'color-radio-button-demo',
-    inputProps: { 'aria-label': item },
-  });
-
-  const controlProps5 = (item) => ({
-    checked: awareness === item,
-    onChange: handleAwareness,
-    value: item,
-    name: 'color-radio-button-demo',
-    inputProps: { 'aria-label': item },
-  });
-  
+ 
   const [decoded2, setPatient] = useState([]);
   
   useEffect(() => {
-    const token2 = localStorage.getItem('token2')
+    const token2 = localStorage.getItem('token2');
     var myHeaders = new Headers();
     myHeaders.append("Authorization", "Bearer " + token2);
     var requestOptions = {
@@ -94,17 +58,17 @@ function App() {
       headers: myHeaders,
       redirect: 'follow'
     };
-
-  fetch("http://localhost:7000/patientAuthen", requestOptions)
-    .then(response => response.json())
-    .then(data => {
-        if(data.status === 'ok'){
-        setPatient(data.decoded2)
+  
+    fetch("http://localhost:7000/patientAuthen", requestOptions)
+      .then(response => response.json())
+      .then(data => {
+        if (data.status === 'ok') {
+          setPatient(data.decoded2);
+          console.log(decoded2);
         }
-        console.log(data)          
       })
       .catch(error => console.log('error', error));
-      }, [])
+  }, [decoded2]); // เพิ่ม decoded2 เข้าไปในอาร์เรย์นี้  
 
 
 const handleSubmit = async (event) => {
@@ -123,6 +87,8 @@ const handleSubmit = async (event) => {
     const parsedRelationship = JSON.parse(savedRelationship);
     const savedSleep = localStorage.getItem('sleep');
     const parsedSleep = JSON.parse(savedSleep);
+    const savedHappy = localStorage.getItem('happy');
+    const parsedHappy = JSON.parse(savedHappy);
     const savedSs = localStorage.getItem('ss');
     const parsedSs = JSON.parse(savedSs);
     const savedNv = localStorage.getItem('nv');
@@ -145,15 +111,15 @@ const handleSubmit = async (event) => {
       relationship: parsedRelationship,
       sleep: parsedSleep,
       happy: parsedHappy,
+      satisfied: parsedSatisfied,
       movement: movement,
       activityAndDisease: activityAndDisease,
       dailyRoutines: dailyRoutines,
       eating: eating,
-      awareness: awareness,
+      awareness: awareness, 
       ss: parsedSs,
       nv: parsedNv,
-      sfi72: parsedSfi72,
-      satisfied: parsedSatisfied,
+      sfi72: parsedSfi72,   
       assessor_fname: decoded.assessor_fname,
       assessor_lname: decoded.assessor_lname,
       assessment_status: "ยังไม่บันทึกออกจากระบบ"
@@ -255,346 +221,114 @@ const handleSubmit = async (event) => {
             sx={{color: 'black'}}>
               <Typography variant="h5" component="div" fontFamily={'lightkanit'}>
               {decoded.assessor_fname} {decoded.assessor_lname}<PermIdentityIcon  sx={{ fontSize: 35 }} /></Typography> </IconButton></div>
-                
-           <div className='sideEffectForm'>
-           <Typography component="h1" sx={{ fontSize: 30 }} align="center" marginLeft={'20px'} color={'#737B89'} fontFamily={'kanit'}>
-           ผลข้างเคียง
-           </Typography>
 
-            <Typography component="h1"  sx={{ fontSize: 40 }} marginLeft={'10'} marginTop={'20px'} align="center" color={'black'} fontFamily={'kanit'}>
-            1. Sedation score
+            <div className='ppsForm'>
+            <Typography component="h1" variant="h3" x={{ fontSize: 35 }} fontFamily={'kanit'}>
+            แบบประเมินระดับผู้ป่วยที่ได้รับการดูแลแบบประคับประคอง 
+            </Typography>
+          
+            <Typography component="h1"  sx={{ fontSize: 35 }} fontFamily={'kanit'} marginTop={2}>
+            ( Palliative Performance Scale for adult Suandok )
             </Typography>
 
             <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 , ml: 30 }}>
-            <div className='radioSedation'>
-            <Radio
-              {...controlProps1('0')}
-              sx={{
-                '& .MuiSvgIcon-root': {
-                  fontSize: 80,
-                },
-                color: '#33AC74',
-                '&.Mui-checked': {
-                 color: '#33AC74',
-                },
-              }}
-            />
+            <div className="radioGroupsContainer">
+            <div className="radioGroup">
+            <FormControl>
+            <FormLabel id="demo-controlled-radio-buttons-group-movement">การเคลื่อนไหว</FormLabel>
+            <RadioGroup
+              className="radioGroup" 
+              aria-labelledby="demo-controlled-radio-buttons-group-movement"
+              name="controlled-radio-buttons-group-movement"
+              value={movement}
+              onChange={handleMovement}
+            >
+              <FormControlLabel className="radioLabel" value="100" control={<Radio />} label="เคลื่อนไหวปกติ" style={{ fontFamily: 'kanit', fontSize: '16' }} />
+              <FormControlLabel className="radioLabel" value="90" control={<Radio />} label="ความสามารถในการเคลื่อนไหวลดลง" />
+              <FormControlLabel className="radioLabel" value="90" control={<Radio />} label="นั่งหรือนอนเป็นส่วนใหญ่" />
+              <FormControlLabel className="radioLabel" value="90" control={<Radio />} label="นอนอยู่บนเตียงตลอดเวลา" />
+            </RadioGroup>
+          </FormControl>
+          </div>
 
-            <Radio
-              {...controlProps1('1')}
-              sx={{
-                '& .MuiSvgIcon-root': {
-                  fontSize: 80,
-                },
-                color: '#33AC74',
-                '&.Mui-checked': {
-                 color: '#33AC74',
-                },
-              }}
-            />
+          <div className="radioGroup">
+          <FormControl>
+            <FormLabel id="demo-controlled-radio-buttons-group-activity">การปฏิบัติกิจกรรมและการดำเนินโรค</FormLabel>
+            <RadioGroup
+              className="radioGroup" 
+              aria-labelledby="demo-controlled-radio-buttons-group-activity"
+              name="controlled-radio-buttons-group-activity"
+              value={activityAndDisease}
+              onChange={handleActivityAndDisease}
+            >
+              <FormControlLabel className="radioLabel" value="100" control={<Radio />} label="ทำกิจกรรมและทำงานได้ตามปกติและไม่มีอาการของโรค" />
+              <FormControlLabel className="radioLabel" value="90" control={<Radio />} label="ทำกิจกรรมและทำงานได้ตามปกติและมีอาการของโรคบางอาการ" />
+              <FormControlLabel className="radioLabel" value="90" control={<Radio />} label="ต้องออกแรงอย่างมากในการทำกิจกรรมตามปกติและมีอาการของโรคบางอาการ" />
+              <FormControlLabel className="radioLabel" value="90" control={<Radio />} label="ไม่สามารถทำงานได้ตามปกติและมีอาการของโรคอย่างมาก" />
+              <FormControlLabel className="radioLabel" value="90" control={<Radio />} label="ไม่สามารถทำงานอดิเรกหรืองานบ้านได้และมีอาการของโรคอย่างมาก" />
+              <FormControlLabel className="radioLabel" value="90" control={<Radio />} label="ไม่สามารถทำงานได้เลยและมีการลุกลามของโรค" />
+              <FormControlLabel className="radioLabel" value="90" control={<Radio />} label="ทำกิจกรรมได้น้อยมากและมีการลุกลามของโรค" />
+              <FormControlLabel className="radioLabel" value="90" control={<Radio />} label="ไม่สามารถทำกิจกรรมใดๆและมีการลุกลามของโรค" />
+            </RadioGroup>
+          </FormControl>
+          </div>
 
-            <Radio
-              {...controlProps1('2')}
-              sx={{
-                '& .MuiSvgIcon-root': {
-                  fontSize: 80,
-                },
-                color: '#33AC74',
-                '&.Mui-checked': {
-                 color: '#33AC74',
-                },
-              }}
-            />
+          <div className="radioGroup">
+          <FormControl>
+            <FormLabel id="demo-controlled-radio-buttons-group-daily">การกิจกรรมประจำวัน</FormLabel>
+            <RadioGroup
+              className="radioGroup" 
+              aria-labelledby="demo-controlled-radio-buttons-group-daily"
+              name="controlled-radio-buttons-group-daily"
+              value={dailyRoutines}
+              onChange={handleDailyRoutines}
+            >
+              <FormControlLabel className="radioLabel" value="100" control={<Radio />} label="ทำได้เอง" />
+              <FormControlLabel className="radioLabel" value="90" control={<Radio />} label="ต้องการช่วยเหลือเป็นบางครั้ง/บางเรื่อง" />
+              <FormControlLabel className="radioLabel" value="90" control={<Radio />} label="ต้องการความช่วยเหลือมากขึ้น" />
+              <FormControlLabel className="radioLabel" value="90" control={<Radio />} label="ต้องการความช่วยเหลือเป็นส่วนใหญ่" />
+              <FormControlLabel className="radioLabel" value="90" control={<Radio />} label="ต้องการความช่วยเหลือทั้งหมด" />
+              <FormControlLabel className="radioLabel" value="90" control={<Radio />} label="ต้องการความช่วยเหลือเป็นส่วนใหญ่" />
+            </RadioGroup>
+          </FormControl>
+          </div>
 
-            <Radio
-              {...controlProps1('3')}
-              sx={{
-                '& .MuiSvgIcon-root': {
-                  fontSize: 80,
-                },
-                color: '#3DC988',
-                '&.Mui-checked': {
-                 color: '#3DC988',
-                },
-              }}
-            />
-            
-            <Radio
-              {...controlProps1('S')}
-              sx={{
-                '& .MuiSvgIcon-root': {
-                  fontSize: 80,
-                },
-                color: '#3DC988',
-                '&.Mui-checked': {
-                 color: '#3DC988',
-                },
-              }}
-            />
+          <div className="radioGroup">
+          <FormControl>
+            <FormLabel id="demo-controlled-radio-buttons-group-eating">การรับประทานอาหาร</FormLabel>
+            <RadioGroup
+              className="radioGroup" 
+              aria-labelledby="demo-controlled-radio-buttons-group-eating"
+              name="controlled-radio-buttons-group-eating"
+              value={eating}
+              onChange={handleEating}
+            >
+              <FormControlLabel className="radioLabel" value="100" control={<Radio />} label="ปกติ" />
+              <FormControlLabel className="radioLabel" value="90" control={<Radio />} label="ปกติ หรือ ลดลง" />
+              <FormControlLabel className="radioLabel" value="90" control={<Radio />} label="จิบน้ำได้เล็กน้อย" />
+              <FormControlLabel className="radioLabel" value="90" control={<Radio />} label="รับประทานอาหารทางปากไม่ได้" />
+            </RadioGroup>
+          </FormControl>
+          </div>
 
-            </div>
-
-            <div className='label1'>
-            <Typography style={{display: 'inline-block'}} fontFamily={'kanit'} fontSize={35} marginLeft={5}>0</Typography>
-            <Typography style={{display: 'inline-block'}} fontSize={35} marginLeft={10} fontFamily={'kanit'}>1</Typography>
-            <Typography style={{display: 'inline-block'}} fontSize={35} marginLeft={10} fontFamily={'kanit'}>2</Typography>
-            <Typography style={{display: 'inline-block'}} fontSize={35} marginLeft={10} fontFamily={'kanit'}>3</Typography>
-            <Typography style={{display: 'inline-block'}} fontSize={35} marginLeft={10} fontFamily={'kanit'}>S</Typography>
-            </div>
-
-            <div className='description1'>
-            <Typography  fontSize={25} marginTop={2} marginLeft={5} fontFamily={'kanit'}>0 = ตื่นรู้ตัวดี</Typography>
-            <Typography  fontSize={25} marginLeft={5} fontFamily={'kanit'}>1 = ง่วงเล็กน้อย</Typography>
-            <Typography  fontSize={25} marginLeft={5} fontFamily={'kanit'}>2 = ง่วงปานกลาง ปลุกตื่นง่าย</Typography>
-            <Typography  fontSize={25} marginLeft={5} fontFamily={'kanit'}>3 = ง่วงมาก ปลุกไม่ตื่น</Typography>
-            <Typography  fontSize={25} marginLeft={5} fontFamily={'kanit'}>S = ไม่ตื่น</Typography>
-            </div>
-
-            <Typography component="h1"  sx={{ fontSize: 40 }} marginLeft={'10'} marginTop={'20px'} align="center" color={'black'} fontFamily={'kanit'}>
-            2. คลื่นไส้ อาเจียน
-            </Typography>
-
-            <div className='radioPuke'>
-            <Radio
-              {...controlProps2('0')}
-              sx={{
-                '& .MuiSvgIcon-root': {
-                  fontSize: 80,
-                },
-                color: '#33AC74',
-                '&.Mui-checked': {
-                 color: '#33AC74',
-                },
-              }}
-            />
-
-            <Radio
-              {...controlProps2('1')}
-              sx={{
-                '& .MuiSvgIcon-root': {
-                  fontSize: 80,
-                },
-                color: '#33AC74',
-                '&.Mui-checked': {
-                 color: '#33AC74',
-                },
-              }}
-            />
-
-            <Radio
-              {...controlProps2('2')}
-              sx={{
-                '& .MuiSvgIcon-root': {
-                  fontSize: 80,
-                },
-                color: '#33AC74',
-                '&.Mui-checked': {
-                 color: '#33AC74',
-                },
-              }}
-            />
-
-            <Radio
-              {...controlProps2('3')}
-              sx={{
-                '& .MuiSvgIcon-root': {
-                  fontSize: 80,
-                },
-                color: '#3DC988',
-                '&.Mui-checked': {
-                 color: '#3DC988',
-                },
-              }}
-            />
-            
-
-            </div>
-
-            <div className='label2'>
-            <Typography style={{display: 'inline-block'}} fontFamily={'kanit'} fontSize={35} marginLeft={5}>0</Typography>
-            <Typography style={{display: 'inline-block'}} fontSize={35} marginLeft={10} fontFamily={'kanit'}>1</Typography>
-            <Typography style={{display: 'inline-block'}} fontSize={35} marginLeft={10} fontFamily={'kanit'}>2</Typography>
-            <Typography style={{display: 'inline-block'}} fontSize={35} marginLeft={10} fontFamily={'kanit'}>3</Typography>
-            </div>
-
-            <div className='description2'>
-            <Typography  fontSize={25} marginTop={2} marginLeft={5} fontFamily={'kanit'}>0 = ไม่มีอาการ</Typography>
-            <Typography  fontSize={25} marginLeft={5} fontFamily={'kanit'}>1 = มีอาการเล็กน้อยไม่ต้องการรักษา</Typography>
-            <Typography  fontSize={25} marginLeft={5} fontFamily={'kanit'}>2 = มีอาการและต้องการรักษาและสามารถควบคุมอาการได้ด้วยยา</Typography>
-            <Typography  fontSize={25} marginLeft={5} fontFamily={'kanit'}>3 = มีอาการและต้องการรักษาและไม่สามารถควบคุมได้ด้วยยา</Typography>
-            </div>
-
-            <Typography component="h1"  sx={{ fontSize: 40 }} marginLeft={'10'} marginTop={'20px'} align="center" color={'black'} fontFamily={'kanit'}>
-            3. ท้องผูก (sfi72)
-            </Typography>
-
-            <div className='radioSfi72'>
-            <Radio
-              {...controlProps3('0')}
-              sx={{
-                '& .MuiSvgIcon-root': {
-                  fontSize: 80,
-                },
-                color: '#33AC74',
-                '&.Mui-checked': {
-                 color: '#33AC74',
-                },
-              }}
-            />
-
-            <Radio
-              {...controlProps3('1')}
-              sx={{
-                '& .MuiSvgIcon-root': {
-                  fontSize: 80,
-                },
-                color: '#33AC74',
-                '&.Mui-checked': {
-                 color: '#33AC74',
-                },
-              }}
-            />
-
-            <Radio
-              {...controlProps3('2')}
-              sx={{
-                '& .MuiSvgIcon-root': {
-                  fontSize: 80,
-                },
-                color: '#33AC74',
-                '&.Mui-checked': {
-                 color: '#33AC74',
-                },
-              }}
-            />
-
-            <Radio
-              {...controlProps3('3')}
-              sx={{
-                '& .MuiSvgIcon-root': {
-                  fontSize: 80,
-                },
-                color: '#3DC988',
-                '&.Mui-checked': {
-                 color: '#3DC988',
-                },
-              }}
-            />
-            
-            <Radio
-              {...controlProps3('4')}
-              sx={{
-                '& .MuiSvgIcon-root': {
-                  fontSize: 80,
-                },
-                color: '#3DC988',
-                '&.Mui-checked': {
-                 color: '#3DC988',
-                },
-              }}
-            />
-
-            </div>
-
-            <div className='label3'>
-            <Typography style={{display: 'inline-block'}} fontFamily={'kanit'} fontSize={35} marginLeft={5}>0</Typography>
-            <Typography style={{display: 'inline-block'}} fontSize={35} marginLeft={10} fontFamily={'kanit'}>1</Typography>
-            <Typography style={{display: 'inline-block'}} fontSize={35} marginLeft={10} fontFamily={'kanit'}>2</Typography>
-            <Typography style={{display: 'inline-block'}} fontSize={35} marginLeft={10} fontFamily={'kanit'}>3</Typography>
-            <Typography style={{display: 'inline-block'}} fontSize={35} marginLeft={10} fontFamily={'kanit'}>4</Typography>
-            </div>
-
-            <div className='description3'>
-            <Typography  fontSize={25} marginTop={2} marginLeft={5} fontFamily={'kanit'}>0 = มีการถ่ายอุจจาระภายใน 72 ชั่วโมงที่ผ่านมา</Typography>
-            <Typography  fontSize={25} marginLeft={5} fontFamily={'kanit'}>1 = ไม่มีอาการถ่ายอุจจาระกายใน 72 ชั่วโมงที่ผ่านมา (ท้องผูกเล็กน้อย)</Typography>
-            <Typography  fontSize={25} marginLeft={5} fontFamily={'kanit'}>2 = ไม่มีการถ่ายอุจจาระภายใน 72 ชั่วโมงถึงแม้ว่าจะได้รับยาระบาย 3 ชนิด</Typography>
-            <Typography  fontSize={25} marginLeft={5} fontFamily={'kanit'}>3 = ไม่มีการถ่ายอุจจาระภายใน 72 ชั่วโมงถึงแม้ว่าจะได้รับยาระบายมากกว่า 3 ชนิดขึ้นไป</Typography>
-            <Typography  fontSize={25} marginLeft={5} fontFamily={'kanit'}>4 = ไม่มีการถ่ายอุจจาระและมีอาการท้องอืดถึงแม้ว่าจะได้รับยาระบายทั้งหมด</Typography>
-            </div>
-
-            <Typography component="h1"  sx={{ fontSize: 40 }} marginLeft={'10'} marginTop={'20px'} align="center" color={'black'} fontFamily={'kanit'}>
-            ระดับความพึงพอใจต่อประสิทธิภาพการระงับปวด
-            </Typography>
-
-            <div className='radioSatisfied'>
-            <Radio
-              {...controlProps4('1')}
-              sx={{
-                '& .MuiSvgIcon-root': {
-                  fontSize: 80,
-                },
-                color: '#33AC74',
-                '&.Mui-checked': {
-                 color: '#33AC74',
-                },
-              }}
-            />
-
-            <Radio
-              {...controlProps4('2')}
-              sx={{
-                '& .MuiSvgIcon-root': {
-                  fontSize: 80,
-                },
-                color: '#33AC74',
-                '&.Mui-checked': {
-                 color: '#33AC74',
-                },
-              }}
-            />
-
-            <Radio
-              {...controlProps4('3')}
-              sx={{
-                '& .MuiSvgIcon-root': {
-                  fontSize: 80,
-                },
-                color: '#33AC74',
-                '&.Mui-checked': {
-                 color: '#33AC74',
-                },
-              }}
-            />
-
-            <Radio
-              {...controlProps4('4')}
-              sx={{
-                '& .MuiSvgIcon-root': {
-                  fontSize: 80,
-                },
-                color: '#3DC988',
-                '&.Mui-checked': {
-                 color: '#3DC988',
-                },
-              }}
-            />
-            
-            <Radio
-              {...controlProps4('5')}
-              sx={{
-                '& .MuiSvgIcon-root': {
-                  fontSize: 80,
-                },
-                color: '#3DC988',
-                '&.Mui-checked': {
-                 color: '#3DC988',
-                },
-              }}
-            />
-
-            </div>
-
-            <div className='label4'>
-            <Typography style={{display: 'inline-block'}} fontFamily={'kanit'} fontSize={35} marginLeft={5}>1</Typography>
-            <Typography style={{display: 'inline-block'}} fontSize={35} marginLeft={10} fontFamily={'kanit'}>2</Typography>
-            <Typography style={{display: 'inline-block'}} fontSize={35} marginLeft={10} fontFamily={'kanit'}>3</Typography>
-            <Typography style={{display: 'inline-block'}} fontSize={35} marginLeft={10} fontFamily={'kanit'}>4</Typography>
-            <Typography style={{display: 'inline-block'}} fontSize={35} marginLeft={10} fontFamily={'kanit'}>5</Typography>
-            </div>
-
-            <div className='description4'>
-            <Typography  fontSize={25} marginTop={2} marginLeft={5} fontFamily={'kanit'}>(1 = ไม่พึงพอใจ....2.....3.....4....5 = พึงพอใจมากที่สุด)</Typography>
-            </div>            
+          <div className="radioGroup">
+          <FormControl>
+            <FormLabel id="demo-controlled-radio-buttons-group-awareness">การรับประทานอาหาร</FormLabel>
+            <RadioGroup
+              className="radioGroup" 
+              aria-labelledby="demo-controlled-radio-buttons-group-awareness"
+              name="controlled-radio-buttons-group-awareness"
+              value={awareness}
+              onChange={handleAwareness}
+            >
+              <FormControlLabel className="radioLabel" value="100" control={<Radio />} label="รู้สึกตัวดี" />
+              <FormControlLabel className="radioLabel" value="90" control={<Radio />} label="รู้สึกตัวดี หรือ สับสน" />
+              <FormControlLabel className="radioLabel" value="90" control={<Radio />} label="รู้สึกตัวดี หรือ ง่วงซึม +/-สับสน" />
+              <FormControlLabel className="radioLabel" value="90" control={<Radio />} label="ง่วงซึมหรือไม่รู้สึกตัว +/-สับสน" />
+            </RadioGroup>
+          </FormControl>
+          </div>
+          </div>
 
             <Button
                 type="submit"
@@ -606,7 +340,7 @@ const handleSubmit = async (event) => {
                   ประเมิน
                 </Typography>
               </Button>
-          </Box>
+              </Box>
            </div>
 
             <div className='navbar' sx={{position: 'sticky'}}>
