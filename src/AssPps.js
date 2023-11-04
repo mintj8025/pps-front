@@ -243,10 +243,56 @@ const handleSubmit = async (event) => {
               value={movement}
               onChange={handleMovement}
             >
-              <FormControlLabel className="radioLabel" value="100" control={<Radio />} label="เคลื่อนไหวปกติ" style={{ fontFamily: 'kanit', fontSize: '16' }} />
-              <FormControlLabel className="radioLabel" value="90" control={<Radio />} label="ความสามารถในการเคลื่อนไหวลดลง" />
-              <FormControlLabel className="radioLabel" value="90" control={<Radio />} label="นั่งหรือนอนเป็นส่วนใหญ่" />
-              <FormControlLabel className="radioLabel" value="90" control={<Radio />} label="นอนอยู่บนเตียงตลอดเวลา" />
+            <FormControlLabel
+              className="radioLabel"
+              value="100"
+              control={<Radio />}
+              label={
+                <span style={{ fontFamily: 'lightkanit', fontSize: 20 }}>
+                  เคลื่อนไหวปกติ
+                </span>
+              }
+            />
+               <FormControlLabel
+              className="radioLabel"
+              value="70"
+              control={<Radio />}
+              label={
+                <span style={{ fontFamily: 'lightkanit', fontSize: 20 }}>
+                  ความสามารถในการเคลื่อนไหวลดลง
+                </span>
+              }
+            />
+               <FormControlLabel
+              className="radioLabel"
+              value="50"
+              control={<Radio />}
+              label={
+                <span style={{ fontFamily: 'lightkanit', fontSize: 20 }}>
+                  นั่งหรือนอนเป็นส่วนใหญ่
+                </span>
+              }
+            />
+               <FormControlLabel
+              className="radioLabel"
+              value="40"
+              control={<Radio />}
+              label={
+                <span style={{ fontFamily: 'lightkanit', fontSize: 20 }}>
+                  นอนอยู่บนเตียงเป็นส่วนใหญ่
+                </span>
+              }
+            />
+            <FormControlLabel
+              className="radioLabel"
+              value="30"
+              control={<Radio />}
+              label={
+                <span style={{ fontFamily: 'lightkanit', fontSize: 20 }}>
+                  นอนอยู่บนเตียงตลอดเวลา
+                </span>
+              }
+            />
             </RadioGroup>
           </FormControl>
           </div>
@@ -261,14 +307,86 @@ const handleSubmit = async (event) => {
               value={activityAndDisease}
               onChange={handleActivityAndDisease}
             >
-              <FormControlLabel className="radioLabel" value="100" control={<Radio />} label="ทำกิจกรรมและทำงานได้ตามปกติและไม่มีอาการของโรค" />
-              <FormControlLabel className="radioLabel" value="90" control={<Radio />} label="ทำกิจกรรมและทำงานได้ตามปกติและมีอาการของโรคบางอาการ" />
-              <FormControlLabel className="radioLabel" value="90" control={<Radio />} label="ต้องออกแรงอย่างมากในการทำกิจกรรมตามปกติและมีอาการของโรคบางอาการ" />
-              <FormControlLabel className="radioLabel" value="90" control={<Radio />} label="ไม่สามารถทำงานได้ตามปกติและมีอาการของโรคอย่างมาก" />
-              <FormControlLabel className="radioLabel" value="90" control={<Radio />} label="ไม่สามารถทำงานอดิเรกหรืองานบ้านได้และมีอาการของโรคอย่างมาก" />
-              <FormControlLabel className="radioLabel" value="90" control={<Radio />} label="ไม่สามารถทำงานได้เลยและมีการลุกลามของโรค" />
-              <FormControlLabel className="radioLabel" value="90" control={<Radio />} label="ทำกิจกรรมได้น้อยมากและมีการลุกลามของโรค" />
-              <FormControlLabel className="radioLabel" value="90" control={<Radio />} label="ไม่สามารถทำกิจกรรมใดๆและมีการลุกลามของโรค" />
+               <FormControlLabel
+              className="radioLabel"
+              value="100"
+              control={<Radio />}
+              label={
+                <span style={{ fontFamily: 'lightkanit', fontSize: 20 }}>
+                  ทำกิจกรรมและทำงานได้ตามปกติและไม่มีอาการของโรค
+                </span>
+              }
+            />
+            <FormControlLabel
+              className="radioLabel"
+              value="90"
+              control={<Radio />}
+              label={
+                <span style={{ fontFamily: 'lightkanit', fontSize: 20 }}>
+                  ทำกิจกรรมและทำงานได้ตามปกติและมีอาการของโรคบางอาการ
+                </span>
+              }
+            />
+            <FormControlLabel
+              className="radioLabel"
+              value="80"
+              control={<Radio />}
+              label={
+                <span style={{ fontFamily: 'lightkanit', fontSize: 20 }}>
+                  ต้องออกแรงอย่างมากในการทำกิจกรรมตามปกติและมีอาการของโรคบางอาการ
+                </span>
+              }
+            />
+            <FormControlLabel
+              className="radioLabel"
+              value="70"
+              control={<Radio />}
+              label={
+                <span style={{ fontFamily: 'lightkanit', fontSize: 20 }}>
+                  ไม่สามารถทำงานได้ตามปกติและมีอาการของโรคอย่างมาก
+                </span>
+              }
+            />
+            <FormControlLabel
+              className="radioLabel"
+              value="60"
+              control={<Radio />}
+              label={
+                <span style={{ fontFamily: 'lightkanit', fontSize: 20 }}>
+                  ไม่สามารถทำงานอดิเรกหรืองานบ้านได้และมีอาการของโรคอย่างมาก
+                </span>
+              }
+            />
+            <FormControlLabel
+              className="radioLabel"
+              value="50"
+              control={<Radio />}
+              label={
+                <span style={{ fontFamily: 'lightkanit', fontSize: 20 }}>
+                  ไม่สามารถทำงานได้เลยและมีการลุกลามของโรค
+                </span>
+              }
+            />
+            <FormControlLabel
+              className="radioLabel"
+              value="40"
+              control={<Radio />}
+              label={
+                <span style={{ fontFamily: 'lightkanit', fontSize: 20 }}>
+                  ทำกิจกรรมได้น้อยมากและมีการลุกลามของโรค
+                </span>
+              }
+            />
+            <FormControlLabel
+              className="radioLabel"
+              value="30"
+              control={<Radio />}
+              label={
+                <span style={{ fontFamily: 'lightkanit', fontSize: 20 }}>
+                  ไม่สามารถทำกิจกรรมใดๆและมีการลุกลามของโรค
+                </span>
+              }
+            />              
             </RadioGroup>
           </FormControl>
           </div>
@@ -283,13 +401,57 @@ const handleSubmit = async (event) => {
               value={dailyRoutines}
               onChange={handleDailyRoutines}
             >
-              <FormControlLabel className="radioLabel" value="100" control={<Radio />} label="ทำได้เอง" />
-              <FormControlLabel className="radioLabel" value="90" control={<Radio />} label="ต้องการช่วยเหลือเป็นบางครั้ง/บางเรื่อง" />
-              <FormControlLabel className="radioLabel" value="90" control={<Radio />} label="ต้องการความช่วยเหลือมากขึ้น" />
-              <FormControlLabel className="radioLabel" value="90" control={<Radio />} label="ต้องการความช่วยเหลือเป็นส่วนใหญ่" />
-              <FormControlLabel className="radioLabel" value="90" control={<Radio />} label="ต้องการความช่วยเหลือทั้งหมด" />
-              <FormControlLabel className="radioLabel" value="90" control={<Radio />} label="ต้องการความช่วยเหลือเป็นส่วนใหญ่" />
+             <FormControlLabel
+              className="radioLabel"
+              value="100"
+              control={<Radio />}
+              label={
+                <span style={{ fontFamily: 'lightkanit', fontSize: 20 }}>
+                  ทำได้เอง
+                </span>
+              }
+            />             
             </RadioGroup>
+            <FormControlLabel
+              className="radioLabel"
+              value="60"
+              control={<Radio />}
+              label={
+                <span style={{ fontFamily: 'lightkanit', fontSize: 20 }}>
+                  ต้องการช่วยเหลือเป็นบางครั้ง/บางเรื่อง
+                </span>
+              }
+            />             
+            <FormControlLabel
+              className="radioLabel"
+              value="50"
+              control={<Radio />}
+              label={
+                <span style={{ fontFamily: 'lightkanit', fontSize: 20 }}>
+                  ต้องการความช่วยเหลือมากขึ้น
+                </span>
+              }
+            />             
+            <FormControlLabel
+              className="radioLabel"
+              value="40"
+              control={<Radio />}
+              label={
+                <span style={{ fontFamily: 'lightkanit', fontSize: 20 }}>
+                  ต้องการความช่วยเหลือเป็นส่วนใหญ่
+                </span>
+              }
+            />             
+            <FormControlLabel
+              className="radioLabel"
+              value="30"
+              control={<Radio />}
+              label={
+                <span style={{ fontFamily: 'lightkanit', fontSize: 20 }}>
+                  ต้องการความช่วยเหลือทั้งหมด
+                </span>
+              }
+            />                      
           </FormControl>
           </div>
 
@@ -303,17 +465,53 @@ const handleSubmit = async (event) => {
               value={eating}
               onChange={handleEating}
             >
-              <FormControlLabel className="radioLabel" value="100" control={<Radio />} label="ปกติ" />
-              <FormControlLabel className="radioLabel" value="90" control={<Radio />} label="ปกติ หรือ ลดลง" />
-              <FormControlLabel className="radioLabel" value="90" control={<Radio />} label="จิบน้ำได้เล็กน้อย" />
-              <FormControlLabel className="radioLabel" value="90" control={<Radio />} label="รับประทานอาหารทางปากไม่ได้" />
+            <FormControlLabel
+              className="radioLabel"
+              value="100"
+              control={<Radio />}
+              label={
+                <span style={{ fontFamily: 'lightkanit', fontSize: 20 }}>
+                  ปกติ
+                </span>
+              }
+            />       
+            <FormControlLabel
+              className="radioLabel"
+              value="80"
+              control={<Radio />}
+              label={
+                <span style={{ fontFamily: 'lightkanit', fontSize: 20 }}>
+                  ปกติ หรือ ลดลง
+                </span>
+              }
+            />       
+            <FormControlLabel
+              className="radioLabel"
+              value="20"
+              control={<Radio />}
+              label={
+                <span style={{ fontFamily: 'lightkanit', fontSize: 20 }}>
+                  จิบน้ำได้เล็กน้อย
+                </span>
+              }
+            />       
+            <FormControlLabel
+              className="radioLabel"
+              value="10"
+              control={<Radio />}
+              label={
+                <span style={{ fontFamily: 'lightkanit', fontSize: 20 }}>
+                  รับประทานอาหารทางปากไม่ได้
+                </span>
+              }
+            />       
             </RadioGroup>
           </FormControl>
           </div>
 
           <div className="radioGroup">
           <FormControl>
-            <FormLabel id="demo-controlled-radio-buttons-group-awareness">การรับประทานอาหาร</FormLabel>
+            <FormLabel id="demo-controlled-radio-buttons-group-awareness">ระดับความรู้สึกตัว</FormLabel>
             <RadioGroup
               className="radioGroup" 
               aria-labelledby="demo-controlled-radio-buttons-group-awareness"
@@ -321,10 +519,46 @@ const handleSubmit = async (event) => {
               value={awareness}
               onChange={handleAwareness}
             >
-              <FormControlLabel className="radioLabel" value="100" control={<Radio />} label="รู้สึกตัวดี" />
-              <FormControlLabel className="radioLabel" value="90" control={<Radio />} label="รู้สึกตัวดี หรือ สับสน" />
-              <FormControlLabel className="radioLabel" value="90" control={<Radio />} label="รู้สึกตัวดี หรือ ง่วงซึม +/-สับสน" />
-              <FormControlLabel className="radioLabel" value="90" control={<Radio />} label="ง่วงซึมหรือไม่รู้สึกตัว +/-สับสน" />
+             <FormControlLabel
+              className="radioLabel"
+              value="100"
+              control={<Radio />}
+              label={
+                <span style={{ fontFamily: 'lightkanit', fontSize: 20 }}>
+                  รู้สึกตัวดี
+                </span>
+              }
+            />       
+            <FormControlLabel
+              className="radioLabel"
+              value="60"
+              control={<Radio />}
+              label={
+                <span style={{ fontFamily: 'lightkanit', fontSize: 20 }}>
+                  รู้สึกตัวดี หรือ สับสน
+                </span>
+              }
+            />       
+            <FormControlLabel
+              className="radioLabel"
+              value="40"
+              control={<Radio />}
+              label={
+                <span style={{ fontFamily: 'lightkanit', fontSize: 20 }}>
+                  รู้สึกตัวดี หรือ ง่วงซึม +/-สับสน
+                </span>
+              }
+            />       
+            <FormControlLabel
+              className="radioLabel"
+              value="10"
+              control={<Radio />}
+              label={
+                <span style={{ fontFamily: 'lightkanit', fontSize: 20 }}>
+                  ง่วงซึมหรือไม่รู้สึกตัว +/-สับสน
+                </span>
+              }
+            />       
             </RadioGroup>
           </FormControl>
           </div>

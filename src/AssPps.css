@@ -37,6 +37,10 @@
     .radioGroup {
       /* สไตล์ของ RadioGroup แต่ละอัน */
     }
+
+    .radioLabel{
+      font-family: Kanit;
+    }
     
     
     
