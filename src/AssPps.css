@@ -8,12 +8,9 @@
     src: url(./font/Kanit-Light.ttf);
   } 
   
-  .fullscreen-block{
+  /* App.css */
+    body {
       background-color: #F3F2FD;
-      height: 100vh;
-      margin: 0;
-      position: relative;
-      font-family: Kanit;
     }
 
     .ppsForm {

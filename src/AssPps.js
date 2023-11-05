@@ -10,21 +10,20 @@ import UpdateIcon from '@mui/icons-material/Update';
 import Typography from '@mui/material/Typography';
 import './AssPPS.css';
 import Swal from 'sweetalert2'
-import RadioGroup from '@mui/material/RadioGroup';
-import Radio from '@mui/material/Radio';
 import Button from '@mui/material/Button';
-import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
-import FormLabel from '@mui/material/FormLabel';
 import Box from '@mui/material/Box';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import Select from '@mui/material/Select';
 
 function App() {
   
-  const [movement, setMovement] = React.useState('90');
-  const [activityAndDisease, setActivityAndDisease] = React.useState('90');
-  const [dailyRoutines, setDailyRoutines] = React.useState('90');
-  const [eating, setEating] = React.useState('90');
-  const [awareness, setAwareness] = React.useState('90');
+  const [movement, setMovement] = React.useState(0);
+  const [activityAndDisease, setActivityAndDisease] = React.useState(0);
+  const [dailyRoutines, setDailyRoutines] = React.useState(0);
+  const [eating, setEating] = React.useState(0);
+  const [awareness, setAwareness] = React.useState(0);
 
   const handleMovement = (event) => {
     setMovement(event.target.value);
@@ -231,338 +230,183 @@ const handleSubmit = async (event) => {
             ( Palliative Performance Scale for adult Suandok )
             </Typography>
 
-            <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 , ml: 30 }}>
-            <div className="radioGroupsContainer">
-            <div className="radioGroup">
-            <FormControl>
-            <FormLabel id="demo-controlled-radio-buttons-group-movement">การเคลื่อนไหว</FormLabel>
-            <RadioGroup
-              className="radioGroup" 
-              aria-labelledby="demo-controlled-radio-buttons-group-movement"
-              name="controlled-radio-buttons-group-movement"
-              value={movement}
-              onChange={handleMovement}
-            >
-            <FormControlLabel
-              className="radioLabel"
-              value="100"
-              control={<Radio />}
-              label={
-                <span style={{ fontFamily: 'lightkanit', fontSize: 20 }}>
-                  เคลื่อนไหวปกติ
-                </span>
-              }
-            />
-               <FormControlLabel
-              className="radioLabel"
-              value="70"
-              control={<Radio />}
-              label={
-                <span style={{ fontFamily: 'lightkanit', fontSize: 20 }}>
-                  ความสามารถในการเคลื่อนไหวลดลง
-                </span>
-              }
-            />
-               <FormControlLabel
-              className="radioLabel"
-              value="50"
-              control={<Radio />}
-              label={
-                <span style={{ fontFamily: 'lightkanit', fontSize: 20 }}>
-                  นั่งหรือนอนเป็นส่วนใหญ่
-                </span>
-              }
-            />
-               <FormControlLabel
-              className="radioLabel"
-              value="40"
-              control={<Radio />}
-              label={
-                <span style={{ fontFamily: 'lightkanit', fontSize: 20 }}>
-                  นอนอยู่บนเตียงเป็นส่วนใหญ่
-                </span>
-              }
-            />
-            <FormControlLabel
-              className="radioLabel"
-              value="30"
-              control={<Radio />}
-              label={
-                <span style={{ fontFamily: 'lightkanit', fontSize: 20 }}>
-                  นอนอยู่บนเตียงตลอดเวลา
-                </span>
-              }
-            />
-            </RadioGroup>
-          </FormControl>
-          </div>
+            <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3, ml: 0 }}>
+          <Box style={{ display: 'flex', alignItems: 'center' }}>
+            <Typography component="h1" variant="h3" sx={{ fontSize: 30, fontFamily: 'lightKanit', width: '50%' }}>
+              1. การเคลื่อนไหว
+            </Typography>
+            <FormControl sx={{ m: 1, minWidth: 300, width: '50%' }}>
+              <InputLabel id="demo-simple-select-label-movement" sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>การเคลื่อนไหว</InputLabel>
+              <Select
+                labelId="demo-simple-select-label-movement"
+                id="demo-simple-select-movement"
+                value={movement}
+                label="การเคลื่อนไหว"
+                sx={{ fontSize: 20, fontFamily: 'lightKanit' }}
+                onChange={handleMovement}
+              >
+                <MenuItem value={null} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>Select</MenuItem>
+                <MenuItem value={100} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>เคลื่อนไหวปกติ</MenuItem>
+                <MenuItem value={70} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>ความสามารถในการเคลื่อนไหวลดลง</MenuItem>
+                <MenuItem value={50} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>นั่งหรือนอนเป็นส่วนใหญ่</MenuItem>
+                <MenuItem value={40} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>นอนอยู่บนเตียงเป็นส่วนใหญ่</MenuItem>
+                <MenuItem value={30} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>นอนอยู่บนเตียงตลอดเวลา</MenuItem>
+              </Select>
+            </FormControl>
+          </Box>
 
-          <div className="radioGroup">
-          <FormControl>
-            <FormLabel id="demo-controlled-radio-buttons-group-activity">การปฏิบัติกิจกรรมและการดำเนินโรค</FormLabel>
-            <RadioGroup
-              className="radioGroup" 
-              aria-labelledby="demo-controlled-radio-buttons-group-activity"
-              name="controlled-radio-buttons-group-activity"
+          <Box style={{ display: 'flex', alignItems: 'center' }}>
+            <Typography component="h1" variant="h3" sx={{ fontSize: 30, fontFamily: 'lightKanit', width: '50%' }}>
+              2. การปฏิบัติกิจกรรมและการดำเนินโรค
+            </Typography>
+            <FormControl sx={{ m: 1, minWidth: 300, width: '50%' }}>
+            <InputLabel id="demo-simple-select-label-activity" sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>การปฏิบัติกิจกรรมและการดำเนินโรค</InputLabel>
+            <Select
+              labelId="demo-simple-select-label-activity"
+              id="demo-simple-select-activity"
               value={activityAndDisease}
+              label="การปฏิบัติกิจกรรมและการดำเนินโรค"
+              sx={{ fontSize: 20, fontFamily: 'lightKanit' }}
               onChange={handleActivityAndDisease}
             >
-               <FormControlLabel
-              className="radioLabel"
-              value="100"
-              control={<Radio />}
-              label={
-                <span style={{ fontFamily: 'lightkanit', fontSize: 20 }}>
-                  ทำกิจกรรมและทำงานได้ตามปกติและไม่มีอาการของโรค
-                </span>
-              }
-            />
-            <FormControlLabel
-              className="radioLabel"
-              value="90"
-              control={<Radio />}
-              label={
-                <span style={{ fontFamily: 'lightkanit', fontSize: 20 }}>
-                  ทำกิจกรรมและทำงานได้ตามปกติและมีอาการของโรคบางอาการ
-                </span>
-              }
-            />
-            <FormControlLabel
-              className="radioLabel"
-              value="80"
-              control={<Radio />}
-              label={
-                <span style={{ fontFamily: 'lightkanit', fontSize: 20 }}>
-                  ต้องออกแรงอย่างมากในการทำกิจกรรมตามปกติและมีอาการของโรคบางอาการ
-                </span>
-              }
-            />
-            <FormControlLabel
-              className="radioLabel"
-              value="70"
-              control={<Radio />}
-              label={
-                <span style={{ fontFamily: 'lightkanit', fontSize: 20 }}>
-                  ไม่สามารถทำงานได้ตามปกติและมีอาการของโรคอย่างมาก
-                </span>
-              }
-            />
-            <FormControlLabel
-              className="radioLabel"
-              value="60"
-              control={<Radio />}
-              label={
-                <span style={{ fontFamily: 'lightkanit', fontSize: 20 }}>
-                  ไม่สามารถทำงานอดิเรกหรืองานบ้านได้และมีอาการของโรคอย่างมาก
-                </span>
-              }
-            />
-            <FormControlLabel
-              className="radioLabel"
-              value="50"
-              control={<Radio />}
-              label={
-                <span style={{ fontFamily: 'lightkanit', fontSize: 20 }}>
-                  ไม่สามารถทำงานได้เลยและมีการลุกลามของโรค
-                </span>
-              }
-            />
-            <FormControlLabel
-              className="radioLabel"
-              value="40"
-              control={<Radio />}
-              label={
-                <span style={{ fontFamily: 'lightkanit', fontSize: 20 }}>
-                  ทำกิจกรรมได้น้อยมากและมีการลุกลามของโรค
-                </span>
-              }
-            />
-            <FormControlLabel
-              className="radioLabel"
-              value="30"
-              control={<Radio />}
-              label={
-                <span style={{ fontFamily: 'lightkanit', fontSize: 20 }}>
-                  ไม่สามารถทำกิจกรรมใดๆและมีการลุกลามของโรค
-                </span>
-              }
-            />              
-            </RadioGroup>
+              {movement === 100 ? (
+                <>
+                  <MenuItem value={100} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>ทำกิจกรรมและทำงานได้ตามปกติและไม่มีอาการของโรค</MenuItem>
+                  <MenuItem value={90} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>ทำกิจกรรมและทำงานได้ตามปกติและมีอาการของโรคบางอาการ</MenuItem>
+                  <MenuItem value={80} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>ต้องออกแรงอย่างมากในการทำกิจกรรมตามปกติและมีอาการของโรคบางอาการ</MenuItem>
+                  <MenuItem value={70} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>ไม่สามารถทำงานได้ตามปกติและมีอาการของโรคอย่างมาก</MenuItem>
+                  <MenuItem value={60} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>ไม่สามารถทำงานอดิเรกหรืองานบ้านได้และมีอาการของโรคอย่างมาก</MenuItem>
+                  <MenuItem value={50} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>ไม่สามารถทำงานได้เลยและมีการลุกลามของโรค</MenuItem>
+                  <MenuItem value={40} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>ทำกิจกรรมได้น้อยมากและมีการลุกลามของโรค</MenuItem>
+                  <MenuItem value={30} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>ไม่สามารถทำกิจกรรมใดๆและมีการลุกลามของโรค</MenuItem>
+                </>
+              ) : movement === 70 ? (
+                <>
+                  <MenuItem value={70} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>ไม่สามารถทำงานได้ตามปกติและมีอาการของโรคอย่างมาก</MenuItem>
+                  <MenuItem value={60} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>ไม่สามารถทำงานอดิเรกหรืองานบ้านได้และมีอาการของโรคอย่างมาก</MenuItem>
+                  <MenuItem value={50} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>ไม่สามารถทำงานได้เลยและมีการลุกลามของโรค</MenuItem>
+                  <MenuItem value={40} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>ทำกิจกรรมได้น้อยมากและมีการลุกลามของโรค</MenuItem>
+                  <MenuItem value={30} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>ไม่สามารถทำกิจกรรมใดๆและมีการลุกลามของโรค</MenuItem>
+                </>
+               ) : movement === 50 ? (
+                <>
+                  <MenuItem value={50} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>ไม่สามารถทำงานได้เลยและมีการลุกลามของโรค</MenuItem>
+                  <MenuItem value={40} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>ทำกิจกรรมได้น้อยมากและมีการลุกลามของโรค</MenuItem>
+                  <MenuItem value={30} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>ไม่สามารถทำกิจกรรมใดๆและมีการลุกลามของโรค</MenuItem>
+                </>
+               ) : movement === 40 ? (
+                <>
+                  <MenuItem value={40} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>ทำกิจกรรมได้น้อยมากและมีการลุกลามของโรค</MenuItem>
+                  <MenuItem value={30} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>ไม่สามารถทำกิจกรรมใดๆและมีการลุกลามของโรค</MenuItem>
+                </>
+               ) : movement === 30 ? (
+                <>
+                  <MenuItem value={30} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>ไม่สามารถทำงานอดิเรกหรืองานบ้านได้และมีอาการของโรคอย่างมาก</MenuItem>
+                </>
+              ) : (
+                <MenuItem value={null} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>Select above first</MenuItem>
+              )}
+            </Select>
           </FormControl>
-          </div>
+          </Box>
 
-          <div className="radioGroup">
-          <FormControl>
-            <FormLabel id="demo-controlled-radio-buttons-group-daily">การกิจกรรมประจำวัน</FormLabel>
-            <RadioGroup
-              className="radioGroup" 
-              aria-labelledby="demo-controlled-radio-buttons-group-daily"
-              name="controlled-radio-buttons-group-daily"
-              value={dailyRoutines}
-              onChange={handleDailyRoutines}
-            >
-             <FormControlLabel
-              className="radioLabel"
-              value="100"
-              control={<Radio />}
-              label={
-                <span style={{ fontFamily: 'lightkanit', fontSize: 20 }}>
-                  ทำได้เอง
-                </span>
-              }
-            />             
-            </RadioGroup>
-            <FormControlLabel
-              className="radioLabel"
-              value="60"
-              control={<Radio />}
-              label={
-                <span style={{ fontFamily: 'lightkanit', fontSize: 20 }}>
-                  ต้องการช่วยเหลือเป็นบางครั้ง/บางเรื่อง
-                </span>
-              }
-            />             
-            <FormControlLabel
-              className="radioLabel"
-              value="50"
-              control={<Radio />}
-              label={
-                <span style={{ fontFamily: 'lightkanit', fontSize: 20 }}>
-                  ต้องการความช่วยเหลือมากขึ้น
-                </span>
-              }
-            />             
-            <FormControlLabel
-              className="radioLabel"
-              value="40"
-              control={<Radio />}
-              label={
-                <span style={{ fontFamily: 'lightkanit', fontSize: 20 }}>
-                  ต้องการความช่วยเหลือเป็นส่วนใหญ่
-                </span>
-              }
-            />             
-            <FormControlLabel
-              className="radioLabel"
-              value="30"
-              control={<Radio />}
-              label={
-                <span style={{ fontFamily: 'lightkanit', fontSize: 20 }}>
-                  ต้องการความช่วยเหลือทั้งหมด
-                </span>
-              }
-            />                      
-          </FormControl>
-          </div>
+          <Box style={{ display: 'flex', alignItems: 'center' }}>
+            <Typography component="h1" variant="h3" sx={{ fontSize: 30, fontFamily: 'lightKanit', width: '50%' }}>
+              3. การทำกิจกรรมประจำวัน
+            </Typography>
+            <FormControl sx={{ m: 1, minWidth: 300, width: '50%' }}>
+              <InputLabel id="demo-simple-select-label-daily" sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>การทำกิจกรรมประจำวัน</InputLabel>
+              <Select
+                labelId="demo-simple-select-label-daily"
+                id="demo-simple-select-daily"
+                value={dailyRoutines}
+                label="การทำกิจกรรมประจำวัน"
+                sx={{ fontSize: 20, fontFamily: 'lightKanit' }}
+                onChange={handleDailyRoutines}
+              >
+                 {activityAndDisease === 100 || activityAndDisease === 90 || activityAndDisease === 80 || activityAndDisease === 70 ? (
+                <>
+                  <MenuItem value={100} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>ทำได้เอง</MenuItem>
+                  <MenuItem value={60} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>ต้องการช่วยเหลือเป็นบางครั้ง/บางเรื่อง</MenuItem>
+                  <MenuItem value={50} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>ต้องการความช่วยเหลือมากขึ้น</MenuItem>
+                  <MenuItem value={40} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>ต้องการความช่วยเหลือเป็นส่วนใหญ่</MenuItem>
+                  <MenuItem value={30} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>ต้องการความช่วยเหลือทั้งหมด</MenuItem>
+                </>
+              ) : activityAndDisease === 60 ? (
+                <>
+                  <MenuItem value={60} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>ต้องการช่วยเหลือเป็นบางครั้ง/บางเรื่อง</MenuItem>
+                  <MenuItem value={50} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>ต้องการความช่วยเหลือมากขึ้น</MenuItem>
+                  <MenuItem value={40} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>ต้องการความช่วยเหลือเป็นส่วนใหญ่</MenuItem>
+                  <MenuItem value={30} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>ต้องการความช่วยเหลือทั้งหมด</MenuItem>
+                </>
+               ) : activityAndDisease === 50 ? (
+                <>
+                  <MenuItem value={50} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>ต้องการความช่วยเหลือมากขึ้น</MenuItem>
+                  <MenuItem value={40} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>ต้องการความช่วยเหลือเป็นส่วนใหญ่</MenuItem>
+                  <MenuItem value={30} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>ต้องการความช่วยเหลือทั้งหมด</MenuItem>
+                </>
+               ) : activityAndDisease === 40 ? (
+                <>
+                  <MenuItem value={40} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>ต้องการความช่วยเหลือเป็นส่วนใหญ่</MenuItem>
+                  <MenuItem value={30} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>ต้องการความช่วยเหลือทั้งหมด</MenuItem>
+                </>
+               ) : activityAndDisease === 30 ? (
+                <>
+                  <MenuItem value={30} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>ต้องการความช่วยเหลือทั้งหมด</MenuItem>
+                </>
+              ) : (
+                <MenuItem value={null} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>Select above first</MenuItem>
+              )}
+              </Select>
+            </FormControl>
+          </Box>
 
-          <div className="radioGroup">
-          <FormControl>
-            <FormLabel id="demo-controlled-radio-buttons-group-eating">การรับประทานอาหาร</FormLabel>
-            <RadioGroup
-              className="radioGroup" 
-              aria-labelledby="demo-controlled-radio-buttons-group-eating"
-              name="controlled-radio-buttons-group-eating"
-              value={eating}
-              onChange={handleEating}
-            >
-            <FormControlLabel
-              className="radioLabel"
-              value="100"
-              control={<Radio />}
-              label={
-                <span style={{ fontFamily: 'lightkanit', fontSize: 20 }}>
-                  ปกติ
-                </span>
-              }
-            />       
-            <FormControlLabel
-              className="radioLabel"
-              value="80"
-              control={<Radio />}
-              label={
-                <span style={{ fontFamily: 'lightkanit', fontSize: 20 }}>
-                  ปกติ หรือ ลดลง
-                </span>
-              }
-            />       
-            <FormControlLabel
-              className="radioLabel"
-              value="20"
-              control={<Radio />}
-              label={
-                <span style={{ fontFamily: 'lightkanit', fontSize: 20 }}>
-                  จิบน้ำได้เล็กน้อย
-                </span>
-              }
-            />       
-            <FormControlLabel
-              className="radioLabel"
-              value="10"
-              control={<Radio />}
-              label={
-                <span style={{ fontFamily: 'lightkanit', fontSize: 20 }}>
-                  รับประทานอาหารทางปากไม่ได้
-                </span>
-              }
-            />       
-            </RadioGroup>
-          </FormControl>
-          </div>
+          <Box style={{ display: 'flex', alignItems: 'center' }}>
+            <Typography component="h1" variant="h3" sx={{ fontSize: 30, fontFamily: 'lightKanit', width: '50%' }}>
+              4. การรับประทานอาหาร
+            </Typography>
+            <FormControl sx={{ m: 1, minWidth: 300, width: '50%' }}>
+              <InputLabel id="demo-simple-select-label-eating" sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>การรับประทานอาหาร</InputLabel>
+              <Select
+                labelId="demo-simple-select-label-eating"
+                id="demo-simple-select-eating"
+                value={eating}
+                label="การรับประทานอาหาร"
+                sx={{ fontSize: 20, fontFamily: 'lightKanit' }}
+                onChange={handleEating}
+              >
+                <MenuItem value={null} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>Select</MenuItem>
+                <MenuItem value={100} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>ปกติ</MenuItem>
+                <MenuItem value={80} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}> ปกติ หรือ ลดลง</MenuItem>
+                <MenuItem value={20} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>จิบน้ำได้เล็กน้อย</MenuItem>
+                <MenuItem value={10} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>รับประทานอาหารทางปากไม่ได้</MenuItem>
+              </Select>
+            </FormControl>
+          </Box>
 
-          <div className="radioGroup">
-          <FormControl>
-            <FormLabel id="demo-controlled-radio-buttons-group-awareness">ระดับความรู้สึกตัว</FormLabel>
-            <RadioGroup
-              className="radioGroup" 
-              aria-labelledby="demo-controlled-radio-buttons-group-awareness"
-              name="controlled-radio-buttons-group-awareness"
-              value={awareness}
-              onChange={handleAwareness}
-            >
-             <FormControlLabel
-              className="radioLabel"
-              value="100"
-              control={<Radio />}
-              label={
-                <span style={{ fontFamily: 'lightkanit', fontSize: 20 }}>
-                  รู้สึกตัวดี
-                </span>
-              }
-            />       
-            <FormControlLabel
-              className="radioLabel"
-              value="60"
-              control={<Radio />}
-              label={
-                <span style={{ fontFamily: 'lightkanit', fontSize: 20 }}>
-                  รู้สึกตัวดี หรือ สับสน
-                </span>
-              }
-            />       
-            <FormControlLabel
-              className="radioLabel"
-              value="40"
-              control={<Radio />}
-              label={
-                <span style={{ fontFamily: 'lightkanit', fontSize: 20 }}>
-                  รู้สึกตัวดี หรือ ง่วงซึม +/-สับสน
-                </span>
-              }
-            />       
-            <FormControlLabel
-              className="radioLabel"
-              value="10"
-              control={<Radio />}
-              label={
-                <span style={{ fontFamily: 'lightkanit', fontSize: 20 }}>
-                  ง่วงซึมหรือไม่รู้สึกตัว +/-สับสน
-                </span>
-              }
-            />       
-            </RadioGroup>
-          </FormControl>
-          </div>
-          </div>
+          <Box style={{ display: 'flex', alignItems: 'center' }}>
+            <Typography component="h1" variant="h3" sx={{ fontSize: 30, fontFamily: 'lightKanit', width: '50%' }}>
+              5. ระดับความรู้สึกตัว
+            </Typography>
+            <FormControl sx={{ m: 1, minWidth: 300, width: '50%' }}>
+              <InputLabel id="demo-simple-select-label-awareness" sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>ระดับความรู้สึกตัว</InputLabel>
+              <Select
+                labelId="demo-simple-select-label-awareness"
+                id="demo-simple-select-awareness"
+                value={awareness}
+                label="ระดับความรู้สึกตัว"
+                sx={{ fontSize: 20, fontFamily: 'lightKanit' }}
+                onChange={handleAwareness}
+              >
+                <MenuItem value={null} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>Select</MenuItem>
+                <MenuItem value={100} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>รู้สึกตัวดี</MenuItem>
+                <MenuItem value={60} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>รู้สึกตัวดี หรือ สับสน</MenuItem>
+                <MenuItem value={40} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>รู้สึกตัวดี หรือ ง่วงซึม +/-สับสน</MenuItem>
+                <MenuItem value={10} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>ง่วงซึมหรือไม่รู้สึกตัว +/-สับสน</MenuItem>
+              </Select>
+            </FormControl>
+          </Box>
+          
 
             <Button
                 type="submit"
