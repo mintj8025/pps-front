@@ -246,11 +246,11 @@ const handleSubmit = async (event) => {
                 onChange={handleMovement}
               >
                 <MenuItem value={null} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>Select</MenuItem>
-                <MenuItem value={100} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>เคลื่อนไหวปกติ</MenuItem>
-                <MenuItem value={70} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>ความสามารถในการเคลื่อนไหวลดลง</MenuItem>
-                <MenuItem value={50} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>นั่งหรือนอนเป็นส่วนใหญ่</MenuItem>
-                <MenuItem value={40} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>นอนอยู่บนเตียงเป็นส่วนใหญ่</MenuItem>
-                <MenuItem value={30} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>นอนอยู่บนเตียงตลอดเวลา</MenuItem>
+                <MenuItem value={1} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>เคลื่อนไหวปกติ</MenuItem>
+                <MenuItem value={2} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>ความสามารถในการเคลื่อนไหวลดลง</MenuItem>
+                <MenuItem value={3} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>นั่งหรือนอนเป็นส่วนใหญ่</MenuItem>
+                <MenuItem value={4} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>นอนอยู่บนเตียงเป็นส่วนใหญ่</MenuItem>
+                <MenuItem value={5} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>นอนอยู่บนเตียงตลอดเวลา</MenuItem>
               </Select>
             </FormControl>
           </Box>
@@ -269,39 +269,39 @@ const handleSubmit = async (event) => {
               sx={{ fontSize: 20, fontFamily: 'lightKanit' }}
               onChange={handleActivityAndDisease}
             >
-              {movement === 100 ? (
+              {movement === 1 ? (
                 <>
-                  <MenuItem value={100} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>ทำกิจกรรมและทำงานได้ตามปกติและไม่มีอาการของโรค</MenuItem>
-                  <MenuItem value={90} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>ทำกิจกรรมและทำงานได้ตามปกติและมีอาการของโรคบางอาการ</MenuItem>
-                  <MenuItem value={80} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>ต้องออกแรงอย่างมากในการทำกิจกรรมตามปกติและมีอาการของโรคบางอาการ</MenuItem>
-                  <MenuItem value={70} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>ไม่สามารถทำงานได้ตามปกติและมีอาการของโรคอย่างมาก</MenuItem>
-                  <MenuItem value={60} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>ไม่สามารถทำงานอดิเรกหรืองานบ้านได้และมีอาการของโรคอย่างมาก</MenuItem>
-                  <MenuItem value={50} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>ไม่สามารถทำงานได้เลยและมีการลุกลามของโรค</MenuItem>
-                  <MenuItem value={40} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>ทำกิจกรรมได้น้อยมากและมีการลุกลามของโรค</MenuItem>
-                  <MenuItem value={30} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>ไม่สามารถทำกิจกรรมใดๆและมีการลุกลามของโรค</MenuItem>
+                  <MenuItem value={1} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>ทำกิจกรรมและทำงานได้ตามปกติและไม่มีอาการของโรค</MenuItem>
+                  <MenuItem value={2} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>ทำกิจกรรมและทำงานได้ตามปกติและมีอาการของโรคบางอาการ</MenuItem>
+                  <MenuItem value={3} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>ต้องออกแรงอย่างมากในการทำกิจกรรมตามปกติและมีอาการของโรคบางอาการ</MenuItem>
+                  <MenuItem value={4} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>ไม่สามารถทำงานได้ตามปกติและมีอาการของโรคอย่างมาก</MenuItem>
+                  <MenuItem value={5} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>ไม่สามารถทำงานอดิเรกหรืองานบ้านได้และมีอาการของโรคอย่างมาก</MenuItem>
+                  <MenuItem value={6} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>ไม่สามารถทำงานได้เลยและมีการลุกลามของโรค</MenuItem>
+                  <MenuItem value={7} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>ทำกิจกรรมได้น้อยมากและมีการลุกลามของโรค</MenuItem>
+                  <MenuItem value={8} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>ไม่สามารถทำกิจกรรมใดๆและมีการลุกลามของโรค</MenuItem>
                 </>
-              ) : movement === 70 ? (
+              ) : movement === 2 ? (
                 <>
-                  <MenuItem value={70} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>ไม่สามารถทำงานได้ตามปกติและมีอาการของโรคอย่างมาก</MenuItem>
-                  <MenuItem value={60} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>ไม่สามารถทำงานอดิเรกหรืองานบ้านได้และมีอาการของโรคอย่างมาก</MenuItem>
-                  <MenuItem value={50} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>ไม่สามารถทำงานได้เลยและมีการลุกลามของโรค</MenuItem>
-                  <MenuItem value={40} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>ทำกิจกรรมได้น้อยมากและมีการลุกลามของโรค</MenuItem>
-                  <MenuItem value={30} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>ไม่สามารถทำกิจกรรมใดๆและมีการลุกลามของโรค</MenuItem>
+                  <MenuItem value={4} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>ไม่สามารถทำงานได้ตามปกติและมีอาการของโรคอย่างมาก</MenuItem>
+                  <MenuItem value={5} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>ไม่สามารถทำงานอดิเรกหรืองานบ้านได้และมีอาการของโรคอย่างมาก</MenuItem>
+                  <MenuItem value={6} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>ไม่สามารถทำงานได้เลยและมีการลุกลามของโรค</MenuItem>
+                  <MenuItem value={7} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>ทำกิจกรรมได้น้อยมากและมีการลุกลามของโรค</MenuItem>
+                  <MenuItem value={8} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>ไม่สามารถทำกิจกรรมใดๆและมีการลุกลามของโรค</MenuItem>
                 </>
-               ) : movement === 50 ? (
+              ) : movement === 3 ? (
                 <>
-                  <MenuItem value={50} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>ไม่สามารถทำงานได้เลยและมีการลุกลามของโรค</MenuItem>
-                  <MenuItem value={40} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>ทำกิจกรรมได้น้อยมากและมีการลุกลามของโรค</MenuItem>
-                  <MenuItem value={30} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>ไม่สามารถทำกิจกรรมใดๆและมีการลุกลามของโรค</MenuItem>
+                  <MenuItem value={6} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>ไม่สามารถทำงานได้เลยและมีการลุกลามของโรค</MenuItem>
+                  <MenuItem value={7} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>ทำกิจกรรมได้น้อยมากและมีการลุกลามของโรค</MenuItem>
+                  <MenuItem value={8} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>ไม่สามารถทำกิจกรรมใดๆและมีการลุกลามของโรค</MenuItem>
                 </>
-               ) : movement === 40 ? (
+               ) : movement === 4 ? (
                 <>
-                  <MenuItem value={40} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>ทำกิจกรรมได้น้อยมากและมีการลุกลามของโรค</MenuItem>
-                  <MenuItem value={30} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>ไม่สามารถทำกิจกรรมใดๆและมีการลุกลามของโรค</MenuItem>
+                  <MenuItem value={7} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>ทำกิจกรรมได้น้อยมากและมีการลุกลามของโรค</MenuItem>
+                  <MenuItem value={8} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>ไม่สามารถทำกิจกรรมใดๆและมีการลุกลามของโรค</MenuItem>
                 </>
-               ) : movement === 30 ? (
+               ) : movement === 5 ? (
                 <>
-                  <MenuItem value={30} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>ไม่สามารถทำงานอดิเรกหรืองานบ้านได้และมีอาการของโรคอย่างมาก</MenuItem>
+                  <MenuItem value={8} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>ไม่สามารถทำงานอดิเรกหรืองานบ้านได้และมีอาการของโรคอย่างมาก</MenuItem>
                 </>
               ) : (
                 <MenuItem value={null} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>Select above first</MenuItem>
@@ -324,35 +324,35 @@ const handleSubmit = async (event) => {
                 sx={{ fontSize: 20, fontFamily: 'lightKanit' }}
                 onChange={handleDailyRoutines}
               >
-                 {activityAndDisease === 100 || activityAndDisease === 90 || activityAndDisease === 80 || activityAndDisease === 70 ? (
+                 {activityAndDisease === 1 || activityAndDisease === 2 || activityAndDisease === 3 || activityAndDisease === 4 ? (
                 <>
-                  <MenuItem value={100} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>ทำได้เอง</MenuItem>
-                  <MenuItem value={60} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>ต้องการช่วยเหลือเป็นบางครั้ง/บางเรื่อง</MenuItem>
-                  <MenuItem value={50} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>ต้องการความช่วยเหลือมากขึ้น</MenuItem>
-                  <MenuItem value={40} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>ต้องการความช่วยเหลือเป็นส่วนใหญ่</MenuItem>
-                  <MenuItem value={30} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>ต้องการความช่วยเหลือทั้งหมด</MenuItem>
+                  <MenuItem value={1} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>ทำได้เอง</MenuItem>
+                  <MenuItem value={2} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>ต้องการช่วยเหลือเป็นบางครั้ง/บางเรื่อง</MenuItem>
+                  <MenuItem value={3} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>ต้องการความช่วยเหลือมากขึ้น</MenuItem>
+                  <MenuItem value={4} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>ต้องการความช่วยเหลือเป็นส่วนใหญ่</MenuItem>
+                  <MenuItem value={5} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>ต้องการความช่วยเหลือทั้งหมด</MenuItem>
                 </>
-              ) : activityAndDisease === 60 ? (
+              ) : activityAndDisease === 5 ? (
                 <>
-                  <MenuItem value={60} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>ต้องการช่วยเหลือเป็นบางครั้ง/บางเรื่อง</MenuItem>
-                  <MenuItem value={50} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>ต้องการความช่วยเหลือมากขึ้น</MenuItem>
-                  <MenuItem value={40} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>ต้องการความช่วยเหลือเป็นส่วนใหญ่</MenuItem>
-                  <MenuItem value={30} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>ต้องการความช่วยเหลือทั้งหมด</MenuItem>
+                  <MenuItem value={2} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>ต้องการช่วยเหลือเป็นบางครั้ง/บางเรื่อง</MenuItem>
+                  <MenuItem value={3} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>ต้องการความช่วยเหลือมากขึ้น</MenuItem>
+                  <MenuItem value={4} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>ต้องการความช่วยเหลือเป็นส่วนใหญ่</MenuItem>
+                  <MenuItem value={5} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>ต้องการความช่วยเหลือทั้งหมด</MenuItem>
                 </>
-               ) : activityAndDisease === 50 ? (
+               ) : activityAndDisease === 6 ? (
                 <>
-                  <MenuItem value={50} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>ต้องการความช่วยเหลือมากขึ้น</MenuItem>
-                  <MenuItem value={40} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>ต้องการความช่วยเหลือเป็นส่วนใหญ่</MenuItem>
-                  <MenuItem value={30} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>ต้องการความช่วยเหลือทั้งหมด</MenuItem>
+                  <MenuItem value={3} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>ต้องการความช่วยเหลือมากขึ้น</MenuItem>
+                  <MenuItem value={4} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>ต้องการความช่วยเหลือเป็นส่วนใหญ่</MenuItem>
+                  <MenuItem value={5} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>ต้องการความช่วยเหลือทั้งหมด</MenuItem>
                 </>
-               ) : activityAndDisease === 40 ? (
+               ) : activityAndDisease === 7 ? (
                 <>
-                  <MenuItem value={40} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>ต้องการความช่วยเหลือเป็นส่วนใหญ่</MenuItem>
-                  <MenuItem value={30} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>ต้องการความช่วยเหลือทั้งหมด</MenuItem>
+                  <MenuItem value={4} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>ต้องการความช่วยเหลือเป็นส่วนใหญ่</MenuItem>
+                  <MenuItem value={5} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>ต้องการความช่วยเหลือทั้งหมด</MenuItem>
                 </>
-               ) : activityAndDisease === 30 ? (
+               ) : activityAndDisease === 8 ? (
                 <>
-                  <MenuItem value={30} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>ต้องการความช่วยเหลือทั้งหมด</MenuItem>
+                  <MenuItem value={5} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>ต้องการความช่วยเหลือทั้งหมด</MenuItem>
                 </>
               ) : (
                 <MenuItem value={null} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>Select above first</MenuItem>
@@ -375,11 +375,22 @@ const handleSubmit = async (event) => {
                 sx={{ fontSize: 20, fontFamily: 'lightKanit' }}
                 onChange={handleEating}
               >
+                {dailyRoutines === 1 && (activityAndDisease === 1 || activityAndDisease === 2) ? (
+                <>
                 <MenuItem value={null} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>Select</MenuItem>
-                <MenuItem value={100} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>ปกติ</MenuItem>
-                <MenuItem value={80} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}> ปกติ หรือ ลดลง</MenuItem>
-                <MenuItem value={20} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>จิบน้ำได้เล็กน้อย</MenuItem>
-                <MenuItem value={10} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>รับประทานอาหารทางปากไม่ได้</MenuItem>
+                <MenuItem value={1} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>ปกติ</MenuItem>
+                <MenuItem value={2} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}> ปกติ หรือ ลดลง</MenuItem>
+                <MenuItem value={3} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>จิบน้ำได้เล็กน้อย</MenuItem>
+                <MenuItem value={4} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>รับประทานอาหารทางปากไม่ได้</MenuItem>
+                </>
+              ) : (
+                <>
+                <MenuItem value={null} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>Select</MenuItem>
+                <MenuItem value={2} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}> ปกติ หรือ ลดลง</MenuItem>
+                <MenuItem value={3} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>จิบน้ำได้เล็กน้อย</MenuItem>
+                <MenuItem value={4} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>รับประทานอาหารทางปากไม่ได้</MenuItem>
+                </>
+              )}
               </Select>
             </FormControl>
           </Box>
@@ -398,11 +409,30 @@ const handleSubmit = async (event) => {
                 sx={{ fontSize: 20, fontFamily: 'lightKanit' }}
                 onChange={handleAwareness}
               >
+              {(eating === 1 && dailyRoutines === 1) || (eating === 2 && dailyRoutines === 1) ? (
+                <>
                 <MenuItem value={null} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>Select</MenuItem>
-                <MenuItem value={100} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>รู้สึกตัวดี</MenuItem>
-                <MenuItem value={60} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>รู้สึกตัวดี หรือ สับสน</MenuItem>
-                <MenuItem value={40} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>รู้สึกตัวดี หรือ ง่วงซึม +/-สับสน</MenuItem>
-                <MenuItem value={10} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>ง่วงซึมหรือไม่รู้สึกตัว +/-สับสน</MenuItem>
+                <MenuItem value={1} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>รู้สึกตัวดี</MenuItem>
+                <MenuItem value={2} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>รู้สึกตัวดี หรือ สับสน</MenuItem>
+                <MenuItem value={3} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>รู้สึกตัวดี หรือ ง่วงซึม +/-สับสน</MenuItem>
+                <MenuItem value={4} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>ง่วงซึมหรือไม่รู้สึกตัว +/-สับสน</MenuItem>
+                </>
+              ) : (eating === 2 || eating === 3) && (dailyRoutines === 4 || dailyRoutines === 5) ? (
+                <>
+                <MenuItem value={null} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>Select</MenuItem>
+                <MenuItem value={3} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>รู้สึกตัวดี หรือ ง่วงซึม +/-สับสน</MenuItem>
+                  </>
+              ) : eating === 4 ? (
+                <>
+                <MenuItem value={4} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>ง่วงซึมหรือไม่รู้สึกตัว +/-สับสน</MenuItem>
+                </>
+              ) : (
+                <>
+                <MenuItem value={null} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>Select</MenuItem>
+                <MenuItem value={2} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>รู้สึกตัวดี หรือ สับสน</MenuItem>
+                <MenuItem value={3} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>รู้สึกตัวดี หรือ ง่วงซึม +/-สับสน</MenuItem>
+                </>
+              )}
               </Select>
             </FormControl>
           </Box>

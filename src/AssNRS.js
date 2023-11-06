@@ -13,6 +13,7 @@ import UpdateIcon from '@mui/icons-material/Update';
 import Typography from '@mui/material/Typography';
 import './AssNRS.css';
 import Swal from 'sweetalert2'
+import FormControlLabel from '@mui/material/FormControlLabel';
 
 function App() {
 
@@ -115,18 +116,26 @@ function App() {
            
             <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
             <div className='radioForm'>
-            <Radio
-              {...controlProps('0')}
-              sx={{
-                '& .MuiSvgIcon-root': {
-                  fontSize: 80,
-                },
-                color: '#33AC74',
-                '&.Mui-checked': {
-                 color: '#33AC74',
-                },
-              }}
-            />
+            <FormControlLabel
+  control={
+    <Radio
+      sx={{
+        '& .MuiSvgIcon-root': {
+          fontSize: 80,
+        },
+        color: '#33AC74',
+        '&.Mui-checked': {
+          color: '#33AC74',
+        },
+      }}
+      {...controlProps('0')}
+    />
+  }
+  label="ไหนลอง"
+  labelPlacement='bottom'
+/>
+
+{/* ทำเช่นนี้สำหรับรายการรายการเลือกทุกตัว */}
 
             <Radio
               {...controlProps('1')}
@@ -139,6 +148,8 @@ function App() {
                  color: '#33AC74',
                 },
               }}
+              label="Bottom"
+              labelPlacement="bottom"
             />
 
             <Radio
