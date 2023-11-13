@@ -31,6 +31,34 @@ function App() {
     inputProps: { 'aria-label': item },
   });
 
+  const renderRadio = (item, color) => (
+    <FormControlLabel
+      control={
+        <Radio
+          sx={{
+            '& .MuiSvgIcon-root': {
+              fontSize: 80,
+            },
+            color: color,
+            '&.Mui-checked': {
+              color: color,
+            },
+          }}
+          {...controlProps(item)}
+        />
+      }
+      label={
+        <Typography
+          component="div"
+          style={{ fontSize: '30px', fontFamily: 'lightKanit'}}
+        >
+          {item}
+        </Typography>
+      }
+      labelPlacement="bottom"
+    />
+  );
+
   const handleSubmit = (event) => {
     event.preventDefault();
     localStorage.setItem("nrs", JSON.stringify(selectedValue));
@@ -116,183 +144,36 @@ function App() {
            
             <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
             <div className='radioForm'>
-            <FormControlLabel
-  control={
-    <Radio
-      sx={{
-        '& .MuiSvgIcon-root': {
-          fontSize: 80,
-        },
-        color: '#33AC74',
-        '&.Mui-checked': {
-          color: '#33AC74',
-        },
-      }}
-      {...controlProps('0')}
-    />
-  }
-  label="ไหนลอง"
-  labelPlacement='bottom'
-/>
-
-{/* ทำเช่นนี้สำหรับรายการรายการเลือกทุกตัว */}
-
-            <Radio
-              {...controlProps('1')}
-              sx={{
-                '& .MuiSvgIcon-root': {
-                  fontSize: 80,
-                },
-                color: '#33AC74',
-                '&.Mui-checked': {
-                 color: '#33AC74',
-                },
-              }}
-              label="Bottom"
-              labelPlacement="bottom"
-            />
-
-            <Radio
-              {...controlProps('2')}
-              sx={{
-                '& .MuiSvgIcon-root': {
-                  fontSize: 80,
-                },
-                color: '#33AC74',
-                '&.Mui-checked': {
-                 color: '#33AC74',
-                },
-              }}
-            />
-
-            <Radio
-              {...controlProps('3')}
-              sx={{
-                '& .MuiSvgIcon-root': {
-                  fontSize: 80,
-                },
-                color: '#3DC988',
-                '&.Mui-checked': {
-                 color: '#3DC988',
-                },
-              }}
-            />
-            
-            <Radio
-              {...controlProps('4')}
-              sx={{
-                '& .MuiSvgIcon-root': {
-                  fontSize: 80,
-                },
-                color: '#3DC988',
-                '&.Mui-checked': {
-                 color: '#3DC988',
-                },
-              }}
-            />
-            
-            <Radio
-              {...controlProps('5')}
-              sx={{
-                '& .MuiSvgIcon-root': {
-                  fontSize: 80,
-                },
-                color: '#737B89',
-                '&.Mui-checked': {
-                 color: '#737B89',
-                },
-              }}
-            />
-
-            <Radio
-              {...controlProps('6')}
-              sx={{
-                '& .MuiSvgIcon-root': {
-                  fontSize: 80,
-                },
-                color: '#F69994',
-                '&.Mui-checked': {
-                 color: '#F69994',
-                },
-              }}
-            />
-
-            <Radio
-              {...controlProps('7')}
-              sx={{
-                '& .MuiSvgIcon-root': {
-                  fontSize: 80,
-                },
-                color: '#F69994',
-                '&.Mui-checked': {
-                 color: '#F69994',
-                },
-              }}
-            />
-
-            <Radio
-              {...controlProps('8')}
-              sx={{
-                '& .MuiSvgIcon-root': {
-                  fontSize: 80,
-                },
-                color: '#F26660',
-                '&.Mui-checked': {
-                 color: '#F26660',
-                },
-              }}
-            />
-
-            <Radio
-              {...controlProps('9')}
-              sx={{
-                '& .MuiSvgIcon-root': {
-                  fontSize: 80,
-                },
-                color: '#F26660',
-                '&.Mui-checked': {
-                 color: '#F26660',
-                },
-              }}
-            />
-
-            <Radio
-              {...controlProps('10')}
-              sx={{
-                '& .MuiSvgIcon-root': {
-                  fontSize: 80,
-                },
-                color: '#E92623',
-                '&.Mui-checked': {
-                 color: '#E92623',
-                },
-              }}
-            />
-
+            {renderRadio('0', '#33AC74')}
+            {renderRadio('1', '#33AC74')}
+            {renderRadio('2', '#33AC74')}
+            {renderRadio('3', '#3DC988')}
+            {renderRadio('4', '#3DC988')}
+            {renderRadio('5', '#737B89')}
+            {renderRadio('6', '#F69994')}
+            {renderRadio('7', '#F69994')}
+            {renderRadio('8', '#F26660')}
+            {renderRadio('9', '#F26660')}
+            {renderRadio('10', '#E92623')}
+            </div>
             <Button
                 type="submit"
                 maxWidth= "45"
                 variant="contained"
-                sx={{ mt: 4, mb: 2 , ml:33}}
-              >
-                <Typography variant="h5" fontFamily={'kanit'}>
+                sx={{
+                  mt: '70px',
+                  mb: 'auto',
+                  marginLeft: 'auto',
+                  marginRight: 'auto',
+                  display: 'flex',
+                  justifyContent: 'center',
+                  width: '200px' 
+                }}              >
+                <Typography variant="h5" fontFamily={'kanit'} fontSize={30}>
                 ต่อไป
                 </Typography>
               </Button>
-            </div>
             </Box>
-
-            <Typography style={{display: 'inline-block'}} fontFamily={'kanit'} fontSize={35} marginLeft={4}>0</Typography>
-            <Typography style={{display: 'inline-block'}} fontSize={35} marginLeft={10} fontFamily={'kanit'}>1</Typography>
-            <Typography style={{display: 'inline-block'}} fontSize={35} marginLeft={10} fontFamily={'kanit'}>2</Typography>
-            <Typography style={{display: 'inline-block'}} fontSize={35} marginLeft={10} fontFamily={'kanit'}>3</Typography>
-            <Typography style={{display: 'inline-block'}} fontSize={35} marginLeft={10} fontFamily={'kanit'}>4</Typography>
-            <Typography style={{display: 'inline-block'}} fontSize={35} marginLeft={10} fontFamily={'kanit'}>5</Typography>
-            <Typography style={{display: 'inline-block'}} fontSize={35} marginLeft={10} fontFamily={'kanit'}>6</Typography>
-            <Typography style={{display: 'inline-block'}} fontSize={35} marginLeft={10} fontFamily={'kanit'}>7</Typography>
-            <Typography style={{display: 'inline-block'}} fontSize={35} marginLeft={10} fontFamily={'kanit'}>8</Typography>
-            <Typography style={{display: 'inline-block'}} fontSize={35} marginLeft={10} fontFamily={'kanit'}>9</Typography>
-            <Typography style={{display: 'inline-block'}} fontSize={35} marginLeft={8} fontFamily={'kanit'}>10</Typography>
 
             </div>
 

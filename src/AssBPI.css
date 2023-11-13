@@ -22,6 +22,30 @@
     top: 90px;
     }
 
+    .radioActivity .MuiFormControlLabel-root {
+      margin: 0 2px; /* ปรับระยะห่างให้น้อยลง */
+    }
+
+    .radioEmotion .MuiFormControlLabel-root {
+      margin: 0 2px; /* ปรับระยะห่างให้น้อยลง */
+    }
+
+    .radioWalk .MuiFormControlLabel-root {
+      margin: 0 2px; /* ปรับระยะห่างให้น้อยลง */
+    }
+
+    .radioWork .MuiFormControlLabel-root {
+      margin: 0 2px; /* ปรับระยะห่างให้น้อยลง */
+    }
+
+    .radioRelationship .MuiFormControlLabel-root {
+      margin: 0 2px; /* ปรับระยะห่างให้น้อยลง */
+    }
+
+    .radioSleep .MuiFormControlLabel-root {
+      margin: 0 2px; /* ปรับระยะห่างให้น้อยลง */
+    }
+
     div.navbar{
       position: fixed;
     }

@@ -481,15 +481,21 @@ const handleSubmit = async (event) => {
             </div>            
 
             <Button
-                type="submit"
-                maxWidth= "45"
-                variant="contained"
-                sx={{ mt: 4, mb: 2 , ml:33}}
-              >
-                <Typography variant="h5" fontFamily={'kanit'}>
-                  ประเมิน
+            type="submit"
+            maxWidth="45"
+            variant="contained"
+            sx={{
+              margin: 'auto',
+              transform: 'translateY(120%)',
+              display: 'block',
+              marginBottom: '120px', 
+              width: '200px' 
+            }}
+          >
+             <Typography variant="h5" fontFamily={'kanit'} fontSize={30}>
+                ต่อไป
                 </Typography>
-              </Button>
+          </Button>
           </Box>
            </div>
 

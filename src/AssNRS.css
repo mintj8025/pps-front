@@ -21,3 +21,24 @@
     left: 200px;
     top: 90px;
     }
+
+    /* ใส่ CSS นี้ในไฟล์ AssNRS.css หรือไฟล์ CSS ของคุณ */
+
+    .radioForm {
+      display: flex;
+      justify-content: space-between;
+      align-items: left;
+      margin-top: 35px;
+    }
+    
+    .radioForm .MuiFormControlLabel-root {
+      margin: 0 3px; /* ปรับระยะห่างให้น้อยลง */
+    }
+    
+    .centerButton {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 20px; /* เพิ่มระยะห่างด้านบนตามที่คุณต้องการ */
+    }
+    

@@ -57,6 +57,11 @@ export function App() {
     { field: 'happy', headerName: 'ความสุข', flex: 1 , minWidth: 90 },
     { field: 'satisfied', headerName: 'ความพึงพอใจ', flex: 1 , minWidth: 100 },
     { field: 'bpi', headerName: 'BPI', flex: 1 , minWidth: 90 },
+    { field: 'movement', headerName: 'การเคลื่อนไหว', flex: 1 , minWidth: 110 },
+    { field: 'activityAndDisease', headerName: 'การปฏิบัติกิจกรรมและการดำเนินโรค', flex: 1 , minWidth: 230 },
+    { field: 'dailyRoutines', headerName: 'การทำกิจวัตรประจำวัน', flex: 1 , minWidth: 150 },
+    { field: 'eating', headerName: 'การรับประทานอาหาร', flex: 1 , minWidth: 140 },
+    { field: 'awareness', headerName: 'ระดับความรู้สึก', flex: 1 , minWidth: 110 },
     { field: 'pps', headerName: 'PPS', flex: 1 , minWidth: 90  },
     { field: 'ss', headerName: 'SS', flex: 1 , minWidth: 90 },
     { field: 'nv', headerName: 'NV', flex: 1 , minWidth: 90 },
@@ -151,29 +156,15 @@ export function App() {
             </Typography>
 
             <DataGrid
-  rows={data}
-  columns={columns}
-  getRowId={(row) => row.patient_HN} // หรือใช้ฟิลด์ที่เหมาะสมที่เป็น ID ของแถว
-  components={{
-    Toolbar: GridToolbar,
-  }}
-  rowThreshold={0}
-  onRowClick={handleRowClick}
-/>
-
-{selectedRow && (
-  <div>
-    {/* แสดงรายละเอียดของแถวที่ถูกคลิก */}
-    {data.find((row) => row.patient_HN === selectedRow) && (
-      <div>
-        <Typography variant="h6">รายละเอียดของแถว {selectedRow}</Typography>
-        {/* เพิ่มองค์ประกอบที่คุณต้องการแสดงเพิ่มเติมของแถวที่ถูกคลิก */}
-      </div>
-    )}
-  </div>
-)}
-
-
+            rows={data}
+            columns={columns}
+            getRowId={(row) => row.patient_HN} 
+            components={{
+              Toolbar: GridToolbar,
+            }}
+            rowThreshold={0}
+            onRowClick={handleRowClick}
+          />
 
             </div>
 

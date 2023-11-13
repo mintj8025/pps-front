@@ -13,6 +13,7 @@ import Swal from 'sweetalert2'
 import Radio from '@mui/material/Radio';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
+import FormControlLabel from '@mui/material/FormControlLabel';
 
 
 function App() {
@@ -24,8 +25,6 @@ function App() {
   const [relationship, setRelationship] = React.useState('0');
   const [sleep, setSleep] = React.useState('0');
   const [happy, setHappy] = React.useState('0');
-
-
   
   const handleActivity = (event) => {
     setActivity(event.target.value);
@@ -54,62 +53,6 @@ function App() {
   const handleHappy = (event) => {
     setHappy(event.target.value);
   };
-
-  const controlProps1 = (item) => ({
-    checked: activity === item,
-    onChange: handleActivity,
-    value: item,
-    name: 'color-radio-button-demo',
-    inputProps: { 'aria-label': item },
-  });
-
-  const controlProps2 = (item) => ({
-    checked: emotion === item,
-    onChange: handleEmotion,
-    value: item,
-    name: 'color-radio-button-demo',
-    inputProps: { 'aria-label': item },
-  });
-
-  const controlProps3 = (item) => ({
-    checked: walk === item,
-    onChange: handleWalk,
-    value: item,
-    name: 'color-radio-button-demo',
-    inputProps: { 'aria-label': item },
-  });
-
-  const controlProps4 = (item) => ({
-    checked: work === item,
-    onChange: handleWork,
-    value: item,
-    name: 'color-radio-button-demo',
-    inputProps: { 'aria-label': item },
-  });
-
-  const controlProps5 = (item) => ({
-    checked: relationship === item,
-    onChange: handleRelationship,
-    value: item,
-    name: 'color-radio-button-demo',
-    inputProps: { 'aria-label': item },
-  });
-
-  const controlProps6 = (item) => ({
-    checked: sleep === item,
-    onChange: handleSleep,
-    value: item,
-    name: 'color-radio-button-demo',
-    inputProps: { 'aria-label': item },
-  });
-
-  const controlProps7 = (item) => ({
-    checked: happy === item,
-    onChange: handleHappy,
-    value: item,
-    name: 'color-radio-button-demo',
-    inputProps: { 'aria-label': item },
-  });
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -172,6 +115,109 @@ function App() {
     window.location = '/asspatientfound'
   }
 
+  const controlProps1 = (item) => ({
+    checked: activity === item,
+    onChange: handleActivity,
+    value: item,
+    name: 'color-radio-button-demo',
+    inputProps: { 'aria-label': item },
+  });
+
+  const controlProps2 = (item) => ({
+    checked: emotion === item,
+    onChange: handleEmotion,
+    value: item,
+    name: 'color-radio-button-demo',
+    inputProps: { 'aria-label': item },
+  });
+
+  const controlProps3 = (item) => ({
+    checked: walk === item,
+    onChange: handleWalk,
+    value: item,
+    name: 'color-radio-button-demo',
+    inputProps: { 'aria-label': item },
+  });
+
+  const controlProps4 = (item) => ({
+    checked: work === item,
+    onChange: handleWork,
+    value: item,
+    name: 'color-radio-button-demo',
+    inputProps: { 'aria-label': item },
+  });
+
+  const controlProps5 = (item) => ({
+    checked: relationship === item,
+    onChange: handleRelationship,
+    value: item,
+    name: 'color-radio-button-demo',
+    inputProps: { 'aria-label': item },
+  });
+
+  const controlProps6 = (item) => ({
+    checked: sleep === item,
+    onChange: handleSleep,
+    value: item,
+    name: 'color-radio-button-demo',
+    inputProps: { 'aria-label': item },
+  });
+
+  const controlProps7 = (item) => ({
+    checked: happy === item,
+    onChange: handleHappy,
+    value: item,
+    name: 'color-radio-button-demo',
+    inputProps: { 'aria-label': item },
+  });
+
+  const renderRadioGroup = (data, controlPropsFn) => (
+    <div className='radioGroup'>
+      {data.map((item, index) => (
+        <FormControlLabel
+          key={index}
+          control={
+            <Radio
+              sx={{
+                '& .MuiSvgIcon-root': {
+                  fontSize: 80,
+                },
+                color: item.color,
+                '&.Mui-checked': {
+                  color: item.color,
+                },
+              }}
+              {...controlPropsFn(item.value)}
+            />
+          }
+          label={
+            <Typography
+              component='div'
+              style={{ fontSize: '30px', fontFamily: 'lightKanit' }}
+            >
+              {item.label}
+            </Typography>
+          }
+          labelPlacement='bottom'
+        />
+      ))}
+    </div>
+  );
+
+  const data = [
+    { value: '0', color: '#33AC74', label: '0' },
+    { value: '1', color: '#33AC74', label: '1' },
+    { value: '2', color: '#33AC74', label: '2' },
+    { value: '3', color: '#3DC988', label: '3' },
+    { value: '4', color: '#3DC988', label: '4' },
+    { value: '5', color: '#737B89', label: '5' },
+    { value: '6', color: '#F69994', label: '6' },
+    { value: '7', color: '#F69994', label: '7' },
+    { value: '8', color: '#F26660', label: '8' },
+    { value: '9', color: '#F26660', label: '9' },
+    { value: '10', color: '#E92623', label: '10' },
+  ];
+
   if (isLoaded) return (<div>Loading</div>)
   else {
   return (
@@ -205,161 +251,7 @@ function App() {
 
             <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
             <div className='radioActivity'>
-            <Radio
-              {...controlProps1('0')}
-              sx={{
-                '& .MuiSvgIcon-root': {
-                  fontSize: 80,
-                },
-                color: '#33AC74',
-                '&.Mui-checked': {
-                 color: '#33AC74',
-                },
-              }}
-            />
-
-            <Radio
-              {...controlProps1('1')}
-              sx={{
-                '& .MuiSvgIcon-root': {
-                  fontSize: 80,
-                },
-                color: '#33AC74',
-                '&.Mui-checked': {
-                 color: '#33AC74',
-                },
-              }}
-            />
-
-            <Radio
-              {...controlProps1('2')}
-              sx={{
-                '& .MuiSvgIcon-root': {
-                  fontSize: 80,
-                },
-                color: '#33AC74',
-                '&.Mui-checked': {
-                 color: '#33AC74',
-                },
-              }}
-            />
-
-            <Radio
-              {...controlProps1('3')}
-              sx={{
-                '& .MuiSvgIcon-root': {
-                  fontSize: 80,
-                },
-                color: '#3DC988',
-                '&.Mui-checked': {
-                 color: '#3DC988',
-                },
-              }}
-            />
-            
-            <Radio
-              {...controlProps1('4')}
-              sx={{
-                '& .MuiSvgIcon-root': {
-                  fontSize: 80,
-                },
-                color: '#3DC988',
-                '&.Mui-checked': {
-                 color: '#3DC988',
-                },
-              }}
-            />
-            
-            <Radio
-              {...controlProps1('5')}
-              sx={{
-                '& .MuiSvgIcon-root': {
-                  fontSize: 80,
-                },
-                color: '#737B89',
-                '&.Mui-checked': {
-                 color: '#737B89',
-                },
-              }}
-            />
-
-            <Radio
-              {...controlProps1('6')}
-              sx={{
-                '& .MuiSvgIcon-root': {
-                  fontSize: 80,
-                },
-                color: '#F69994',
-                '&.Mui-checked': {
-                 color: '#F69994',
-                },
-              }}
-            />
-
-            <Radio
-              {...controlProps1('7')}
-              sx={{
-                '& .MuiSvgIcon-root': {
-                  fontSize: 80,
-                },
-                color: '#F69994',
-                '&.Mui-checked': {
-                 color: '#F69994',
-                },
-              }}
-            />
-
-            <Radio
-              {...controlProps1('8')}
-              sx={{
-                '& .MuiSvgIcon-root': {
-                  fontSize: 80,
-                },
-                color: '#F26660',
-                '&.Mui-checked': {
-                 color: '#F26660',
-                },
-              }}
-            />
-
-            <Radio
-              {...controlProps1('9')}
-              sx={{
-                '& .MuiSvgIcon-root': {
-                  fontSize: 80,
-                },
-                color: '#F26660',
-                '&.Mui-checked': {
-                 color: '#F26660',
-                },
-              }}
-            />
-
-            <Radio
-              {...controlProps1('10')}
-              sx={{
-                '& .MuiSvgIcon-root': {
-                  fontSize: 80,
-                },
-                color: '#E92623',
-                '&.Mui-checked': {
-                 color: '#E92623',
-                },
-              }}
-            />
-
-            <Typography style={{display: 'inline-block'}} fontFamily={'kanit'} fontSize={35} marginLeft={6}>0</Typography>
-            <Typography style={{display: 'inline-block'}} fontSize={35} marginLeft={10} fontFamily={'kanit'}>1</Typography>
-            <Typography style={{display: 'inline-block'}} fontSize={35} marginLeft={10} fontFamily={'kanit'}>2</Typography>
-            <Typography style={{display: 'inline-block'}} fontSize={35} marginLeft={10} fontFamily={'kanit'}>3</Typography>
-            <Typography style={{display: 'inline-block'}} fontSize={35} marginLeft={10} fontFamily={'kanit'}>4</Typography>
-            <Typography style={{display: 'inline-block'}} fontSize={35} marginLeft={10} fontFamily={'kanit'}>5</Typography>
-            <Typography style={{display: 'inline-block'}} fontSize={35} marginLeft={10} fontFamily={'kanit'}>6</Typography>
-            <Typography style={{display: 'inline-block'}} fontSize={35} marginLeft={10} fontFamily={'kanit'}>7</Typography>
-            <Typography style={{display: 'inline-block'}} fontSize={35} marginLeft={10} fontFamily={'kanit'}>8</Typography>
-            <Typography style={{display: 'inline-block'}} fontSize={35} marginLeft={10} fontFamily={'kanit'}>9</Typography>
-            <Typography style={{display: 'inline-block'}} fontSize={35} marginLeft={8} fontFamily={'kanit'}>10</Typography>
-
+            {renderRadioGroup(data, controlProps1)}
             </div>
 
             <Typography component="h1"  sx={{ fontSize: 40 }} marginLeft={'0px'} marginTop={'20px'} align="center" color={'black'} fontFamily={'kanit'}>
@@ -374,162 +266,9 @@ function App() {
             </Typography>
 
             <div className='radioEmotion'>
-            <Radio
-              {...controlProps2('0')}
-              sx={{
-                '& .MuiSvgIcon-root': {
-                  fontSize: 80,
-                },
-                color: '#33AC74',
-                '&.Mui-checked': {
-                 color: '#33AC74',
-                },
-              }}
-            />
-
-            <Radio
-              {...controlProps2('1')}
-              sx={{
-                '& .MuiSvgIcon-root': {
-                  fontSize: 80,
-                },
-                color: '#33AC74',
-                '&.Mui-checked': {
-                 color: '#33AC74',
-                },
-              }}
-            />
-
-            <Radio
-              {...controlProps2('2')}
-              sx={{
-                '& .MuiSvgIcon-root': {
-                  fontSize: 80,
-                },
-                color: '#33AC74',
-                '&.Mui-checked': {
-                 color: '#33AC74',
-                },
-              }}
-            />
-
-            <Radio
-              {...controlProps2('3')}
-              sx={{
-                '& .MuiSvgIcon-root': {
-                  fontSize: 80,
-                },
-                color: '#3DC988',
-                '&.Mui-checked': {
-                 color: '#3DC988',
-                },
-              }}
-            />
-            
-            <Radio
-              {...controlProps2('4')}
-              sx={{
-                '& .MuiSvgIcon-root': {
-                  fontSize: 80,
-                },
-                color: '#3DC988',
-                '&.Mui-checked': {
-                 color: '#3DC988',
-                },
-              }}
-            />
-            
-            <Radio
-              {...controlProps2('5')}
-              sx={{
-                '& .MuiSvgIcon-root': {
-                  fontSize: 80,
-                },
-                color: '#737B89',
-                '&.Mui-checked': {
-                 color: '#737B89',
-                },
-              }}
-            />
-
-            <Radio
-              {...controlProps2('6')}
-              sx={{
-                '& .MuiSvgIcon-root': {
-                  fontSize: 80,
-                },
-                color: '#F69994',
-                '&.Mui-checked': {
-                 color: '#F69994',
-                },
-              }}
-            />
-
-            <Radio
-              {...controlProps2('7')}
-              sx={{
-                '& .MuiSvgIcon-root': {
-                  fontSize: 80,
-                },
-                color: '#F69994',
-                '&.Mui-checked': {
-                 color: '#F69994',
-                },
-              }}
-            />
-
-            <Radio
-              {...controlProps2('8')}
-              sx={{
-                '& .MuiSvgIcon-root': {
-                  fontSize: 80,
-                },
-                color: '#F26660',
-                '&.Mui-checked': {
-                 color: '#F26660',
-                },
-              }}
-            />
-
-            <Radio
-              {...controlProps2('9')}
-              sx={{
-                '& .MuiSvgIcon-root': {
-                  fontSize: 80,
-                },
-                color: '#F26660',
-                '&.Mui-checked': {
-                 color: '#F26660',
-                },
-              }}
-            />
-
-            <Radio
-              {...controlProps2('10')}
-              sx={{
-                '& .MuiSvgIcon-root': {
-                  fontSize: 80,
-                },
-                color: '#E92623',
-                '&.Mui-checked': {
-                 color: '#E92623',
-                },
-              }}
-            />
-
-            <Typography style={{display: 'inline-block'}} fontFamily={'kanit'} fontSize={35} marginLeft={6}>0</Typography>
-            <Typography style={{display: 'inline-block'}} fontSize={35} marginLeft={10} fontFamily={'kanit'}>1</Typography>
-            <Typography style={{display: 'inline-block'}} fontSize={35} marginLeft={10} fontFamily={'kanit'}>2</Typography>
-            <Typography style={{display: 'inline-block'}} fontSize={35} marginLeft={10} fontFamily={'kanit'}>3</Typography>
-            <Typography style={{display: 'inline-block'}} fontSize={35} marginLeft={10} fontFamily={'kanit'}>4</Typography>
-            <Typography style={{display: 'inline-block'}} fontSize={35} marginLeft={10} fontFamily={'kanit'}>5</Typography>
-            <Typography style={{display: 'inline-block'}} fontSize={35} marginLeft={10} fontFamily={'kanit'}>6</Typography>
-            <Typography style={{display: 'inline-block'}} fontSize={35} marginLeft={10} fontFamily={'kanit'}>7</Typography>
-            <Typography style={{display: 'inline-block'}} fontSize={35} marginLeft={10} fontFamily={'kanit'}>8</Typography>
-            <Typography style={{display: 'inline-block'}} fontSize={35} marginLeft={10} fontFamily={'kanit'}>9</Typography>
-            <Typography style={{display: 'inline-block'}} fontSize={35} marginLeft={8} fontFamily={'kanit'}>10</Typography>
-
+            {renderRadioGroup(data, controlProps2)}
             </div>
+          
             <Typography component="h1"  sx={{ fontSize: 40 }} marginLeft={'0px'} marginTop={'20px'} align="center" color={'black'} fontFamily={'kanit'}>
             3. ความสามารถในการเดิน
             </Typography>
@@ -542,161 +281,7 @@ function App() {
             </Typography>
 
             <div className='radioWalk'>
-            <Radio
-              {...controlProps3('0')}
-              sx={{
-                '& .MuiSvgIcon-root': {
-                  fontSize: 80,
-                },
-                color: '#33AC74',
-                '&.Mui-checked': {
-                 color: '#33AC74',
-                },
-              }}
-            />
-
-            <Radio
-              {...controlProps3('1')}
-              sx={{
-                '& .MuiSvgIcon-root': {
-                  fontSize: 80,
-                },
-                color: '#33AC74',
-                '&.Mui-checked': {
-                 color: '#33AC74',
-                },
-              }}
-            />
-
-            <Radio
-              {...controlProps3('2')}
-              sx={{
-                '& .MuiSvgIcon-root': {
-                  fontSize: 80,
-                },
-                color: '#33AC74',
-                '&.Mui-checked': {
-                 color: '#33AC74',
-                },
-              }}
-            />
-
-            <Radio
-              {...controlProps3('3')}
-              sx={{
-                '& .MuiSvgIcon-root': {
-                  fontSize: 80,
-                },
-                color: '#3DC988',
-                '&.Mui-checked': {
-                 color: '#3DC988',
-                },
-              }}
-            />
-            
-            <Radio
-              {...controlProps3('4')}
-              sx={{
-                '& .MuiSvgIcon-root': {
-                  fontSize: 80,
-                },
-                color: '#3DC988',
-                '&.Mui-checked': {
-                 color: '#3DC988',
-                },
-              }}
-            />
-            
-            <Radio
-              {...controlProps3('5')}
-              sx={{
-                '& .MuiSvgIcon-root': {
-                  fontSize: 80,
-                },
-                color: '#737B89',
-                '&.Mui-checked': {
-                 color: '#737B89',
-                },
-              }}
-            />
-
-            <Radio
-              {...controlProps3('6')}
-              sx={{
-                '& .MuiSvgIcon-root': {
-                  fontSize: 80,
-                },
-                color: '#F69994',
-                '&.Mui-checked': {
-                 color: '#F69994',
-                },
-              }}
-            />
-
-            <Radio
-              {...controlProps3('7')}
-              sx={{
-                '& .MuiSvgIcon-root': {
-                  fontSize: 80,
-                },
-                color: '#F69994',
-                '&.Mui-checked': {
-                 color: '#F69994',
-                },
-              }}
-            />
-
-            <Radio
-              {...controlProps3('8')}
-              sx={{
-                '& .MuiSvgIcon-root': {
-                  fontSize: 80,
-                },
-                color: '#F26660',
-                '&.Mui-checked': {
-                 color: '#F26660',
-                },
-              }}
-            />
-
-            <Radio
-              {...controlProps3('9')}
-              sx={{
-                '& .MuiSvgIcon-root': {
-                  fontSize: 80,
-                },
-                color: '#F26660',
-                '&.Mui-checked': {
-                 color: '#F26660',
-                },
-              }}
-            />
-
-            <Radio
-              {...controlProps3('10')}
-              sx={{
-                '& .MuiSvgIcon-root': {
-                  fontSize: 80,
-                },
-                color: '#E92623',
-                '&.Mui-checked': {
-                 color: '#E92623',
-                },
-              }}
-            />
-
-            <Typography style={{display: 'inline-block'}} fontFamily={'kanit'} fontSize={35} marginLeft={6}>0</Typography>
-            <Typography style={{display: 'inline-block'}} fontSize={35} marginLeft={10} fontFamily={'kanit'}>1</Typography>
-            <Typography style={{display: 'inline-block'}} fontSize={35} marginLeft={10} fontFamily={'kanit'}>2</Typography>
-            <Typography style={{display: 'inline-block'}} fontSize={35} marginLeft={10} fontFamily={'kanit'}>3</Typography>
-            <Typography style={{display: 'inline-block'}} fontSize={35} marginLeft={10} fontFamily={'kanit'}>4</Typography>
-            <Typography style={{display: 'inline-block'}} fontSize={35} marginLeft={10} fontFamily={'kanit'}>5</Typography>
-            <Typography style={{display: 'inline-block'}} fontSize={35} marginLeft={10} fontFamily={'kanit'}>6</Typography>
-            <Typography style={{display: 'inline-block'}} fontSize={35} marginLeft={10} fontFamily={'kanit'}>7</Typography>
-            <Typography style={{display: 'inline-block'}} fontSize={35} marginLeft={10} fontFamily={'kanit'}>8</Typography>
-            <Typography style={{display: 'inline-block'}} fontSize={35} marginLeft={10} fontFamily={'kanit'}>9</Typography>
-            <Typography style={{display: 'inline-block'}} fontSize={35} marginLeft={8} fontFamily={'kanit'}>10</Typography>
-
+            {renderRadioGroup(data, controlProps3)}
             </div>
 
             <Typography component="h1"  sx={{ fontSize: 40 }} marginLeft={'0px'} marginTop={'20px'} align="center" color={'black'} fontFamily={'kanit'}>
@@ -714,161 +299,7 @@ function App() {
             </Typography>
 
             <div className='radioWork'>
-            <Radio
-              {...controlProps4('0')}
-              sx={{
-                '& .MuiSvgIcon-root': {
-                  fontSize: 80,
-                },
-                color: '#33AC74',
-                '&.Mui-checked': {
-                 color: '#33AC74',
-                },
-              }}
-            />
-
-            <Radio
-              {...controlProps4('1')}
-              sx={{
-                '& .MuiSvgIcon-root': {
-                  fontSize: 80,
-                },
-                color: '#33AC74',
-                '&.Mui-checked': {
-                 color: '#33AC74',
-                },
-              }}
-            />
-
-            <Radio
-              {...controlProps4('2')}
-              sx={{
-                '& .MuiSvgIcon-root': {
-                  fontSize: 80,
-                },
-                color: '#33AC74',
-                '&.Mui-checked': {
-                 color: '#33AC74',
-                },
-              }}
-            />
-
-            <Radio
-              {...controlProps4('3')}
-              sx={{
-                '& .MuiSvgIcon-root': {
-                  fontSize: 80,
-                },
-                color: '#3DC988',
-                '&.Mui-checked': {
-                 color: '#3DC988',
-                },
-              }}
-            />
-            
-            <Radio
-              {...controlProps4('4')}
-              sx={{
-                '& .MuiSvgIcon-root': {
-                  fontSize: 80,
-                },
-                color: '#3DC988',
-                '&.Mui-checked': {
-                 color: '#3DC988',
-                },
-              }}
-            />
-            
-            <Radio
-              {...controlProps4('5')}
-              sx={{
-                '& .MuiSvgIcon-root': {
-                  fontSize: 80,
-                },
-                color: '#737B89',
-                '&.Mui-checked': {
-                 color: '#737B89',
-                },
-              }}
-            />
-
-            <Radio
-              {...controlProps4('6')}
-              sx={{
-                '& .MuiSvgIcon-root': {
-                  fontSize: 80,
-                },
-                color: '#F69994',
-                '&.Mui-checked': {
-                 color: '#F69994',
-                },
-              }}
-            />
-
-            <Radio
-              {...controlProps4('7')}
-              sx={{
-                '& .MuiSvgIcon-root': {
-                  fontSize: 80,
-                },
-                color: '#F69994',
-                '&.Mui-checked': {
-                 color: '#F69994',
-                },
-              }}
-            />
-
-            <Radio
-              {...controlProps4('8')}
-              sx={{
-                '& .MuiSvgIcon-root': {
-                  fontSize: 80,
-                },
-                color: '#F26660',
-                '&.Mui-checked': {
-                 color: '#F26660',
-                },
-              }}
-            />
-
-            <Radio
-              {...controlProps4('9')}
-              sx={{
-                '& .MuiSvgIcon-root': {
-                  fontSize: 80,
-                },
-                color: '#F26660',
-                '&.Mui-checked': {
-                 color: '#F26660',
-                },
-              }}
-            />
-
-            <Radio
-              {...controlProps4('10')}
-              sx={{
-                '& .MuiSvgIcon-root': {
-                  fontSize: 80,
-                },
-                color: '#E92623',
-                '&.Mui-checked': {
-                 color: '#E92623',
-                },
-              }}
-            />
-
-            <Typography style={{display: 'inline-block'}} fontFamily={'kanit'} fontSize={35} marginLeft={6}>0</Typography>
-            <Typography style={{display: 'inline-block'}} fontSize={35} marginLeft={10} fontFamily={'kanit'}>1</Typography>
-            <Typography style={{display: 'inline-block'}} fontSize={35} marginLeft={10} fontFamily={'kanit'}>2</Typography>
-            <Typography style={{display: 'inline-block'}} fontSize={35} marginLeft={10} fontFamily={'kanit'}>3</Typography>
-            <Typography style={{display: 'inline-block'}} fontSize={35} marginLeft={10} fontFamily={'kanit'}>4</Typography>
-            <Typography style={{display: 'inline-block'}} fontSize={35} marginLeft={10} fontFamily={'kanit'}>5</Typography>
-            <Typography style={{display: 'inline-block'}} fontSize={35} marginLeft={10} fontFamily={'kanit'}>6</Typography>
-            <Typography style={{display: 'inline-block'}} fontSize={35} marginLeft={10} fontFamily={'kanit'}>7</Typography>
-            <Typography style={{display: 'inline-block'}} fontSize={35} marginLeft={10} fontFamily={'kanit'}>8</Typography>
-            <Typography style={{display: 'inline-block'}} fontSize={35} marginLeft={10} fontFamily={'kanit'}>9</Typography>
-            <Typography style={{display: 'inline-block'}} fontSize={35} marginLeft={8} fontFamily={'kanit'}>10</Typography>
-
+            {renderRadioGroup(data, controlProps4)}
             </div>
             
             <Typography component="h1"  sx={{ fontSize: 40 }} marginLeft={'0px'} marginTop={'20px'} align="center" color={'black'} fontFamily={'kanit'}>
@@ -883,161 +314,7 @@ function App() {
             </Typography>
 
             <div className='radioRelationship'>
-            <Radio
-              {...controlProps5('0')}
-              sx={{
-                '& .MuiSvgIcon-root': {
-                  fontSize: 80,
-                },
-                color: '#33AC74',
-                '&.Mui-checked': {
-                 color: '#33AC74',
-                },
-              }}
-            />
-
-            <Radio
-              {...controlProps5('1')}
-              sx={{
-                '& .MuiSvgIcon-root': {
-                  fontSize: 80,
-                },
-                color: '#33AC74',
-                '&.Mui-checked': {
-                 color: '#33AC74',
-                },
-              }}
-            />
-
-            <Radio
-              {...controlProps5('2')}
-              sx={{
-                '& .MuiSvgIcon-root': {
-                  fontSize: 80,
-                },
-                color: '#33AC74',
-                '&.Mui-checked': {
-                 color: '#33AC74',
-                },
-              }}
-            />
-
-            <Radio
-              {...controlProps5('3')}
-              sx={{
-                '& .MuiSvgIcon-root': {
-                  fontSize: 80,
-                },
-                color: '#3DC988',
-                '&.Mui-checked': {
-                 color: '#3DC988',
-                },
-              }}
-            />
-            
-            <Radio
-              {...controlProps5('4')}
-              sx={{
-                '& .MuiSvgIcon-root': {
-                  fontSize: 80,
-                },
-                color: '#3DC988',
-                '&.Mui-checked': {
-                 color: '#3DC988',
-                },
-              }}
-            />
-            
-            <Radio
-              {...controlProps5('5')}
-              sx={{
-                '& .MuiSvgIcon-root': {
-                  fontSize: 80,
-                },
-                color: '#737B89',
-                '&.Mui-checked': {
-                 color: '#737B89',
-                },
-              }}
-            />
-
-            <Radio
-              {...controlProps5('6')}
-              sx={{
-                '& .MuiSvgIcon-root': {
-                  fontSize: 80,
-                },
-                color: '#F69994',
-                '&.Mui-checked': {
-                 color: '#F69994',
-                },
-              }}
-            />
-
-            <Radio
-              {...controlProps5('7')}
-              sx={{
-                '& .MuiSvgIcon-root': {
-                  fontSize: 80,
-                },
-                color: '#F69994',
-                '&.Mui-checked': {
-                 color: '#F69994',
-                },
-              }}
-            />
-
-            <Radio
-              {...controlProps5('8')}
-              sx={{
-                '& .MuiSvgIcon-root': {
-                  fontSize: 80,
-                },
-                color: '#F26660',
-                '&.Mui-checked': {
-                 color: '#F26660',
-                },
-              }}
-            />
-
-            <Radio
-              {...controlProps5('9')}
-              sx={{
-                '& .MuiSvgIcon-root': {
-                  fontSize: 80,
-                },
-                color: '#F26660',
-                '&.Mui-checked': {
-                 color: '#F26660',
-                },
-              }}
-            />
-
-            <Radio
-              {...controlProps5('10')}
-              sx={{
-                '& .MuiSvgIcon-root': {
-                  fontSize: 80,
-                },
-                color: '#E92623',
-                '&.Mui-checked': {
-                 color: '#E92623',
-                },
-              }}
-            />
-
-            <Typography style={{display: 'inline-block'}} fontFamily={'kanit'} fontSize={35} marginLeft={6}>0</Typography>
-            <Typography style={{display: 'inline-block'}} fontSize={35} marginLeft={10} fontFamily={'kanit'}>1</Typography>
-            <Typography style={{display: 'inline-block'}} fontSize={35} marginLeft={10} fontFamily={'kanit'}>2</Typography>
-            <Typography style={{display: 'inline-block'}} fontSize={35} marginLeft={10} fontFamily={'kanit'}>3</Typography>
-            <Typography style={{display: 'inline-block'}} fontSize={35} marginLeft={10} fontFamily={'kanit'}>4</Typography>
-            <Typography style={{display: 'inline-block'}} fontSize={35} marginLeft={10} fontFamily={'kanit'}>5</Typography>
-            <Typography style={{display: 'inline-block'}} fontSize={35} marginLeft={10} fontFamily={'kanit'}>6</Typography>
-            <Typography style={{display: 'inline-block'}} fontSize={35} marginLeft={10} fontFamily={'kanit'}>7</Typography>
-            <Typography style={{display: 'inline-block'}} fontSize={35} marginLeft={10} fontFamily={'kanit'}>8</Typography>
-            <Typography style={{display: 'inline-block'}} fontSize={35} marginLeft={10} fontFamily={'kanit'}>9</Typography>
-            <Typography style={{display: 'inline-block'}} fontSize={35} marginLeft={8} fontFamily={'kanit'}>10</Typography>
-
+            {renderRadioGroup(data, controlProps5)}
             </div>
 
             <Typography component="h1"  sx={{ fontSize: 40 }} marginLeft={'0px'} marginTop={'20px'} align="center" color={'black'} fontFamily={'kanit'}>
@@ -1052,161 +329,7 @@ function App() {
             </Typography>
 
             <div className='radioSleep'>
-            <Radio
-              {...controlProps6('0')}
-              sx={{
-                '& .MuiSvgIcon-root': {
-                  fontSize: 80,
-                },
-                color: '#33AC74',
-                '&.Mui-checked': {
-                 color: '#33AC74',
-                },
-              }}
-            />
-
-            <Radio
-              {...controlProps6('1')}
-              sx={{
-                '& .MuiSvgIcon-root': {
-                  fontSize: 80,
-                },
-                color: '#33AC74',
-                '&.Mui-checked': {
-                 color: '#33AC74',
-                },
-              }}
-            />
-
-            <Radio
-              {...controlProps6('2')}
-              sx={{
-                '& .MuiSvgIcon-root': {
-                  fontSize: 80,
-                },
-                color: '#33AC74',
-                '&.Mui-checked': {
-                 color: '#33AC74',
-                },
-              }}
-            />
-
-            <Radio
-              {...controlProps6('3')}
-              sx={{
-                '& .MuiSvgIcon-root': {
-                  fontSize: 80,
-                },
-                color: '#3DC988',
-                '&.Mui-checked': {
-                 color: '#3DC988',
-                },
-              }}
-            />
-            
-            <Radio
-              {...controlProps6('4')}
-              sx={{
-                '& .MuiSvgIcon-root': {
-                  fontSize: 80,
-                },
-                color: '#3DC988',
-                '&.Mui-checked': {
-                 color: '#3DC988',
-                },
-              }}
-            />
-            
-            <Radio
-              {...controlProps6('5')}
-              sx={{
-                '& .MuiSvgIcon-root': {
-                  fontSize: 80,
-                },
-                color: '#737B89',
-                '&.Mui-checked': {
-                 color: '#737B89',
-                },
-              }}
-            />
-
-            <Radio
-              {...controlProps6('6')}
-              sx={{
-                '& .MuiSvgIcon-root': {
-                  fontSize: 80,
-                },
-                color: '#F69994',
-                '&.Mui-checked': {
-                 color: '#F69994',
-                },
-              }}
-            />
-
-            <Radio
-              {...controlProps6('7')}
-              sx={{
-                '& .MuiSvgIcon-root': {
-                  fontSize: 80,
-                },
-                color: '#F69994',
-                '&.Mui-checked': {
-                 color: '#F69994',
-                },
-              }}
-            />
-
-            <Radio
-              {...controlProps6('8')}
-              sx={{
-                '& .MuiSvgIcon-root': {
-                  fontSize: 80,
-                },
-                color: '#F26660',
-                '&.Mui-checked': {
-                 color: '#F26660',
-                },
-              }}
-            />
-
-            <Radio
-              {...controlProps6('9')}
-              sx={{
-                '& .MuiSvgIcon-root': {
-                  fontSize: 80,
-                },
-                color: '#F26660',
-                '&.Mui-checked': {
-                 color: '#F26660',
-                },
-              }}
-            />
-
-            <Radio
-              {...controlProps6('10')}
-              sx={{
-                '& .MuiSvgIcon-root': {
-                  fontSize: 80,
-                },
-                color: '#E92623',
-                '&.Mui-checked': {
-                 color: '#E92623',
-                },
-              }}
-            />
-
-            <Typography style={{display: 'inline-block'}} fontFamily={'kanit'} fontSize={35} marginLeft={6}>0</Typography>
-            <Typography style={{display: 'inline-block'}} fontSize={35} marginLeft={10} fontFamily={'kanit'}>1</Typography>
-            <Typography style={{display: 'inline-block'}} fontSize={35} marginLeft={10} fontFamily={'kanit'}>2</Typography>
-            <Typography style={{display: 'inline-block'}} fontSize={35} marginLeft={10} fontFamily={'kanit'}>3</Typography>
-            <Typography style={{display: 'inline-block'}} fontSize={35} marginLeft={10} fontFamily={'kanit'}>4</Typography>
-            <Typography style={{display: 'inline-block'}} fontSize={35} marginLeft={10} fontFamily={'kanit'}>5</Typography>
-            <Typography style={{display: 'inline-block'}} fontSize={35} marginLeft={10} fontFamily={'kanit'}>6</Typography>
-            <Typography style={{display: 'inline-block'}} fontSize={35} marginLeft={10} fontFamily={'kanit'}>7</Typography>
-            <Typography style={{display: 'inline-block'}} fontSize={35} marginLeft={10} fontFamily={'kanit'}>8</Typography>
-            <Typography style={{display: 'inline-block'}} fontSize={35} marginLeft={10} fontFamily={'kanit'}>9</Typography>
-            <Typography style={{display: 'inline-block'}} fontSize={35} marginLeft={8} fontFamily={'kanit'}>10</Typography>
-
+            {renderRadioGroup(data, controlProps6)}
             </div>
             
             <Typography component="h1"  sx={{ fontSize: 40 }} marginLeft={'0px'} marginTop={'20px'} align="center" color={'black'} fontFamily={'kanit'}>
@@ -1221,173 +344,28 @@ function App() {
             </Typography>
 
             <div className='radioSleep'>
-            <Radio
-              {...controlProps7('0')}
-              sx={{
-                '& .MuiSvgIcon-root': {
-                  fontSize: 80,
-                },
-                color: '#33AC74',
-                '&.Mui-checked': {
-                 color: '#33AC74',
-                },
-              }}
-            />
-
-            <Radio
-              {...controlProps7('1')}
-              sx={{
-                '& .MuiSvgIcon-root': {
-                  fontSize: 80,
-                },
-                color: '#33AC74',
-                '&.Mui-checked': {
-                 color: '#33AC74',
-                },
-              }}
-            />
-
-            <Radio
-              {...controlProps7('2')}
-              sx={{
-                '& .MuiSvgIcon-root': {
-                  fontSize: 80,
-                },
-                color: '#33AC74',
-                '&.Mui-checked': {
-                 color: '#33AC74',
-                },
-              }}
-            />
-
-            <Radio
-              {...controlProps7('3')}
-              sx={{
-                '& .MuiSvgIcon-root': {
-                  fontSize: 80,
-                },
-                color: '#3DC988',
-                '&.Mui-checked': {
-                 color: '#3DC988',
-                },
-              }}
-            />
-            
-            <Radio
-              {...controlProps7('4')}
-              sx={{
-                '& .MuiSvgIcon-root': {
-                  fontSize: 80,
-                },
-                color: '#3DC988',
-                '&.Mui-checked': {
-                 color: '#3DC988',
-                },
-              }}
-            />
-            
-            <Radio
-              {...controlProps7('5')}
-              sx={{
-                '& .MuiSvgIcon-root': {
-                  fontSize: 80,
-                },
-                color: '#737B89',
-                '&.Mui-checked': {
-                 color: '#737B89',
-                },
-              }}
-            />
-
-            <Radio
-              {...controlProps7('6')}
-              sx={{
-                '& .MuiSvgIcon-root': {
-                  fontSize: 80,
-                },
-                color: '#F69994',
-                '&.Mui-checked': {
-                 color: '#F69994',
-                },
-              }}
-            />
-
-            <Radio
-              {...controlProps7('7')}
-              sx={{
-                '& .MuiSvgIcon-root': {
-                  fontSize: 80,
-                },
-                color: '#F69994',
-                '&.Mui-checked': {
-                 color: '#F69994',
-                },
-              }}
-            />
-
-            <Radio
-              {...controlProps7('8')}
-              sx={{
-                '& .MuiSvgIcon-root': {
-                  fontSize: 80,
-                },
-                color: '#F26660',
-                '&.Mui-checked': {
-                 color: '#F26660',
-                },
-              }}
-            />
-
-            <Radio
-              {...controlProps7('9')}
-              sx={{
-                '& .MuiSvgIcon-root': {
-                  fontSize: 80,
-                },
-                color: '#F26660',
-                '&.Mui-checked': {
-                 color: '#F26660',
-                },
-              }}
-            />
-
-            <Radio
-              {...controlProps7('10')}
-              sx={{
-                '& .MuiSvgIcon-root': {
-                  fontSize: 80,
-                },
-                color: '#E92623',
-                '&.Mui-checked': {
-                 color: '#E92623',
-                },
-              }}
-            />
-
-            <Typography style={{display: 'inline-block'}} fontFamily={'kanit'} fontSize={35} marginLeft={6}>0</Typography>
-            <Typography style={{display: 'inline-block'}} fontSize={35} marginLeft={10} fontFamily={'kanit'}>1</Typography>
-            <Typography style={{display: 'inline-block'}} fontSize={35} marginLeft={10} fontFamily={'kanit'}>2</Typography>
-            <Typography style={{display: 'inline-block'}} fontSize={35} marginLeft={10} fontFamily={'kanit'}>3</Typography>
-            <Typography style={{display: 'inline-block'}} fontSize={35} marginLeft={10} fontFamily={'kanit'}>4</Typography>
-            <Typography style={{display: 'inline-block'}} fontSize={35} marginLeft={10} fontFamily={'kanit'}>5</Typography>
-            <Typography style={{display: 'inline-block'}} fontSize={35} marginLeft={10} fontFamily={'kanit'}>6</Typography>
-            <Typography style={{display: 'inline-block'}} fontSize={35} marginLeft={10} fontFamily={'kanit'}>7</Typography>
-            <Typography style={{display: 'inline-block'}} fontSize={35} marginLeft={10} fontFamily={'kanit'}>8</Typography>
-            <Typography style={{display: 'inline-block'}} fontSize={35} marginLeft={10} fontFamily={'kanit'}>9</Typography>
-            <Typography style={{display: 'inline-block'}} fontSize={35} marginLeft={8} fontFamily={'kanit'}>10</Typography>
-
+            {renderRadioGroup(data, controlProps7)}
             </div>
 
-            <Button
-                type="submit"
-                maxWidth= "45"
-                variant="contained"
-                sx={{ mt: 4, mb: 2 , ml:33}}
-              >
-                <Typography variant="h5" fontFamily={'kanit'}>
+           <Button
+            type="submit"
+            maxWidth="45"
+            variant="contained"
+            sx={{
+              margin: 'auto',
+              transform: 'translateY(120%)',
+              display: 'block',
+              marginBottom: '120px', 
+              width: '200px' 
+            }}
+          >
+             <Typography variant="h5" fontFamily={'kanit'} fontSize={30}>
                 ต่อไป
                 </Typography>
-              </Button>
+          </Button>
+
+
+
           </Box>
            </div>
 
