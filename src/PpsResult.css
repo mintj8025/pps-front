@@ -7,6 +7,11 @@
     font-family: lightKanit;
     src: url(./font/Kanit-Light.ttf);
   } 
+
+  @font-face {
+    font-family: boldKanit;
+    src: url(./font/Kanit-Bold.ttf);
+  } 
   
   .fullscreen-block{
       background-color: #F3F2FD;
@@ -16,9 +21,9 @@
       font-family: Kanit;
     }
   
-    .pps100{
+    .head-pps100{
         position: absolute;
-        margin-top: 30px;
+        margin-top: 80px;
         margin-left: 450px;
     }
     

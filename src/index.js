@@ -11,8 +11,7 @@ import AssNRS from './AssNRS.js'
 import AssBPI from './AssBPI.js'
 import SideEffect from './SideEffect.js'
 import AssPPS from './AssPPS.js'
-import Pps100 from './Pps100.js'
-import Pps90 from './Pps90.js'
+import PpsResult from './PpsResult'
 import History from './History.js'
 import Profile from './Profile.js'
 
@@ -29,8 +28,7 @@ root.render(
     <Route path="/assbpi" element={<AssBPI />} /> 
     <Route path="/sideeffect" element={<SideEffect />} /> 
     <Route path="/asspps" element={<AssPPS />} /> 
-    <Route path="/pps100" element={<Pps100 />} /> 
-    <Route path="/pps90" element={<Pps90 />} /> 
+    <Route path="/ppsresult" element={<PpsResult />} /> 
     <Route path="/history" element={<History />} /> 
     <Route path="/profile" element={<Profile />} /> 
 

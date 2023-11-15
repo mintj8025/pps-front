@@ -129,32 +129,62 @@ function App() {
     })
       .then((response) => response.json())
       .then((data) => {
-        if (data.status === 'pps100') {
-          Swal.fire({
-            icon: 'success',
-            title: 'Your register has been saved',
-            showConfirmButton: false,
-            timer: 2000,
-          }).then((value) => {
-            window.location = '/pps100';
-          });
-        } else if (data.status === 'pps90') {
-          Swal.fire({
-            icon: 'success',
-            title: 'Your register has been saved',
-            showConfirmButton: false,
-            timer: 2000,
-          }).then((value) => {
-            window.location = '/pps90';
-          });
+        let ppsValue;
+
+        if (data.status) {
+            switch (data.status) {
+                case 'pps100':
+                    ppsValue = 100;
+                    break;
+                case 'pps90':
+                    ppsValue = 90;
+                    break;
+                case 'pps80':
+                    ppsValue = 80;
+                    break;
+                case 'pps70':
+                    ppsValue = 70;
+                    break;
+                case 'pps60':
+                    ppsValue = 60;
+                    break;
+                case 'pps50':
+                    ppsValue = 50;
+                    break;
+                case 'pps40':
+                    ppsValue = 40;
+                    break;
+                case 'pps30':
+                    ppsValue = 30;
+                    break;
+                case 'pps20':
+                    ppsValue = 20;
+                    break;
+              case 'pps10':
+                    ppsValue = 10;
+                    break;
+                default:
+                    break;
+            }
+    
+            Swal.fire({
+                icon: 'success',
+                title: 'Your register has been saved',
+                showConfirmButton: false,
+                timer: 2000,
+            }).then((value) => {
+                localStorage.setItem('pps', ppsValue);
+                window.location = '/ppsResult';
+            });
         } else {
-          alert(data.message);
+            alert(data.message);
         }
-      })
+    })
       .catch((error) => {
         console.error('Error:', error);
       });
   };
+
 
   const [isLoaded, setIsLoaded] = useState(true);
   const [decoded, setAssessor] = useState([]);
@@ -260,7 +290,7 @@ function App() {
                     <MenuItem value="นอนอยู่บนเตียงเป็นส่วนใหญ่" sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>
                       นอนอยู่บนเตียงเป็นส่วนใหญ่
                     </MenuItem>
-                    <MenuItem value="นอนอยู่บนเตียงเป็นส่วนใหญ่" sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>
+                    <MenuItem value="นอนอยู่บนเตียงตลอดเวลา" sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>
                       นอนอยู่บนเตียงตลอดเวลา
                     </MenuItem>
                   </Select>
