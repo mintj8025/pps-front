@@ -99,6 +99,7 @@ function App() {
       patient_lname: decoded2.patient_lname,
       patient_status: decoded2.patient_status,
       patient_visit: decoded2.patient_visit,
+      date_of_first: decoded2.date_of_first,
       nrs: parsedNrs,
       activity: parsedActivity,
       emotion: parsedEmotion,
@@ -134,34 +135,34 @@ function App() {
         if (data.status) {
             switch (data.status) {
                 case 'pps100':
-                    ppsValue = 100;
+                    ppsValue = '100';
                     break;
                 case 'pps90':
-                    ppsValue = 90;
+                    ppsValue = '90';
                     break;
                 case 'pps80':
-                    ppsValue = 80;
+                    ppsValue = '80';
                     break;
                 case 'pps70':
-                    ppsValue = 70;
+                    ppsValue = '70';
                     break;
                 case 'pps60':
-                    ppsValue = 60;
+                    ppsValue = '60';
                     break;
                 case 'pps50':
-                    ppsValue = 50;
+                    ppsValue = '50';
                     break;
                 case 'pps40':
-                    ppsValue = 40;
+                    ppsValue = '40';
                     break;
                 case 'pps30':
-                    ppsValue = 30;
+                    ppsValue = '30';
                     break;
                 case 'pps20':
-                    ppsValue = 20;
+                    ppsValue = '20';
                     break;
               case 'pps10':
-                    ppsValue = 10;
+                    ppsValue = '10';
                     break;
                 default:
                     break;
@@ -693,6 +694,7 @@ function App() {
                 </FormControl>
               </Box>
 
+
               <Button
                 type="submit"
                 maxWidth="45"
@@ -707,7 +709,7 @@ function App() {
               >
                 <Typography variant="h5" fontFamily={'kanit'} fontSize={30}>
                     ประเมิน
-                    </Typography>
+                </Typography>
               </Button>
             </Box>
           </div>

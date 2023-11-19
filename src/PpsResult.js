@@ -109,53 +109,52 @@ function App() {
   const ppsValue = localStorage.getItem('pps');
 
   function getColorForPpsValue(ppsValue) {
-  if (ppsValue === 100) {
+  if (ppsValue === '100') {
     return '#16B6D6'; 
-  } else if (ppsValue === 90) {
+  } else if (ppsValue === '90') {
     return '#28B883'; 
-  } else if (ppsValue === 80) {
+  } else if (ppsValue === '80') {
     return '#3AB54A'; 
-  } else if (ppsValue === 70) {
+  } else if (ppsValue === '70') {
     return '#77B844'; 
-  } else if (ppsValue === 60) {
+  } else if (ppsValue === '60') {
     return '#FDCE36'; 
-  } else if (ppsValue === 50) {
+  } else if (ppsValue === '50') {
     return '#FCAB36'; 
-  } else if (ppsValue === 40) {
+  } else if (ppsValue === '40') {
     return '#F47129'; 
-  } else if (ppsValue === 30) {
+  } else if (ppsValue === '30') {
     return '#F47129'; 
-  } else if (ppsValue === 20) {
+  } else if (ppsValue === '20') {
     return '#F05A28'; 
-  } else if (ppsValue == 10) {
+  } else if (ppsValue === '10') {
     return '#EC4D1E'; 
   } 
 }
 
 function getEmojiForPpsValue(ppsValue) {
-  if (ppsValue === 100) {
-    return require('./img/pps100.png').default;
-  } else if (ppsValue === 90) {
-    return require('./img/pps90.png').default;
-  } else if (ppsValue === 80) {
-    return require('./img/pps80.png').default;
-  } else if (ppsValue === 70) {
-    return require('./img/pps70.png').default;
-  } else if (ppsValue === 60) {
-    return require('./img/pps60.png').default;
-  } else if (ppsValue === 50) {
-    return require('./img/pps50.png').default;
-  } else if (ppsValue === 40) {
-    return require('./img/pps40.png').default;
-  } else if (ppsValue === 30) {
-    return require('./img/pps30.png').default;
-  } else if (ppsValue === 20) {
-    return require('./img/pps20.png').default;
-  } else if (ppsValue === 10) {
-    return require('./img/pps10.png').default;
-  } 
+  if (ppsValue === '100') {
+    return imgEmoji100;
+  } else if (ppsValue === '90') {
+    return imgEmoji90;
+  } else if (ppsValue === '80') {
+    return imgEmoji80;
+  } else if (ppsValue === '70') {
+    return imgEmoji70;
+  } else if (ppsValue === '60') {
+    return imgEmoji60;
+  } else if (ppsValue === '50') {
+    return imgEmoji50;
+  } else if (ppsValue === '40') {
+    return imgEmoji40;
+  } else if (ppsValue === '30') {
+    return imgEmoji30;
+  } else if (ppsValue === '20') {
+    return imgEmoji20;
+  } else if (ppsValue === '10') {
+    return imgEmoji10;
+  }
 }
-
 
 
   if (isLoaded) return (<div>Loading</div>)
