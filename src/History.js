@@ -12,12 +12,30 @@ import './History.css';
 import Swal from 'sweetalert2';
 import {
   DataGrid,
-  GridToolbar
+  GridToolbar,
+  GridToolbarExport
 } from '@mui/x-data-grid';
-import { useTranslation } from 'react-i18next';
+
 
 
 export function App() {
+
+const CustomExportButton = (props) => (
+  <GridToolbarExport
+    {...props}
+    csvOptions={{
+      fileName: 'export-ประวัติการประเมิน.csv',
+      utf8WithBom: true,
+      valueFormatter: (field, value) => {
+        if (field === 'date' || field === 'date_of_first') {
+          const date = new Date(value);
+          return `${date.getDate().toString().padStart(2, '0')}/${(date.getMonth() + 1).toString().padStart(2, '0')}/${date.getFullYear()}`;
+        }
+        return value;
+      },
+    }}
+  />
+);
 
   const [data, setData] = useState([]);
 
@@ -159,16 +177,23 @@ export function App() {
             <DataGrid
             rows={data}
             columns={columns}
-            getRowId={(row) => row.patient_HN} 
+            getRowId={(row) => row.patient_HN}
             components={{
-              Toolbar: GridToolbar,
+              Toolbar: (props) => (
+                <React.Fragment>
+                  <GridToolbar {...props} />
+                  <CustomExportButton {...props} />
+                </React.Fragment>
+              ),
             }}
             rowThreshold={0}
             onRowClick={handleRowClick}
           />
 
+
             </div>
 
+          <div className='navbar' sx={{position: 'sticky'}}>
           <List sx={{ maxWidth: 180, height: '97.4vh', margin: '0', bgcolor: '#5246E9' }}>
             <div class="profile">
               <IconButton aria-label="Profile">
@@ -206,6 +231,7 @@ export function App() {
               </IconButton>
             </div>
           </List>
+          </div>
         </div>
       </div>
     );
