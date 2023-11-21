@@ -16,8 +16,66 @@ import Box from '@mui/material/Box';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
+import { styled } from '@mui/material/styles';
+import Dialog from '@mui/material/Dialog';
+import DialogTitle from '@mui/material/DialogTitle';
+import DialogContent from '@mui/material/DialogContent';
+import DialogActions from '@mui/material/DialogActions';
+import CloseIcon from '@mui/icons-material/Close';
+import InfoIcon from '@mui/icons-material/Info';
+
+const BootstrapDialog = styled(Dialog)(({ theme }) => ({
+  '& .MuiDialogContent-root': {
+    padding: theme.spacing(2),
+  },
+  '& .MuiDialogActions-root': {
+    padding: theme.spacing(1),
+  },
+}));
 
 function App() {
+
+  const [open1, setOpen1] = React.useState(false);
+  const [open2, setOpen2] = React.useState(false);
+  const [open3, setOpen3] = React.useState(false);
+  const [open4, setOpen4] = React.useState(false);
+  const [open5, setOpen5] = React.useState(false);
+
+  const handleClickOpen1 = () => {
+    setOpen1(true);
+  };
+  const handleClose1 = () => {
+    setOpen1(false);
+  };
+
+  const handleClickOpen2 = () => {
+    setOpen2(true);
+  };
+  const handleClose2 = () => {
+    setOpen2(false);
+  };
+
+  const handleClickOpen3 = () => {
+    setOpen3(true);
+  };
+  const handleClose3 = () => {
+    setOpen3(false);
+  };
+
+  const handleClickOpen4 = () => {
+    setOpen4(true);
+  };
+  const handleClose4 = () => {
+    setOpen4(false);
+  };
+
+  const handleClickOpen5 = () => {
+    setOpen5(true);
+  };
+  const handleClose5 = () => {
+    setOpen5(false);
+  };
+
   const [movement, setMovement] = React.useState(null);
   const [activityAndDisease, setActivityAndDisease] = React.useState(null);
   const [dailyRoutines, setDailyRoutines] = React.useState(null);
@@ -264,6 +322,71 @@ function App() {
                 <Typography component="h1" variant="h3" sx={{ fontSize: 30, fontFamily: 'lightKanit', width: '50%' }}>
                   1. การเคลื่อนไหว
                 </Typography>
+                  <React.Fragment>
+                    <InfoIcon sx={{ fontSize: 30 }} variant="outlined" onClick={handleClickOpen1} />
+                    <BootstrapDialog
+                      onClose={handleClose1}
+                      aria-labelledby="customized-dialog-title"
+                      open={open1}
+                    >
+                      <DialogTitle sx={{ m: 0, p: 2 }} id="customized-dialog-title">
+                        <Typography sx={{ fontSize: 30, fontFamily: 'Kanit'}}>
+                        1. การเคลื่อนไหวร่างกาย (Ambulation)
+                        </Typography>
+                      </DialogTitle>
+                      <IconButton
+                        aria-label="close"
+                        onClick={handleClose1}
+                        sx={{
+                          position: 'absolute',
+                          right: 8,
+                          top: 8,
+                          color: (theme) => theme.palette.grey[500],
+                        }}
+                      >
+                        <CloseIcon />
+                      </IconButton>
+                      <DialogContent dividers>
+                        <Typography gutterBottom sx={{ fontSize: 20, fontFamily: 'Kanit'}}>
+                        <span style={{ fontWeight: 'bold' }}>การเคลื่อนไหวร่างกาย (Ambulation)</span> แบ่งเป็น 5 ระดับ ดังนี้
+                        </Typography>
+                        <Typography gutterBottom sx={{ fontFamily: 'Kanit'}}>
+                        <span style={{ fontWeight: 'bold' }}>ก. การเคลื่อนไหวปกติ ( full ambulation)</span> อยู่ในระดับ PPS ร้อยละ 80 - ระดับ PPS ร้อยละ100 ผู้ป่วยสามารถเดินได้ด้วยตนเอง สามารถลุกจากเตียงได้เอง สามารถปฏิบัติกิจวัตรประจำวันด้วยตนเอง ทำงานอย่างที่เคยทำได้ตามปกติ สามารถประกอบอาชีพได้ สามารถทำงานอดิเรก หรือ สามารถทำกิจกรรมงานบ้านอย่างที่เคยทำได้ตามปกติ
+                        </Typography>
+                        <Typography gutterBottom sx={{ fontFamily: 'Kanit'}}>
+                        <span style={{ fontWeight: 'bold' }}>ข. ความสามารถในการเคลื่อนไหวร่างกายลดลง (reduced ambulation)</span>อยู่ในระดับ  PPS ร้อยละ 60 - ระดับ PPS ร้อยละ 70 เมื่อพิจารณาโดยใช้คอลัมน์อื่นร่วมด้วย (adjacent column) พบว่า<span style={{ fontWeight: 'bold' }}>ผู้ป่วยที่มีการเคลื่อนไหวลดลง (reduced ambulation) จะเป็นผู้ป่วยที่ไม่สามารถทำงานได้อย่างที่เคยทำตามปกติ</span> ไม่สามารถประกอบอาชีพหรือไม่สามารถทำงานอดิเรก หรือ ไม่สามารถทำกิจกรรมงานบ้านอย่างที่เคยทำตามปกติ  แต่<span style={{ fontWeight: 'bold' }}>ผู้ป่วยยังคงสามารถเดินได้ด้วยตนเองหรือมีความสามารถในการเคลื่อนย้าย (transfer) ด้วยตนเอง เช่น ลุกจากเตียงได้เอง มีการเคลื่อนไหวข้อต่างๆ ได้ด้วยตนเอง</span>
+                        </Typography>
+                        <Typography gutterBottom sx={{ fontFamily: 'Kanit'}}>
+                        ในระดับ PPS ร้อยละ60 ผู้ป่วยมีความจำเป็นที่ต้องได้รับความช่วยเหลือในการทำกิจวัตรประจำวันเป็นบางครั้งหรือบางเรื่อง
+                        </Typography>
+                        <Typography gutterBottom sx={{ fontFamily: 'Kanit'}}>
+                        แต่ในระดับ PPS ร้อยละ70 ผู้ป่วยสามารถทำกิจวัตรประจำวันได้ด้วยตนเอง เช่น
+                        อาบน้ำเอง เช็ดตัวเอง ใส่เสื้อผ้าเอง ล้างหน้าแปรงฟันได้เอง ขับถ่ายอุจจาระและปัสสาวะได้เอง เดินได้เอง รับประทานอาหารได้เอง
+                        </Typography>
+                        <Typography gutterBottom sx={{ fontFamily: 'Kanit'}}>
+                        <span style={{ fontWeight: 'bold' }}>ค. นั่งหรือนอนเป็นส่วนใหญ่ (mainly sit/lie)</span>อยู่ในระดับ PPS ร้อยละ 50 ผู้ป่วยกลุ่มนี้ไม่สามารถ
+                        ทำงานต่างๆที่เคยทำได้เลย ผู้ป่วยอ่อนเพลียมากจนไม่สามารถทำงานอดิเรกหรือไม่สามารถทำงานบ้านอย่างที่เคยทำ รวมทั้งต้องการความช่วยเหลือในการทำกิจวัตรประจำวันมากขึ้นกว่าผู้ป่วยที่มีความสามารถในการเคลื่อนไหวลดลง ( reduced ambulation) แต่ต้องการความช่วยเหลือในการทำกิจวัตรประจำวันน้อยกว่า<span style={{ fontWeight: 'bold' }}>ผู้ป่วยที่นอนอยู่บนเตียงเป็นส่วนใหญ่</span>
+                        </Typography>
+                        <Typography gutterBottom sx={{ fontFamily: 'Kanit'}}>
+                        <span style={{ fontWeight: 'bold' }}>ง. นอนอยู่บนเตียงเป็นส่วนใหญ่ (mainly in bed)</span>อยู่ในระดับ PPS ร้อยละ 40 ผู้ป่วยกลุ่มนี้อ่อนเพลียมากจึงทำกิจกรรมได้น้อยมาก ต้องการความช่วยเหลือในการทำกิจวัตรประจำวันเป็นส่วนใหญ่
+                        </Typography>
+                        <Typography gutterBottom sx={{ fontFamily: 'Kanit'}}>
+                        <span style={{ fontWeight: 'bold' }}>จ. นอนอยู่บนเตียงตลอดเวลา (totally bed bound)</span>อยู่ในระดับ PPS ร้อยละ 10 ถึงระดับ PPS
+                        ร้อยละ 30 เนื่องจากผู้ป่วยอ่อนเพลียอย่างมากหรือผู้ป่วยที่ไม่สามารถลุกจากเตียงได้เอง และไม่สามารถทำกิจวัตรประจำวันทุกอย่างด้วยตนเอง
+                        </Typography>
+                        <Typography gutterBottom sx={{ fontFamily: 'Kanit'}}>
+                        <span style={{ fontWeight: 'bold' }}>จะเห็นว่านั่งหรือนอนเป็นส่วนใหญ่ (mainly sit/lie), นอนบนเตียงเป็นส่วนใหญ่ (mainly inbed), นอนอยู่บนเตียงตลอดเวลา (totally bed bound)</span>มีความหมายคล้ายคลึงกัน แต่มีความแตกต่างกันที่สัดส่วนของเวลาที่ใช้ในการสามารถลุกนั่งหรือต้องนอนมากกว่ากัน
+                        </Typography>
+                      </DialogContent>
+                      <DialogActions>
+                        <Button autoFocus onClick={handleClose1}>
+                        <Typography sx={{ fontFamily: 'Kanit'}}>
+                        เข้าใจแล้ว
+                        </Typography>
+                        </Button>
+                      </DialogActions>
+                    </BootstrapDialog>
+                  </React.Fragment>
                 <FormControl sx={{ m: 1, minWidth: 300, width: '50%' }}>
                   <InputLabel id="demo-simple-select-label-movement" sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>
                     การเคลื่อนไหว
@@ -302,6 +425,83 @@ function App() {
                 <Typography component="h1" variant="h3" sx={{ fontSize: 30, fontFamily: 'lightKanit', width: '50%' }}>
                   2. การปฏิบัติกิจกรรมและการดำเนินโรค
                 </Typography>
+                <React.Fragment>
+                    <InfoIcon sx={{ fontSize: 30 }} variant="outlined" onClick={handleClickOpen2} />
+                    <BootstrapDialog
+                      onClose={handleClose2}
+                      aria-labelledby="customized-dialog-title"
+                      open={open2}
+                    >
+                      <DialogTitle sx={{ m: 0, p: 2 }} id="customized-dialog-title">
+                        <Typography sx={{ fontSize: 30, fontFamily: 'Kanit'}}>
+                        2. การปฏิบัติกิจกรรม ( Activity ) และการดำเนินโรค ( Extent of disease )
+                        </Typography>
+                      </DialogTitle>
+                      <IconButton
+                        aria-label="close"
+                        onClick={handleClose2}
+                        sx={{
+                          position: 'absolute',
+                          right: 8,
+                          top: 8,
+                          color: (theme) => theme.palette.grey[500],
+                        }}
+                      >
+                        <CloseIcon />
+                      </IconButton>
+                      <DialogContent dividers>
+                        <Typography gutterBottom sx={{ fontSize: 20, fontFamily: 'Kanit'}}>
+                        <span style={{ fontWeight: 'bold' }}>2.1 การปฏิบัติกิจกรรม ( Activity ) </span>พิจารณาจากความสามารถของผู้ป่วยในการปฏิบัติกิจกรรมต่างๆ ว่าทำได้เหมือนเดิมหรือไม่ ได้แก่ การทำงาน การทำงานอดิเรกหรือการทำกิจกรรมอื่นๆ  แบ่งเป็น 6 ระดับ ดังนี้
+                        </Typography>
+                        <Typography gutterBottom sx={{ fontFamily: 'Kanit'}}>
+                        <span style={{ fontWeight: 'bold' }}>ก. ทำกิจกรรมและทำงานได้ตามปกติ ( normal activity & work ) </span>หมายถึง ผู้ป่วยสามารถทำงานได้อย่างที่เคยทำตามปกติ สามารถประกอบอาชีพได้เหมือนเดิม สามารถทำงานบ้านได้ และทำงานอดิเรกได้อย่างที่เคยทำตามปกติ รวมทั้งสามารถทำกิจกรรมต่างๆได้ตามปกติ เช่น เดินได้โดยไม่เหนื่อย
+                        </Typography>
+                        <Typography gutterBottom sx={{ fontFamily: 'Kanit'}}>
+                        <span style={{ fontWeight: 'bold' }}>ข. ต้องออกแรงอย่างมากในการทำกิจกรรมตามปกติ ( normal activity with effort )</span> หมายถึง ผู้ป่วยต้องใช้แรงมากขึ้นในการปฏิบัติกิจกรรม เช่น การเดิน การทำงาน หรือ การประกอบอาชีพ ทำงานอดิเรก ทำงานบ้านอย่างที่เคยทำตามปกติ
+                        </Typography>                
+                        <Typography gutterBottom sx={{ fontFamily: 'Kanit'}}>
+                        <span style={{ fontWeight: 'bold' }}>ค. ไม่สามารถทำงานได้ตามปกติ (unable normal job/work) </span> หมายถึง ผู้ป่วยไม่สามารถทำงานอย่างที่เคยทำตามปกติ หรือ ไม่สามารถประกอบอาชีพได้เหมือนเดิม แต่สามารถทำงานอดิเรก หรืองานบ้านได้
+                        </Typography>
+                        <Typography gutterBottom sx={{ fontFamily: 'Kanit'}}>
+                        <span style={{ fontWeight: 'bold' }}>ง. ไม่สามารถทำงานอดิเรก หรืองานบ้านได้ ( unable hobby / house work ) </span> หมายถึง ผู้ป่วยอ่อนเพลียจนไม่สามารถทำงานอดิเรก หรือไม่สามารถทำงานบ้านอย่างที่เคยทำ
+                        </Typography>
+                        <Typography gutterBottom sx={{ fontFamily: 'Kanit'}}>
+                        <span style={{ fontWeight: 'bold' }}>จ. ไม่สามารถทำงานได้เลย ( unable to do any work ) </span> หมายถึง ผู้ป่วยอ่อนเพลียมากจนไม่สามารถทำงานอดิเรก หรือไม่สามารถทำงานบ้านอย่างที่เคยทำและไม่สามารถทำงานต่าง ๆ ได้จึงนั่งหรือนอนเป็นส่วนใหญ่ รวมทั้งต้องการความช่วยเหลือในการทำกิจวัตรประจำวันมากขึ้นกว่าผู้ป่วยที่มีความสามารถใน การเคลื่อนไหวลดลง ( reduced ambulation)
+                        </Typography>
+                        <Typography gutterBottom sx={{ fontFamily: 'Kanit'}}>
+                        <span style={{ fontWeight: 'bold' }}>ฉ. ทำกิจกรรมได้น้อยมาก	( unable to do most activity )  </span> หมายถึง ผู้ป่วยอ่อนเพลียมากหรือเหนื่อยล้าจึงต้องการความช่วยเหลือในการปฏิบัติกิจกรรมเป็นส่วนใหญ่ ตัวอย่างเช่น ผู้ป่วยต้องการความช่วยเหลือในการเข้าห้องน้ำและต้องการความช่วยเหลือในการล้างมือ ล้างหน้า แปรงฟัน การขับถ่าย อุจจาระและปัสสาวะ แต่ผู้ป่วยสามารถรับประทานอาหารได้เอง หรือต้องการความช่วยเหลือเล็กน้อยในการรับประทานอาหาร
+                        </Typography>
+                        <Typography gutterBottom sx={{ fontFamily: 'Kanit'}}>
+                        <span style={{ fontWeight: 'bold' }}>ช. ไม่สามารถทำกิจกรรมใดๆ ( unable to do any activity )  </span> หมายถึง ผู้ป่วยอ่อนเพลียมากหรือเป็นผู้ป่วยที่ไม่รู้สึกตัว จึงไม่สามารถทำกิจกรรมใด ๆ ได้เลยและต้องการการดูแลในการปฏิบัติกิจวัตรประจำวันทั้งหมด
+                        </Typography>
+
+                        <Typography gutterBottom sx={{ fontSize: 20, fontFamily: 'Kanit'}}>
+                        <span style={{ fontWeight: 'bold' }}>2.2 การดำเนินโรค ( Extent of disease )</span> การดำเนินโรค แบ่งเป็น 4 ระดับ ตามการตรวจร่างกายและการวินิจฉัยทางการแพทย์ซึ่งแสดงถึงระดับความรุนแรงของโรค ดังนี้
+                        </Typography>
+                        <Typography gutterBottom sx={{ fontFamily: 'Kanit'}}>
+                        <span style={{ fontWeight: 'bold' }}>ก. ไม่มีอาการของโรค ( no evidence of disease )</span> 
+                        </Typography>
+                        <Typography gutterBottom sx={{ fontFamily: 'Kanit'}}>
+                        <span style={{ fontWeight: 'bold' }}>ข. มีอาการของโรคบางอาการ (some) </span> ตัวอย่างเช่น ผู้ป่วยโรคมะเร็งเต้านมที่มีการกลับเป็นซ้ำของโรคเฉพาะแห่ง (local recurrence) จะอยู่ในระดับมีอาการของโรคบางอาการ
+                        </Typography>
+                        <Typography gutterBottom sx={{ fontFamily: 'Kanit'}}>
+                        <span style={{ fontWeight: 'bold' }}>ค. มีอาการของโรคอย่างมาก  (significant  disease)  </span> ถ้ามีการแพร่กระจายของโรคมะเร็งไปที่อวัยวะอื่น	1 แห่ง หรือ 2 แห่ง เช่น ปอด หรือ กระดูก จะอยู่ในระดับ<span style={{ fontWeight: 'bold' }}>มีอาการของโรคอย่างมาก</span>
+
+                        </Typography>
+                        <Typography gutterBottom sx={{ fontFamily: 'Kanit'}}>
+                        <span style={{ fontWeight: 'bold' }}>ง. มีการลุกลามของโรค (extensive disease ) </span> หรือ ถ้ามีการแพร่กระจายของโรคมะเร็งไปที่อวัยวะหลายแห่ง ได้แก่ ปอด กระดูก ตับ สมอง แล้วมีภาวะแทรกซ้อนเกิดขึ้น เช่น มีภาวะแคลเซียมสูงในเลือดสูง หรืออื่น ๆ หรือผู้ป่วยมีอาการเกิดขึ้นมากมายหลายอาการจะอยู่ในระดับมีการลุกลามของโรคการดำเนินโรค ( Extent of disease ) ยังหมายความถึงความก้าวหน้าของโรค ( progression of disease) ทั้งที่กำลังให้การรักษา ( active treatments ) อยู่
+
+                        </Typography>
+                      </DialogContent>
+                      <DialogActions>
+                        <Button autoFocus onClick={handleClose2}>
+                        <Typography sx={{ fontFamily: 'Kanit'}}>
+                        เข้าใจแล้ว
+                        </Typography>
+                        </Button>
+                      </DialogActions>
+                    </BootstrapDialog>
+                  </React.Fragment>
                 <FormControl sx={{ m: 1, minWidth: 300, width: '50%' }}>
                   <InputLabel id="demo-simple-select-label-activity" sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>
                     การปฏิบัติกิจกรรมและการดำเนินโรค
@@ -434,6 +634,60 @@ function App() {
                 <Typography component="h1" variant="h3" sx={{ fontSize: 30, fontFamily: 'lightKanit', width: '50%' }}>
                   3. การทำกิจกรรมประจำวัน
                 </Typography>
+                <React.Fragment>
+                    <InfoIcon sx={{ fontSize: 30 }} variant="outlined" onClick={handleClickOpen3} />
+                    <BootstrapDialog
+                      onClose={handleClose3}
+                      aria-labelledby="customized-dialog-title"
+                      open={open3}
+                    >
+                      <DialogTitle sx={{ m: 0, p: 2 }} id="customized-dialog-title">
+                        <Typography sx={{ fontSize: 30, fontFamily: 'Kanit'}}>
+                        3. การทำกิจวัตรประจำวัน (Self care) 
+                        </Typography>
+                      </DialogTitle>
+                      <IconButton
+                        aria-label="close"
+                        onClick={handleClose3}
+                        sx={{
+                          position: 'absolute',
+                          right: 8,
+                          top: 8,
+                          color: (theme) => theme.palette.grey[500],
+                        }}
+                      >
+                        <CloseIcon />
+                      </IconButton>
+                      <DialogContent dividers>
+                        <Typography gutterBottom sx={{ fontSize: 20, fontFamily: 'Kanit'}}>
+                        <span style={{ fontWeight: 'bold' }}>การทำกิจวัตรประจำวัน (Self care) </span> ได้แก่ การอาบน้ำ การล้างหน้า การแปรงฟัน การใส่เสื้อผ้า การรับประทานอาหาร การขับถ่ายอุจจาระและปัสสาวะ การใช้โทรศัพท์ การทำกิจวัตรประจำวัน แบ่งเป็น 5 ระดับ ดังนี้
+                        </Typography>
+                        <Typography gutterBottom sx={{ fontFamily: 'Kanit'}}>
+                        <span style={{ fontWeight: 'bold' }}>ก. ทำได้เอง ( full self care ) </span> หมายถึง ผู้ป่วยสามารถทำกิจวัตรประจำวันทุกอย่างด้วยตนเอง
+                        </Typography>
+                        <Typography gutterBottom sx={{ fontFamily: 'Kanit'}}>
+                        <span style={{ fontWeight: 'bold' }}>ข. ต้องการความช่วยเหลือเป็น บางครั้งหรือบางเรื่อง ( occasional assistance necessary )</span> หมายถึง ส่วนใหญ่ผู้ป่วยสามารถช่วยเหลือตนเองได้ เช่น ลุกจากเตียงได้เอง เดินได้เอง ล้างหน้าเองไปห้องน้ำเอง และรับประทานอาหารด้วยตนเอง แต่ในบางครั้งผู้ป่วยต้องการความช่วยเหลือเมื่อมีความจำเป็น เช่น บางวันผู้ป่วยมีอาการอ่อนเพลียเวียนศีรษะ จึงต้องการให้เจ้าหน้าที่พยาบาลช่วยเหลือในการพาไปเข้าห้องน้ำโดยอาจเป็น 1 ครั้ง /วัน หรือ 2 - 3 ครั้งใน 1 สัปดาห์
+                        </Typography>
+                        <Typography gutterBottom sx={{ fontFamily: 'Kanit'}}>
+                        <span style={{ fontWeight: 'bold' }}>ค. ต้องการความช่วยเหลือมากขึ้น ( considerable assistance required )</span> หมายถึง ผู้ป่วยต้องการความช่วยเหลือในการปฏิบัติกิจกรรมบางอย่างเป็นประจำทุกวันจากผู้ดูแลจำนวน 1 คน ได้แก่ การลุกจากเตียงการเดิน การล้างหน้า การไปห้องน้ำและการรับประทานอาหารเป็นประจำทุกวันจากผู้ดูแลจำนวน	1 คน ตัวอย่างเช่น ผู้ป่วยต้องการความช่วยเหลือจากผู้ดูแลในการเดินไปเข้าห้องน้ำเป็นประจำทุกครั้งที่ไปเข้าห้องน้ำ แต่กิจกรรมอื่น ๆ ผู้ป่วยสามารถทำได้เอง เช่น หวีผม แปรงฟัน ล้างมือ ล้างหน้า สำหรับการรับประทานอาหารผู้ป่วยรับประทานได้เอง แต่ต้องมีผู้ดูแลช่วยเหลือในการตัดอาหารให้เป็นชิ้นเล็ก ๆ
+                        </Typography>
+                        <Typography gutterBottom sx={{ fontFamily: 'Kanit'}}>
+                        <span style={{ fontWeight: 'bold' }}>ง. ต้องการความช่วยเหลือเป็นส่วนใหญ่ (mainly assistance)</span> หมายถึง ผู้ป่วยต้องการความช่วยเหลือในการปฏิบัติกิจกรรมเป็นส่วนใหญ่  ตัวอย่างเช่น ผู้ป่วยต้องการความช่วยเหลือในการเข้าห้องน้ำและต้องการความช่วยเหลือในการล้างมือ ล้างหน้า โกนหนวด การขับถ่ายอุจจาระปัสสาวะ แต่ผู้ป่วยยังสามารถรับประทานอาหารได้เอง หรือต้องการความช่วยเหลือเล็กน้อยในการรับประทานอาหาร ทั้งนี้ความต้องการการช่วยเหลือจะเปลี่ยนแปลงไปตามสภาพความเหนื่อยล้า (fatigue) ของผู้ป่วยในแต่ละวัน
+
+                        </Typography>
+                        <Typography gutterBottom sx={{ fontFamily: 'Kanit'}}>
+                        <span style={{ fontWeight: 'bold' }}>จ. ต้องการความช่วยเหลือทั้งหมด  (total  care) </span>หมายถึง  ผู้ป่วยไม่สามารถทำกิจวัตรประจำวันใด ๆ ด้วยตนเอง จึงต้องการผู้ดูแลช่วยเหลือในการทำกิจวัตรประจำวันทั้งหมด ทั้งนี้ความต้องการการช่วยเหลือขึ้นอยู่กับสภาพอาการทางคลินิกของผู้ป่วย เช่น ผู้ป่วยบางรายอาจไม่สามารถเคี้ยวหรือกลืนอาหารได้เอง ดังนั้นผู้ดูแลอาจต้องให้อาหารทางสายยางแก่ผู้ป่วย ผู้ป่วยบางรายอาจเคี้ยวหรือกลืนอาหารได้เอง แต่ต้องการผู้ดูแลช่วยป้อนอาหารให้
+                        </Typography>
+                      </DialogContent>
+                      <DialogActions>
+                        <Button autoFocus onClick={handleClose3}>
+                        <Typography sx={{ fontFamily: 'Kanit'}}>
+                        เข้าใจแล้ว
+                        </Typography>
+                        </Button>
+                      </DialogActions>
+                    </BootstrapDialog>
+                  </React.Fragment>
                 <FormControl sx={{ m: 1, minWidth: 300, width: '50%' }}>
                   <InputLabel id="demo-simple-select-label-daily" sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>
                     การทำกิจกรรมประจำวัน
@@ -554,6 +808,57 @@ function App() {
                 <Typography component="h1" variant="h3" sx={{ fontSize: 30, fontFamily: 'lightKanit', width: '50%' }}>
                   4. การรับประทานอาหาร
                 </Typography>
+                <React.Fragment>
+                    <InfoIcon sx={{ fontSize: 30 }} variant="outlined" onClick={handleClickOpen4} />
+                    <BootstrapDialog
+                      onClose={handleClose4}
+                      aria-labelledby="customized-dialog-title"
+                      open={open4}
+                    >
+                      <DialogTitle sx={{ m: 0, p: 2 }} id="customized-dialog-title">
+                        <Typography sx={{ fontSize: 30, fontFamily: 'Kanit'}}>
+                        4. การรับประทานอาหาร ( intake )  
+                        </Typography>
+                      </DialogTitle>
+                      <IconButton
+                        aria-label="close"
+                        onClick={handleClose4}
+                        sx={{
+                          position: 'absolute',
+                          right: 8,
+                          top: 8,
+                          color: (theme) => theme.palette.grey[500],
+                        }}
+                      >
+                        <CloseIcon />
+                      </IconButton>
+                      <DialogContent dividers>
+                        <Typography gutterBottom sx={{ fontSize: 20, fontFamily: 'Kanit'}}>
+                        <span style={{ fontWeight: 'bold' }}>การรับประทานอาหาร ( intake ) </span> การเปลี่ยนแปลงในการรับประทานอาหาร มี 4 ระดับ ดังนี้
+                        </Typography>
+                        <Typography gutterBottom sx={{ fontFamily: 'Kanit'}}>
+                        <span style={{ fontWeight: 'bold' }}>ก. รับประทานอาหารปกติ ( normal intake ) </span> หมายถึง ผู้ป่วยรับประทานอาหารได้ตามปกติ
+                        </Typography>
+                        <Typography gutterBottom sx={{ fontFamily: 'Kanit'}}>
+                        <span style={{ fontWeight: 'bold' }}>ข. ลดลง ( reduced intake )</span> หมายถึง ผู้ป่วยรับประทานอาหารได้ลดลงจากเดิม
+                        </Typography>
+                        <Typography gutterBottom sx={{ fontFamily: 'Kanit'}}>
+                        <span style={{ fontWeight: 'bold' }}>ค. จิบน้ำได้เล็กน้อย ( minimal to sips ) </span> หมายถึง ผู้ป่วยสามารถจิบน้ำหรืออาหารเหลวได้เล็กน้อย
+
+                        </Typography>
+                        <Typography gutterBottom sx={{ fontFamily: 'Kanit'}}>
+                        <span style={{ fontWeight: 'bold' }}>ง. รับประทานทางปากไม่ได้ ( mouth care only ) </span> หมายถึง ผู้ป่วยไม่สามารถกลืนอาหารได้ ถ้ากลืนอาหารจะมีอาการสำลักหรือเสี่ยงต่อการสำลัก เนื่องจากผู้ป่วยซึมหลับหรือไม่รู้สึกตัว หรือสับสน ผู้ป่วย บางรายได้รับการใส่สายยางเพื่อให้อาหารโดยใส่ทางจมูกลงสู่กระเพาะอาหาร ( nasogastric tube ) จึงต้องดูแลทำความสะอาดช่องปากให้ผู้ป่วย
+                        </Typography>
+                      </DialogContent>
+                      <DialogActions>
+                        <Button autoFocus onClick={handleClose4}>
+                        <Typography sx={{ fontFamily: 'Kanit'}}>
+                        เข้าใจแล้ว
+                        </Typography>
+                        </Button>
+                      </DialogActions>
+                    </BootstrapDialog>
+                  </React.Fragment>
                 <FormControl sx={{ m: 1, minWidth: 300, width: '50%' }}>
                   <InputLabel id="demo-simple-select-label-eating" sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>
                     การรับประทานอาหาร
@@ -583,6 +888,19 @@ function App() {
                           รับประทานอาหารทางปากไม่ได้
                         </MenuItem>
                       </Select>
+                     ) : activityAndDisease === null ? (
+                      <Select
+                      labelId="demo-simple-select-label-daily"
+                      id="demo-simple-select-daily"
+                      value={activityAndDisease}
+                      label="การทำกิจกรรมประจำวัน"
+                      sx={{ fontSize: 20, fontFamily: 'lightKanit' }}
+                      onChange={handleDailyRoutines}
+                     >
+                        <MenuItem value="null" sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>
+                         select above first
+                        </MenuItem>
+                        </Select>
                     ) : (
                       <Select
                       labelId="demo-simple-select-label-eating"
@@ -613,6 +931,57 @@ function App() {
                 <Typography component="h1" variant="h3" sx={{ fontSize: 30, fontFamily: 'lightKanit', width: '50%' }}>
                   5. ระดับความรู้สึกตัว
                 </Typography>
+                <React.Fragment>
+                    <InfoIcon sx={{ fontSize: 30 }} variant="outlined" onClick={handleClickOpen5} />
+                    <BootstrapDialog
+                      onClose={handleClose5}
+                      aria-labelledby="customized-dialog-title"
+                      open={open5}
+                    >
+                      <DialogTitle sx={{ m: 0, p: 2 }} id="customized-dialog-title">
+                        <Typography sx={{ fontSize: 30, fontFamily: 'Kanit'}}>
+                        5.ระดับความรู้สึกตัว (conscious level)   
+                        </Typography>
+                      </DialogTitle>
+                      <IconButton
+                        aria-label="close"
+                        onClick={handleClose5}
+                        sx={{
+                          position: 'absolute',
+                          right: 8,
+                          top: 8,
+                          color: (theme) => theme.palette.grey[500],
+                        }}
+                      >
+                        <CloseIcon />
+                      </IconButton>
+                      <DialogContent dividers>
+                        <Typography gutterBottom sx={{ fontSize: 20, fontFamily: 'Kanit'}}>
+                        <span style={{ fontWeight: 'bold' }}>ระดับความรู้สึกตัว (conscious level)  </span> แบ่งเป็น 4 ระดับ ดังนี้
+                        </Typography>
+                        <Typography gutterBottom sx={{ fontFamily: 'Kanit'}}>
+                        <span style={{ fontWeight: 'bold' }}>ก. รู้สึกตัวดี (full consciousness) </span> หมายถึง รู้สึกตัวดี และรับรู้วันเวลาและสถานที่ได้ปกติ มีสติสัมปชัญญะดี มีความสามารถในการรับรู้ ทั้งด้านความคิด ความจำ ความรู้สึก เป็นต้น
+                        </Typography>
+                        <Typography gutterBottom sx={{ fontFamily: 'Kanit'}}>
+                        <span style={{ fontWeight: 'bold' }}>ข. สับสน (confusion)</span> หมายถึง การที่ผู้ป่วยมีอาการสับสนฉับพลัน(delirium) หรือ มีภาวะสมองเสื่อม (dementia) มีระดับความรู้สึกตัวลดลง ทั้งนี้อาจจะมีอาการเล็กน้อย หรือ ปานกลาง หรือรุนแรง	ที่เกิดจากสาเหตุต่าง ๆ
+                        </Typography>
+                        <Typography gutterBottom sx={{ fontFamily: 'Kanit'}}>
+                        <span style={{ fontWeight: 'bold' }}>ค. ง่วงซึม (drowsiness)  </span> หมายถึง การที่ผู้ป่วยมีอาการเหนื่อยล้า (fatigue) หรือมีอาการง่วงซึมจากการได้รับผลข้างเคียงจากยา หรือมีอาการสับสนเฉียบพลัน หรือมีอาการอยู่ในภาวะใกล้ตาย บางครั้งรวมถึงอาการมึนงง (stupor)
+
+                        </Typography>
+                        <Typography gutterBottom sx={{ fontFamily: 'Kanit'}}>
+                        <span style={{ fontWeight: 'bold' }}>ง. ไม่รู้สึกตัว (coma)  </span> หมายถึง ผู้ป่วยไม่มีการตอบสนองต่อคำพูด หรือไม่ตอบสนองต่อสิ่งกระตุ้นทางร่างกาย (verbal or physical stimuli) ทั้งนี้ผู้ป่วยอาจมีปฏิกิริยาการตอบสนองแบบอัตโนมัติ (reflex) หรือไม่มีปฏิกิริยาการตอบสนองแบบอัตโนมัติได้ ภาวะไม่รู้สึกตัวของผู้ป่วยอาจจะเปลี่ยนแปลงตลอด 24 ชั่วโมง 
+                        </Typography>
+                      </DialogContent>
+                      <DialogActions>
+                        <Button autoFocus onClick={handleClose5}>
+                        <Typography sx={{ fontFamily: 'Kanit'}}>
+                        เข้าใจแล้ว
+                        </Typography>
+                        </Button>
+                      </DialogActions>
+                    </BootstrapDialog>
+                  </React.Fragment>
                 <FormControl sx={{ m: 1, minWidth: 300, width: '50%' }}>
                   <InputLabel id="demo-simple-select-label-awareness" sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>
                     ระดับความรู้สึกตัว
@@ -671,6 +1040,19 @@ function App() {
                           ง่วงซึมหรือไม่รู้สึกตัว +/-สับสน
                         </MenuItem>
                       </Select>
+                     ) : eating === null ? (
+                      <Select
+                      labelId="demo-simple-select-label-daily"
+                      id="demo-simple-select-daily"
+                      value={awareness}
+                      label="การทำกิจกรรมประจำวัน"
+                      sx={{ fontSize: 20, fontFamily: 'lightKanit' }}
+                      onChange={handleDailyRoutines}
+                     >
+                        <MenuItem value="null" sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>
+                         select above first
+                        </MenuItem>
+                        </Select>
                     ) : (
                       <Select
                       labelId="demo-simple-select-label-awareness"
