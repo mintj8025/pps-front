@@ -12,13 +12,21 @@ import './History.css';
 import Swal from 'sweetalert2';
 import {
   DataGrid,
-  GridToolbar,
-  GridToolbarExport
+  GridToolbarContainer,
+  GridToolbarColumnsButton,
+  GridToolbarFilterButton,
+  GridToolbarExport,
+  GridToolbarDensitySelector,
 } from '@mui/x-data-grid';
 
-
-
-export function App() {
+const CustomToolbar = (props) => (
+  <GridToolbarContainer>
+    <GridToolbarColumnsButton />
+    <GridToolbarFilterButton />
+    <GridToolbarDensitySelector />
+    <CustomExportButton {...props} />
+  </GridToolbarContainer>
+);
 
 const CustomExportButton = (props) => (
   <GridToolbarExport
@@ -26,16 +34,11 @@ const CustomExportButton = (props) => (
     csvOptions={{
       fileName: 'export-ประวัติการประเมิน.csv',
       utf8WithBom: true,
-      valueFormatter: (field, value) => {
-        if (field === 'date' || field === 'date_of_first') {
-          const date = new Date(value);
-          return `${date.getDate().toString().padStart(2, '0')}/${(date.getMonth() + 1).toString().padStart(2, '0')}/${date.getFullYear()}`;
-        }
-        return value;
-      },
     }}
   />
 );
+
+export function App() {
 
   const [data, setData] = useState([]);
 
@@ -175,20 +178,15 @@ const CustomExportButton = (props) => (
             </Typography>
 
             <DataGrid
-            rows={data}
-            columns={columns}
-            getRowId={(row) => row.patient_HN}
-            components={{
-              Toolbar: (props) => (
-                <React.Fragment>
-                  <GridToolbar {...props} />
-                  <CustomExportButton {...props} />
-                </React.Fragment>
-              ),
-            }}
-            rowThreshold={0}
-            onRowClick={handleRowClick}
-          />
+              rows={data}
+              columns={columns}
+              getRowId={(row) => row.patient_HN}
+              components={{
+                Toolbar: CustomToolbar,
+              }}
+              rowThreshold={0}
+              onRowClick={handleRowClick}
+            />
 
 
             </div>

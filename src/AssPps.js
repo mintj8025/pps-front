@@ -888,19 +888,6 @@ function App() {
                           รับประทานอาหารทางปากไม่ได้
                         </MenuItem>
                       </Select>
-                     ) : activityAndDisease === null ? (
-                      <Select
-                      labelId="demo-simple-select-label-daily"
-                      id="demo-simple-select-daily"
-                      value={activityAndDisease}
-                      label="การทำกิจกรรมประจำวัน"
-                      sx={{ fontSize: 20, fontFamily: 'lightKanit' }}
-                      onChange={handleDailyRoutines}
-                     >
-                        <MenuItem value="null" sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>
-                         select above first
-                        </MenuItem>
-                        </Select>
                     ) : (
                       <Select
                       labelId="demo-simple-select-label-eating"
@@ -912,6 +899,9 @@ function App() {
                       >
                         <MenuItem value={null} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>
                           Select
+                        </MenuItem>
+                        <MenuItem value="ปกติ*" sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>
+                          ปกติ
                         </MenuItem>
                         <MenuItem value="ปกติ หรือ ลดลง" sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>
                           ปกติ หรือ ลดลง
@@ -1023,8 +1013,17 @@ function App() {
                         <MenuItem value={null} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>
                           Select
                         </MenuItem>
+                         <MenuItem value="รู้สึกตัวดี*" sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>
+                          รู้สึกตัวดี
+                        </MenuItem>
+                        <MenuItem value="รู้สึกตัวดี หรือ สับสน*" sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>
+                          รู้สึกตัวดี หรือ สับสน
+                        </MenuItem>
                         <MenuItem value="รู้สึกตัวดี หรือ ง่วงซึม +/-สับสน" sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>
                           รู้สึกตัวดี หรือ ง่วงซึม +/-สับสน
+                        </MenuItem>
+                         <MenuItem value="ง่วงซึมหรือไม่รู้สึกตัว +/-สับสน" sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>
+                          ง่วงซึมหรือไม่รู้สึกตัว +/-สับสน
                         </MenuItem>
                       </Select>
                     ) : eating === "รับประทานอาหารทางปากไม่ได้" ? (
@@ -1065,11 +1064,17 @@ function App() {
                         <MenuItem value={null} sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>
                           Select
                         </MenuItem>
+                         <MenuItem value="รู้สึกตัวดี*" sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>
+                          รู้สึกตัวดี
+                        </MenuItem>
                         <MenuItem value="รู้สึกตัวดี หรือ สับสน" sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>
                           รู้สึกตัวดี หรือ สับสน
                         </MenuItem>
                         <MenuItem value="รู้สึกตัวดี หรือ ง่วงซึม +/-สับสน" sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>
                           รู้สึกตัวดี หรือ ง่วงซึม +/-สับสน
+                        </MenuItem>
+                        <MenuItem value="ง่วงซึมหรือไม่รู้สึกตัว +/-สับสน" sx={{ fontSize: 20, fontFamily: 'lightKanit' }}>
+                          ง่วงซึมหรือไม่รู้สึกตัว +/-สับสน
                         </MenuItem>
                       </Select>
                     )}
