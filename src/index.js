@@ -14,6 +14,7 @@ import AssPPS from './AssPPS.js'
 import PpsResult from './PpsResult'
 import History from './History.js'
 import Profile from './Profile.js'
+import Patient_info from './Patient_info.js'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -31,6 +32,7 @@ root.render(
     <Route path="/ppsresult" element={<PpsResult />} /> 
     <Route path="/history" element={<History />} /> 
     <Route path="/profile" element={<Profile />} /> 
+    <Route path="/patient_info" element={<Patient_info />} /> 
 
     </Routes>
   </BrowserRouter>

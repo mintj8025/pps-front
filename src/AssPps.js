@@ -177,7 +177,7 @@ function App() {
       sfi72: parsedSfi72,
       assessor_fname: decoded.assessor_fname,
       assessor_lname: decoded.assessor_lname,
-      assessment_status: 'ยังไม่บันทึกออกจากระบบ',
+      assessment_status: 'ยังไม่ export ออกจากระบบ',
     };
     fetch('http://localhost:7000/assessment', {
       method: 'POST',

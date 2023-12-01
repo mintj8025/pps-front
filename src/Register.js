@@ -36,7 +36,6 @@ export default function SignUp() {
       patient_fname: data.get('patient_fname'),
       patient_lname: data.get('patient_lname'),
       patient_HN: data.get('patient_HN'),
-      patient_visit: "0"
   }
 
   if (!jsonData.patient_fname) {
