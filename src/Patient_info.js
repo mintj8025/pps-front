@@ -19,6 +19,7 @@ import {
   GridToolbarDensitySelector,
 } from '@mui/x-data-grid';
 import { Avatar } from '@mui/material';
+import CancelIcon from '@mui/icons-material/Cancel';
 
 const CustomToolbar = (props) => (
   <GridToolbarContainer>
@@ -40,10 +41,13 @@ const CustomExportButton = (props) => (
 );
 
 export function App() {
-
   const [data, setData] = useState([]);
+  const [isLoaded, setIsLoaded] = useState(true);
+  const [decoded, setAssessor] = useState([]);
+  const [selectedRow, setSelectedRow] = useState(null);
 
   useEffect(() => {
+    // Fetch patient_info data
     fetch('http://localhost:7000/patient_info')
       .then((response) => response.json())
       .then((responseData) => {
@@ -52,48 +56,8 @@ export function App() {
       .catch((error) => {
         console.error('เกิดข้อผิดพลาดในการดึงข้อมูล: ' + error);
       });
-  }, []);
 
-  const columns = [
-    {
-      flex: 0.1,
-      minWidth: 100,
-      align: 'center',
-      renderCell: (params) => <Avatar>{params.row.avatar}</Avatar>,
-    },
-    { field: 'patient_HN', headerName: 'HN', flex: 1, minWidth: 100 },
-    { field: 'patient_fname', headerName: 'Firstname', flex: 1, minWidth: 140 },
-    { field: 'patient_lname', headerName: 'Lastname', flex: 1, minWidth: 140 },
-    { field: 'patient_status', headerName: 'Status', flex: 1, minWidth: 80 },
-    { field: 'patient_visit', headerName: 'Visit', flex: 1, minWidth: 50 },
-    {
-      field: 'date',
-      headerName: 'Last Assessment Date',
-      flex: 1,
-      minWidth: 170,
-      valueGetter: (params) => new Date(params.row.date).toLocaleDateString(),
-    },
-    {
-      field: 'date_of_first',
-      headerName: 'Date of first',
-      flex: 1,
-      minWidth: 100,
-      valueGetter: (params) => new Date(params.row.date_of_first).toLocaleDateString(),
-    },
-    { field: 'duration', headerName: 'Duration', flex: 1, minWidth: 90, align: 'center' },
-  ];
-
-  const [selectedRow, setSelectedRow] = useState(null);
-
-  const handleRowClick = (params) => {
-    setSelectedRow(params.row.patient_HN === selectedRow ? null : params.row.patient_HN);
-  };
-
-
-  const [isLoaded, setIsLoaded] = useState(true);
-  const [decoded, setAssessor] = useState([]);
-
-  useEffect(() => {
+    // Fetch authen data
     const token = localStorage.getItem('token');
     var myHeaders = new Headers();
     myHeaders.append('Authorization', 'Bearer ' + token);
@@ -139,12 +103,106 @@ export function App() {
     window.location = '/asspatientfound';
   };
 
+  const handleCancelTreatment = (params) => {
+    const { patient_HN } = params.row;
+  
+    // Display a confirmation alert
+    Swal.fire({
+      title: 'ยกเลิกการรักษา',
+      text: 'คุณแน่ใจหรือไม่ที่ต้องการยกเลิกการรักษาคนไข้นี้?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'ใช่, ยกเลิก!',
+      cancelButtonText: 'ยกเลิก',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // If the user confirms, send a request to cancel treatment
+        fetch(`http://localhost:7000/cancel_treatment/${patient_HN}`, {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+          },
+          body: JSON.stringify({ patient_status: 'Cancelled Treatment' }),
+        })
+          .then((response) => response.json())
+          .then((result) => {
+            // Check the result and update the state accordingly
+            if (result.status === 'ok') {
+              // Remove the patient from the data
+              const updatedData = data.map((row) =>
+                row.patient_HN === patient_HN ? { ...row, patient_status: 'Cancelled Treatment' } : row
+              );
+              setData(updatedData);
+  
+              // Display success message
+              Swal.fire('ยกเลิกการรักษาเรียบร้อย!', '', 'success');
+            } else {
+              // Handle errors or display a message to the user
+              console.error('Failed to update patient status:', result.error);
+            }
+          })
+          .catch((error) => {
+            console.error('Error updating patient status:', error);
+          });
+      }
+    });
+  };
+
+  const columns = [
+    {
+      flex: 0.1,
+      minWidth: 100,
+      align: 'center',
+      renderCell: (params) => <Avatar>{params.row.avatar}</Avatar>,
+    },
+    { field: 'patient_HN', headerName: 'HN', flex: 1, minWidth: 100 },
+    { field: 'patient_fname', headerName: 'Firstname', flex: 1, minWidth: 140 },
+    { field: 'patient_lname', headerName: 'Lastname', flex: 1, minWidth: 140 },
+    { field: 'patient_status', headerName: 'Status', flex: 1, minWidth: 80 },
+    { field: 'patient_visit', headerName: 'Visit', flex: 1, minWidth: 50 },
+    {
+      field: 'date',
+      headerName: 'Last Assessment Date',
+      flex: 1,
+      minWidth: 170,
+      valueGetter: (params) => new Date(params.row.date).toLocaleDateString(),
+    },
+    {
+      field: 'date_of_first',
+      headerName: 'Date of first',
+      flex: 1,
+      minWidth: 100,
+      valueGetter: (params) => new Date(params.row.date_of_first).toLocaleDateString(),
+    },
+    { field: 'duration', headerName: 'Duration', flex: 1, minWidth: 90, align: 'center' },
+    {
+      field: 'cancelTreatment',
+      headerName: 'Cancel Treatment',
+      flex: 1,
+      minWidth: 120,
+      align: 'center',
+      sortable: false,
+      renderCell: (params) => (
+        <IconButton onClick={() => handleCancelTreatment(params)} aria-label="Cancel Treatment">
+          <CancelIcon sx={{ fontSize: 20 }} style={{ color: 'red' }} />
+        </IconButton>
+      ),
+    },
+  ];
+
+  const handleRowClick = (params) => {
+    setSelectedRow(params.row.patient_HN === selectedRow ? null : params.row.patient_HN);
+  };
+
   if (isLoaded) return <div>Loading</div>;
   else {
     return (
       <div>
-        <div class="fullscreen-block">
-          <div class="username">
+        <div className="fullscreen-block">
+          <div className="username">
             <IconButton sx={{ color: 'black' }}>
               <Typography variant="h5" component="div" fontFamily={'lightkanit'}>
                 {decoded.assessor_fname} {decoded.assessor_lname}
@@ -152,8 +210,7 @@ export function App() {
               </Typography>
             </IconButton>
           </div>
-
-          <div className='assessmentForm'>
+          <div className="assessmentForm">
             <Typography component="h1" variant="h3" fontFamily={'kanit'}>
               ประวัติการประเมิน
             </Typography>
@@ -168,48 +225,46 @@ export function App() {
               rowThreshold={0}
               onRowClick={handleRowClick}
             />
+          </div>
 
+          <div className="navbar" sx={{ position: 'sticky' }}>
+            <List sx={{ maxWidth: 180, height: '97.4vh', margin: '0', bgcolor: '#5246E9' }}>
+              <div className="profile">
+                <IconButton aria-label="Profile">
+                  <PermIdentityIcon sx={{ fontSize: 40 }} color="disabled" />
+                </IconButton>
+              </div>
 
-            </div>
+              <div className="home">
+                <IconButton aria-label="Home">
+                  <HomeIcon sx={{ fontSize: 40 }} style={{ color: 'white' }} />
+                </IconButton>
+              </div>
 
-          <div className='navbar' sx={{position: 'sticky'}}>
-          <List sx={{ maxWidth: 180, height: '97.4vh', margin: '0', bgcolor: '#5246E9' }}>
-            <div class="profile">
-              <IconButton aria-label="Profile">
-                <PermIdentityIcon sx={{ fontSize: 40 }} color="disabled" />
-              </IconButton>
-            </div>
+              <div className="register">
+                <IconButton aria-label="Register">
+                  <PersonAddAltIcon onClick={handleRegister} sx={{ fontSize: 40 }} style={{ color: 'disabled' }} />
+                </IconButton>
+              </div>
 
-            <div class="home">
-              <IconButton aria-label="Home">
-                <HomeIcon sx={{ fontSize: 40 }} style={{ color: 'white' }} />
-              </IconButton>
-            </div>
+              <div className="assessment">
+                <IconButton aria-label="Assessment">
+                  <AssignmentIcon onClick={handleAssPatientFound} sx={{ fontSize: 40 }} style={{ color: 'disabled' }} />
+                </IconButton>
+              </div>
 
-            <div class="register">
-              <IconButton aria-label="Register">
-                <PersonAddAltIcon onClick={handleRegister} sx={{ fontSize: 40 }} style={{ color: 'disabled' }} />
-              </IconButton>
-            </div>
+              <div className="history">
+                <IconButton aria-label="History">
+                  <UpdateIcon sx={{ fontSize: 40 }} style={{ color: 'disabled' }} />
+                </IconButton>
+              </div>
 
-            <div class="assessment">
-              <IconButton aria-label="Assessment">
-                <AssignmentIcon onClick={handleAssPatientFound} sx={{ fontSize: 40 }} style={{ color: 'disabled' }} />
-              </IconButton>
-            </div>
-
-            <div class="history">
-              <IconButton aria-label="History">
-                <UpdateIcon sx={{ fontSize: 40 }} style={{ color: 'disabled' }} />
-              </IconButton>
-            </div>
-
-            <div class="logout">
-              <IconButton aria-label="Logout">
-                <LogoutIcon onClick={handleLogout} sx={{ fontSize: 40 }} color="disabled" />
-              </IconButton>
-            </div>
-          </List>
+              <div className="logout">
+                <IconButton aria-label="Logout">
+                  <LogoutIcon onClick={handleLogout} sx={{ fontSize: 40 }} color="disabled" />
+                </IconButton>
+              </div>
+            </List>
           </div>
         </div>
       </div>
