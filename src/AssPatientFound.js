@@ -150,6 +150,10 @@ function App() {
     window.location = '/History';
   };
 
+  const handleAssessment = (event) => {
+    window.location = '/asspatientfound'
+  }
+
   const handleLogout = (event) => {
     event.preventDefault();
     localStorage.removeItem('token');
@@ -169,12 +173,13 @@ function App() {
         </div>
 
         <div className="assessmentAuth">
-          <Typography component="h1" variant="h3" fontFamily={'kanit'}>
-            แบบประเมินผู้ป่วยที่มีความปวดจากโรคมะเรง
-          </Typography>
-          <Typography component="h1" variant="h3" fontFamily={'kanit'}>
-            หน่วยระงับปวด โรงพยาบาลศิริราช
-          </Typography>
+        <Typography  sx={{ fontSize: 55, fontFamily: 'kanit' }}>
+          แบบประเมินผู้ป่วยที่มีความปวดจากโรคมะเร็ง
+        </Typography>
+        <Typography sx={{ fontSize: 35, fontFamily: 'kanit' }}>
+          หน่วยระงับปวด โรงพยาบาลศิริราช
+        </Typography>
+
 
           <FormControl component="fieldset">
             <RadioGroup row aria-label="filter" name="filter" value={filter} onChange={handleFilterChange}>
@@ -205,69 +210,90 @@ function App() {
 
           {searchResults.length > 0 && (
           <div className="search-results">
-            <Typography variant="h4" component="div" fontFamily="kanit">
-              เลือกคนไข้เพื่อประเมิน
-            </Typography>
-            <ul>
-              {searchResults.map((patient) => (
-                <li key={patient.id}>
-                  <div onClick={() => handlePatientSelect(patient)}>
-                    <Typography variant="body1" fontFamily="lightkanit">
-                      ชื่อ: {patient.patient_fname}
-                    </Typography>
-                    <Typography variant="body1" fontFamily="lightkanit">
-                      นามสกุล: {patient.patient_lname}
-                    </Typography>
-                    <Typography variant="body1" fontFamily="lightkanit">
-                      HN: {patient.patient_HN}
-                    </Typography>
-                  </div>
-                </li>
-              ))}
-            </ul>
-          </div>
+          <Typography variant="h4" component="div" fontFamily="kanit">
+            เลือกคนไข้เพื่อประเมิน
+          </Typography>
+        
+          <ul style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between' }}>
+            {searchResults.map((patient) => (
+              <li key={patient.id} style={{ width: '48%', marginBottom: '16px' }}>
+                <div onClick={() => handlePatientSelect(patient)}>
+                  <Typography variant="body1" fontFamily="lightkanit" sx={{ fontSize: '20px' }}>
+                    ชื่อ: {patient.patient_fname}
+                  </Typography>
+                  <Typography variant="body1" fontFamily="lightkanit" sx={{ fontSize: '20px' }}>
+                    นามสกุล: {patient.patient_lname}
+                  </Typography>
+                  <Typography variant="body1" fontFamily="lightkanit" sx={{ fontSize: '20px' }}>
+                    HN: {patient.patient_HN}
+                  </Typography>
+                  <Typography variant="body1" fontFamily="lightkanit" sx={{ fontSize: '20px' }}>
+                    status: {patient.patient_status}
+                  </Typography>
+                  <Typography variant="body1" fontFamily="lightkanit" sx={{ fontSize: '20px' }}>
+                    Last Assessment Date: {patient.date
+                      ? new Date(patient.date).toLocaleDateString()
+                      : 'ยังไม่เคยประเมิน'}
+                  </Typography>
+                  <Typography variant="body1" fontFamily="lightkanit" sx={{ fontSize: '20px' }}>
+                    date of first: {patient.date_of_first
+                      ? new Date(patient.date_of_first).toLocaleDateString()
+                      : 'ยังไม่เคยประเมิน'}
+                  </Typography>
+                  <Typography variant="body1" fontFamily="lightkanit" sx={{ fontSize: '20px' }}>
+                    duration: {patient.duration}
+                  </Typography>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
+        
         )}
 
 
         </div>
 
-        <List sx={{ maxWidth: 180, height: '97.4vh', margin: '0', bgcolor: '#5246E9' }}>
-          <div class="profile">
+        <div className='navbar' sx={{position: 'sticky'}}>
+            <List sx={{maxWidth: 180 , height: '97.4vh' , margin: '0' , bgcolor: '#5246E9' }}>           
+            <div class="profile">
             <IconButton aria-label="Profile">
-              <PermIdentityIcon onClick={handleProfile} sx={{ fontSize: 40 }} color="disabled" />
-            </IconButton>
-          </div>
-
-          <div class="home">
+             <PermIdentityIcon  sx={{ fontSize: 40 }} color="disabled"/>
+            </IconButton> 
+            </div>          
+            
+            <div class="home">
             <IconButton aria-label="Home">
-              <HomeIcon onClick={handleHome} sx={{ fontSize: 40 }} style={{ color: 'disabled' }} />
-            </IconButton>
-          </div>
+             <HomeIcon  sx={{ fontSize: 40 }} style={{ color: 'white' }} />
+            </IconButton>      
+            </div>
 
-          <div class="register">
+            <div class="register">
             <IconButton aria-label="Register">
-              <PersonAddAltIcon onClick={handleRegister} sx={{ fontSize: 40 }} style={{ color: 'disabled' }} />
-            </IconButton>
-          </div>
+            <PersonAddAltIcon onClick={handleRegister} sx={{ fontSize: 40 }} style={{ color: 'disabled' }} />
+            </IconButton> 
+            </div>
 
-          <div class="assessment">
+            <div class="assessment">
             <IconButton aria-label="Assessment">
-              <AssignmentIcon onClick={handleAssPatientFound} sx={{ fontSize: 40 }} style={{ color: 'disabled' }} />
-            </IconButton>
-          </div>
+            <AssignmentIcon onClick={handleAssessment} sx={{ fontSize: 40 }} style={{ color: 'disabled' }} />
+            </IconButton> 
+            </div>
 
-          <div class="history">
+            <div class="history">
             <IconButton aria-label="History">
-              <UpdateIcon onClick={handleHistory} sx={{ fontSize: 40 }} style={{ color: 'disabled' }} />
-            </IconButton>
-          </div>
-
-          <div class="logout">
+            <UpdateIcon  sx={{ fontSize: 40 }} style={{ color: 'disabled' }} />
+            </IconButton> 
+            </div>
+            
+            <div class="logout">
             <IconButton aria-label="Logout">
-              <LogoutIcon onClick={handleLogout} sx={{ fontSize: 40 }} color="disabled" />
-            </IconButton>
-          </div>
-        </List>
+             <LogoutIcon  onClick={handleLogout} sx={{ fontSize: 40 }} color="disabled"/>
+            </IconButton>   
+            </div>
+
+            </List>
+            </div>
       </div>
     </div>
   );

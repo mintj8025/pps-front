@@ -103,53 +103,32 @@ export function App() {
     window.location = '/asspatientfound';
   };
 
-  const handleCancelTreatment = (params) => {
-    const { patient_HN } = params.row;
+  const handleCancelTreatment = async (params) => {
+    try {
+      const response = await fetch(`http://localhost:7000/cancel_treatment/${params.row.patient_HN}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          patient_status: 'Cancelled Treatment',
+        }),
+      });
   
-    // Display a confirmation alert
-    Swal.fire({
-      title: 'ยกเลิกการรักษา',
-      text: 'คุณแน่ใจหรือไม่ที่ต้องการยกเลิกการรักษาคนไข้นี้?',
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'ใช่, ยกเลิก!',
-      cancelButtonText: 'ยกเลิก',
-    }).then((result) => {
-      if (result.isConfirmed) {
-        // If the user confirms, send a request to cancel treatment
-        fetch(`http://localhost:7000/cancel_treatment/${patient_HN}`, {
-          method: 'PUT',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${localStorage.getItem('token')}`,
-          },
-          body: JSON.stringify({ patient_status: 'Cancelled Treatment' }),
-        })
-          .then((response) => response.json())
-          .then((result) => {
-            // Check the result and update the state accordingly
-            if (result.status === 'ok') {
-              // Remove the patient from the data
-              const updatedData = data.map((row) =>
-                row.patient_HN === patient_HN ? { ...row, patient_status: 'Cancelled Treatment' } : row
-              );
-              setData(updatedData);
+      const data = await response.json();
   
-              // Display success message
-              Swal.fire('ยกเลิกการรักษาเรียบร้อย!', '', 'success');
-            } else {
-              // Handle errors or display a message to the user
-              console.error('Failed to update patient status:', result.error);
-            }
-          })
-          .catch((error) => {
-            console.error('Error updating patient status:', error);
-          });
+      if (data.status === 'ok') {
+        console.log('Patient status updated successfully:', data.message);
+        // ทำสิ่งที่คุณต้องการหลังจากอัปเดตข้อมูล
+      } else {
+        console.error('Error updating patient status:', data.message);
       }
-    });
+    } catch (error) {
+      console.error('Error updating patient status:', error.message);
+    }
   };
+  
+  
 
   const columns = [
     {
@@ -190,7 +169,7 @@ export function App() {
           <CancelIcon sx={{ fontSize: 20 }} style={{ color: 'red' }} />
         </IconButton>
       ),
-    },
+    },    
   ];
 
   const handleRowClick = (params) => {
@@ -212,7 +191,7 @@ export function App() {
           </div>
           <div className="assessmentForm">
             <Typography component="h1" variant="h3" fontFamily={'kanit'}>
-              ประวัติการประเมิน
+              ประวัติผู้ป่วย
             </Typography>
 
             <DataGrid
