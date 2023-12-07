@@ -71,7 +71,7 @@ export default function SignUp() {
         if (data.status === 'ok') {
           Swal.fire({
             icon: 'success',
-            title: 'Your register has been saved',
+            title: 'การลงทะเบียนคนไข้ใหม่ของคุณถูกบันทึกแล้ว',
             showConfirmButton: false,
             timer: 2000
           }).then((value) => {

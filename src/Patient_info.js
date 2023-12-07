@@ -107,13 +107,14 @@ export function App() {
     const { patient_HN } = params.row;
   
     Swal.fire({
-      title: 'Are you sure?',
-      text: 'You are about to cancel the treatment. This action cannot be undone!',
+      title: 'ยกเลิกการรักษา',
+      text: `คุณแน่ใจหรือไม่ที่ต้องการยกเลิกการรักษาคนไข้ที่ HN ${patient_HN} นี้?`,
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#d33',
       cancelButtonColor: '#3085d6',
-      confirmButtonText: 'Yes, cancel it!',
+      confirmButtonText: 'ใช่, ยกเลิก!',
+      cancelButtonText: 'ยกเลิก',
     }).then((result) => {
       if (result.isConfirmed) {
         // Make a PUT request to update patient_status to "Cancelled Treatment"
@@ -136,7 +137,7 @@ export function App() {
           .then((result) => {
             if (result.status === 'ok') {
               // Display success message
-              Swal.fire('Cancelled!', 'The treatment has been cancelled.', 'success');
+              Swal.fire('ยกเลิกการรักษาเรียบร้อย!', '', 'success');
               // Update the state or refetch data if needed
               // Example: Update the patient_status in the local state
               const updatedData = data.map((row) =>
@@ -145,7 +146,7 @@ export function App() {
               setData(updatedData);
             } else {
               // Display error message
-              Swal.fire('Error!', 'Failed to cancel treatment.', 'error');
+              Swal.fire('เกิดข้อผิดพลาด!', 'Failed to cancel treatment.', 'error');
             }
           })
           .catch((error) => {
@@ -166,9 +167,9 @@ export function App() {
       renderCell: (params) => <Avatar>{params.row.avatar}</Avatar>,
     },
     { field: 'patient_HN', headerName: 'HN', flex: 1, minWidth: 100 },
-    { field: 'patient_fname', headerName: 'Firstname', flex: 1, minWidth: 140 },
-    { field: 'patient_lname', headerName: 'Lastname', flex: 1, minWidth: 140 },
-    { field: 'patient_status', headerName: 'Status', flex: 1, minWidth: 80 },
+    { field: 'patient_fname', headerName: 'Firstname', flex: 1, minWidth: 120 },
+    { field: 'patient_lname', headerName: 'Lastname', flex: 1, minWidth: 120 },
+    { field: 'patient_status', headerName: 'Status', flex: 1, minWidth: 130 },
     { field: 'patient_visit', headerName: 'Visit', flex: 1, minWidth: 50 },
     {
       field: 'date',
@@ -189,7 +190,7 @@ export function App() {
       field: 'cancelTreatment',
       headerName: 'Cancel Treatment',
       flex: 1,
-      minWidth: 120,
+      minWidth: 140,
       align: 'center',
       sortable: false,
       renderCell: (params) => (

@@ -228,7 +228,7 @@ function App() {
     
             Swal.fire({
                 icon: 'success',
-                title: 'Your register has been saved',
+                title: 'การประเมินเสร็จสมบูรณ์',
                 showConfirmButton: false,
                 timer: 2000,
             }).then((value) => {
