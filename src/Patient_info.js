@@ -103,33 +103,61 @@ export function App() {
     window.location = '/asspatientfound';
   };
 
-  const handleCancelTreatment = async (params) => {
-    try {
-      const response = await fetch(`http://localhost:7000/cancel_treatment/${params.row.patient_HN}`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          patient_status: 'Cancelled Treatment',
-        }),
-      });
+  const handleCancelTreatment = (params) => {
+    const { patient_HN } = params.row;
   
-      const data = await response.json();
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'You are about to cancel the treatment. This action cannot be undone!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#3085d6',
+      confirmButtonText: 'Yes, cancel it!',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // Make a PUT request to update patient_status to "Cancelled Treatment"
+        const token = localStorage.getItem('token');
+        const myHeaders = new Headers();
+        myHeaders.append('Content-Type', 'application/json');
+        myHeaders.append('Authorization', 'Bearer ' + token);
   
-      if (data.status === 'ok') {
-        console.log('Patient status updated successfully:', data.message);
-        // ทำสิ่งที่คุณต้องการหลังจากอัปเดตข้อมูล
-      } else {
-        console.error('Error updating patient status:', data.message);
+        const requestOptions = {
+          method: 'PUT',
+          headers: myHeaders,
+          body: JSON.stringify({
+            patient_HN: patient_HN,
+            patient_status: 'Cancelled Treatment',
+          }),
+        };
+  
+        fetch(`http://localhost:7000/cancel_treatment/${patient_HN}`, requestOptions)
+          .then((response) => response.json())
+          .then((result) => {
+            if (result.status === 'ok') {
+              // Display success message
+              Swal.fire('Cancelled!', 'The treatment has been cancelled.', 'success');
+              // Update the state or refetch data if needed
+              // Example: Update the patient_status in the local state
+              const updatedData = data.map((row) =>
+                row.patient_HN === patient_HN ? { ...row, patient_status: 'Cancelled Treatment' } : row
+              );
+              setData(updatedData);
+            } else {
+              // Display error message
+              Swal.fire('Error!', 'Failed to cancel treatment.', 'error');
+            }
+          })
+          .catch((error) => {
+            console.error('Error cancelling treatment:', error);
+          });
       }
-    } catch (error) {
-      console.error('Error updating patient status:', error.message);
-    }
+    });
   };
   
   
-
+  
+  
   const columns = [
     {
       flex: 0.1,
