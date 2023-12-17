@@ -15,6 +15,12 @@
       position: relative;
       font-family: Kanit;
     }
+    
+    .backpage {
+      position: absolute;
+      left: 200px;
+      top: 20px;
+    }
 
     .sideEffectForm {
     position: absolute;

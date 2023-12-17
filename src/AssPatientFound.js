@@ -142,10 +142,6 @@ function App() {
     window.location = '/register';
   };
 
-  const handleAssPatientFound = (event) => {
-    window.location = '/asspatientfound';
-  };
-
   const handleHistory = (event) => {
     window.location = '/History';
   };
@@ -160,6 +156,7 @@ function App() {
     window.location = '/login';
   };
 
+ 
   return (
     <div>
       <div class="fullscreen-block">
@@ -264,7 +261,7 @@ function App() {
             
             <div class="home">
             <IconButton aria-label="Home">
-             <HomeIcon  sx={{ fontSize: 40 }} style={{ color: 'white' }} />
+             <HomeIcon onClick={handleHome} sx={{ fontSize: 40 }} style={{ color: 'white' }} />
             </IconButton>      
             </div>
 
@@ -282,7 +279,7 @@ function App() {
 
             <div class="history">
             <IconButton aria-label="History">
-            <UpdateIcon  sx={{ fontSize: 40 }} style={{ color: 'disabled' }} />
+            <UpdateIcon onClick={handleHistory} sx={{ fontSize: 40 }} style={{ color: 'disabled' }} />
             </IconButton> 
             </div>
             

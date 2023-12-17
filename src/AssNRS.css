@@ -16,13 +16,18 @@
       font-family: Kanit;
     }
 
+
     .assessmentForm {
     position: absolute;
     left: 200px;
     top: 90px;
     }
 
-    /* ใส่ CSS นี้ในไฟล์ AssNRS.css หรือไฟล์ CSS ของคุณ */
+    .backpage {
+      position: absolute;
+      left: 200px;
+      top: 20px;
+    }
 
     .radioForm {
       display: flex;
@@ -32,13 +37,13 @@
     }
     
     .radioForm .MuiFormControlLabel-root {
-      margin: 0 3px; /* ปรับระยะห่างให้น้อยลง */
+      margin: 0 3px; 
     }
     
     .centerButton {
       display: flex;
       justify-content: center;
       align-items: center;
-      margin-top: 20px; /* เพิ่มระยะห่างด้านบนตามที่คุณต้องการ */
+      margin-top: 20px; 
     }
     

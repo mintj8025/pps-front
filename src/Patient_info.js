@@ -34,7 +34,7 @@ const CustomExportButton = (props) => (
   <GridToolbarExport
     {...props}
     csvOptions={{
-      fileName: 'export-ประวัติการประเมิน.csv',
+      fileName: 'export-ประวัติผู้ป่วย.csv',
       utf8WithBom: true,
     }}
   />
@@ -108,7 +108,7 @@ export function App() {
   
     Swal.fire({
       title: 'ยกเลิกการรักษา',
-      text: `คุณแน่ใจหรือไม่ที่ต้องการยกเลิกการรักษาคนไข้ที่ HN ${patient_HN} นี้?`,
+      text: `คุณแน่ใจหรือไม่ที่ต้องการยกเลิกการรักษาคนไข้ HN ${patient_HN} นี้?`,
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#d33',

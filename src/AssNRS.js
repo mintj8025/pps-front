@@ -14,6 +14,7 @@ import Typography from '@mui/material/Typography';
 import './AssNRS.css';
 import Swal from 'sweetalert2'
 import FormControlLabel from '@mui/material/FormControlLabel';
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 
 function App() {
 
@@ -122,11 +123,37 @@ function App() {
       window.location = '/login'
     }
 
+    const handleBack = (event) => {
+      event.preventDefault();
+      
+      Swal.fire({
+        title: 'ย้อนกลับ',
+        text: 'คุณแน่ใจว่าต้องการย้อนกลับและลบข้อมูลที่เลือกไว้?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#33AC74',
+        cancelButtonColor: '#F26660',
+        confirmButtonText: 'ใช่, ย้อนกลับ!',
+        cancelButtonText: 'ยกเลิก'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          localStorage.removeItem('token2');
+          window.location = '/asspatientfound';
+        }
+      });
+    };
+  
+
   if (isLoaded) return (<div>Loading</div>)
   else {
   return (
    <div>
             <div class="fullscreen-block">
+            <div class="backpage">
+            <IconButton aria-label="Back">
+            <ArrowBackIosIcon onClick={handleBack} sx={{ fontSize: 60 }} style={{ color: 'black' }} />
+            </IconButton>
+            </div>
             <div class="username">
             <IconButton
             sx={{color: 'black'}}>
@@ -134,7 +161,7 @@ function App() {
               {decoded.assessor_fname} {decoded.assessor_lname}<PermIdentityIcon  sx={{ fontSize: 35 }} /></Typography> </IconButton></div>
             
             <div className='assessmentForm'>
-            <Typography component="h1" variant="h3" fontFamily={'kanit'}>
+            <Typography component="h1" variant="h3" fontFamily={'kanit'} marginTop={2}>
             ประเมินว่าคะแนนความปวดโดยเฉลี่ย ในรอบ 7 วันที่ผ่านมา
             </Typography>
           

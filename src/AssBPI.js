@@ -14,6 +14,7 @@ import Radio from '@mui/material/Radio';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import FormControlLabel from '@mui/material/FormControlLabel';
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 
 
 function App() {
@@ -218,11 +219,36 @@ function App() {
     { value: '10', color: '#E92623', label: '10' },
   ];
 
+  const handleBack = (event) => {
+    event.preventDefault();
+    
+    Swal.fire({
+      title: 'ย้อนกลับ',
+      text: 'คุณแน่ใจว่าต้องการย้อนกลับและลบข้อมูลที่เลือกไว้?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#33AC74',
+      cancelButtonColor: '#F26660',
+      confirmButtonText: 'ใช่, ย้อนกลับ!',
+      cancelButtonText: 'ยกเลิก'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        localStorage.removeItem('token2');
+        window.location = '/asspatientfound';
+      }
+    });
+  };
+
   if (isLoaded) return (<div>Loading</div>)
   else {
   return (
    <div>
             <div class="fullscreen-block">
+            <div class="backpage">
+              <IconButton aria-label="Back">
+            <ArrowBackIosIcon onClick={handleBack} sx={{ fontSize: 60 }} style={{ color: 'black' }} />
+            </IconButton>
+            </div>
             <div class="username">
             <IconButton
             sx={{color: 'black'}}>
