@@ -47,7 +47,6 @@ export function App() {
   const [selectedRow, setSelectedRow] = useState(null);
 
   useEffect(() => {
-    // Fetch patient_info data
     fetch('http://localhost:7000/patient_info')
       .then((response) => response.json())
       .then((responseData) => {
@@ -57,7 +56,6 @@ export function App() {
         console.error('เกิดข้อผิดพลาดในการดึงข้อมูล: ' + error);
       });
 
-    // Fetch authen data
     const token = localStorage.getItem('token');
     var myHeaders = new Headers();
     myHeaders.append('Authorization', 'Bearer ' + token);
@@ -95,6 +93,10 @@ export function App() {
     window.location = '/login';
   };
 
+  const handleHome = (event) => {
+    window.location = '/Home'
+  }
+
   const handleRegister = (event) => {
     window.location = '/register';
   };
@@ -103,12 +105,16 @@ export function App() {
     window.location = '/asspatientfound';
   };
 
+  const handleHistory = (event) => {
+    window.location = '/History'
+  }
+
   const handleCancelTreatment = (params) => {
     const { patient_HN } = params.row;
   
     Swal.fire({
-      title: 'ยกเลิกการรักษา',
-      text: `คุณแน่ใจหรือไม่ที่ต้องการยกเลิกการรักษาคนไข้ HN ${patient_HN} นี้?`,
+      title: 'จบการรักษา',
+      text: `คุณแน่ใจหรือไม่ที่ต้องการจบการรักษาคนไข้ HN ${patient_HN} นี้?`,
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#d33',
@@ -117,7 +123,6 @@ export function App() {
       cancelButtonText: 'ยกเลิก',
     }).then((result) => {
       if (result.isConfirmed) {
-        // Make a PUT request to update patient_status to "Cancelled Treatment"
         const token = localStorage.getItem('token');
         const myHeaders = new Headers();
         myHeaders.append('Content-Type', 'application/json');
@@ -136,16 +141,12 @@ export function App() {
           .then((response) => response.json())
           .then((result) => {
             if (result.status === 'ok') {
-              // Display success message
-              Swal.fire('ยกเลิกการรักษาเรียบร้อย!', '', 'success');
-              // Update the state or refetch data if needed
-              // Example: Update the patient_status in the local state
+              Swal.fire('จบการรักษาเรียบร้อย!', '', 'success');
               const updatedData = data.map((row) =>
                 row.patient_HN === patient_HN ? { ...row, patient_status: 'Cancelled Treatment' } : row
               );
               setData(updatedData);
             } else {
-              // Display error message
               Swal.fire('เกิดข้อผิดพลาด!', 'Failed to cancel treatment.', 'error');
             }
           })
@@ -245,7 +246,7 @@ export function App() {
 
               <div className="home">
                 <IconButton aria-label="Home">
-                  <HomeIcon sx={{ fontSize: 40 }} style={{ color: 'white' }} />
+                  <HomeIcon  onClick={handleHome} sx={{ fontSize: 40 }} style={{ color: 'white' }} />
                 </IconButton>
               </div>
 
@@ -263,7 +264,7 @@ export function App() {
 
               <div className="history">
                 <IconButton aria-label="History">
-                  <UpdateIcon sx={{ fontSize: 40 }} style={{ color: 'disabled' }} />
+                  <UpdateIcon onClick={handleHistory} sx={{ fontSize: 40 }} style={{ color: 'disabled' }} />
                 </IconButton>
               </div>
 

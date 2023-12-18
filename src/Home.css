@@ -83,3 +83,13 @@
   margin-top: 320px;
   margin-left: 960px;
 }
+
+.patient-history-menu{
+  position: absolute;
+  margin-top: 620px;
+  margin-left: 320px;
+}
+
+div.navbar{
+  position: fixed;
+}

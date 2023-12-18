@@ -71,6 +71,10 @@ function App() {
     const handleHistory = (event) => {
       window.location = '/History'
     }
+
+    const handlePatientHistory = (event) => {
+      window.location = '/patient_info'
+    }
   
     const handleLogout = (event) => {
       event.preventDefault();
@@ -178,46 +182,65 @@ function App() {
               </IconButton>
               </div>
 
+              <div class="patient-history-menu">
+              <IconButton>
+                <Card sx={{ minWidth: 245, borderRadius: 10 }}>
+                  <AssignmentIcon onClick={handlePatientHistory} sx={{ fontSize: 100 }} 
+                  style={{ color: 'black', position: 'relative', marginTop: 20 }} />
+                  <CardContent>
+                    <Typography variant="h5" component="div" fontFamily={'kanit'}>
+                      ประวัติคนไข้
+                    </Typography>
+                    <Typography sx={{ mb: 1.5 }} color="text.secondary" fontFamily={'kanit'}
+                      style={{ fontSize: 15, position: 'relative', marginTop: 5 }}>
+                      ดูประวัติการรักษาของคนไข้
+                    </Typography>
+                  </CardContent>
+                </Card>
+              </IconButton>
+            </div>
+
               </div>
 
-            <List sx={{ maxWidth: 180 , height: '97.4vh' , margin: '0' , bgcolor: '#5246E9' }}>           
+              <div className='navbar' sx={{position: 'sticky'}}>
+          <List sx={{ maxWidth: 180, height: '97.4vh', margin: '0', bgcolor: '#5246E9' }}>
             <div class="profile">
-            <IconButton aria-label="Profile">
-             <PermIdentityIcon onClick={handleProfile} sx={{ fontSize: 40 }} color="disabled"/>
-            </IconButton> 
-            </div>          
-            
+              <IconButton aria-label="Profile">
+                <PermIdentityIcon sx={{ fontSize: 40 }} color="disabled" />
+              </IconButton>
+            </div>
+
             <div class="home">
-            <IconButton aria-label="Home">
-             <HomeIcon onClick={handleHome} sx={{ fontSize: 40 }} style={{ color: 'white' }} />
-            </IconButton>      
+              <IconButton aria-label="Home">
+                <HomeIcon onClick={handleHome} sx={{ fontSize: 40 }} style={{ color: 'white' }} />
+              </IconButton>
             </div>
 
             <div class="register">
-            <IconButton aria-label="Register">
-            <PersonAddAltIcon onClick={handleRegister} sx={{ fontSize: 40 }} style={{ color: 'disabled' }} />
-            </IconButton> 
+              <IconButton aria-label="Register">
+                <PersonAddAltIcon onClick={handleRegister} sx={{ fontSize: 40 }} style={{ color: 'disabled' }} />
+              </IconButton>
             </div>
 
             <div class="assessment">
-            <IconButton aria-label="Assessment">
-            <AssignmentIcon onClick={handleAssPatientFound} sx={{ fontSize: 40 }} style={{ color: 'disabled' }} />
-            </IconButton> 
+              <IconButton aria-label="Assessment">
+                <AssignmentIcon onClick={handleAssPatientFound} sx={{ fontSize: 40 }} style={{ color: 'disabled' }} />
+              </IconButton>
             </div>
 
             <div class="history">
-            <IconButton aria-label="History">
-            <UpdateIcon onClick={handleHistory} sx={{ fontSize: 40 }} style={{ color: 'disabled' }} />
-            </IconButton> 
-            </div>
-            
-            <div class="logout">
-            <IconButton aria-label="Logout">
-             <LogoutIcon  onClick={handleLogout} sx={{ fontSize: 40 }} color="disabled"/>
-            </IconButton>   
+              <IconButton aria-label="History">
+                <UpdateIcon onClick={handleHistory} sx={{ fontSize: 40 }} style={{ color: 'disabled' }} />
+              </IconButton>
             </div>
 
-            </List>
+            <div class="logout">
+              <IconButton aria-label="Logout">
+                <LogoutIcon onClick={handleLogout} sx={{ fontSize: 40 }} color="disabled" />
+              </IconButton>
+            </div>
+          </List>
+          </div>
 
             </div> 
    </div>

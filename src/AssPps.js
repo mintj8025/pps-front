@@ -23,6 +23,7 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogActions from '@mui/material/DialogActions';
 import CloseIcon from '@mui/icons-material/Close';
 import InfoIcon from '@mui/icons-material/Info';
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   '& .MuiDialogContent-root': {
@@ -127,6 +128,9 @@ function App() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    if (!isInputValid()) {
+      return; // หยุดการดำเนินการถ้าข้อมูลไม่ถูกต้อง
+    }
     const savedNrs = localStorage.getItem('nrs');
     const parsedNrs = JSON.parse(savedNrs);
     const savedActivity = localStorage.getItem('activity');
@@ -286,6 +290,10 @@ function App() {
     window.location = '/login';
   };
 
+  const handleHome = (event) => {
+    window.location = '/Home';
+  };
+
   const handleRegister = (event) => {
     window.location = '/register';
   };
@@ -294,11 +302,51 @@ function App() {
     window.location = '/asspatientfound';
   };
 
+  const handleHistory = (event) => {
+    window.location = '/History';
+  };
+  
+  const handleBack = (event) => {
+    event.preventDefault();
+    
+    Swal.fire({
+      title: 'ย้อนกลับ',
+      text: 'คุณแน่ใจว่าต้องการย้อนกลับและลบข้อมูลที่เลือกไว้?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#33AC74',
+      cancelButtonColor: '#F26660',
+      confirmButtonText: 'ใช่, ย้อนกลับ!',
+      cancelButtonText: 'ยกเลิก'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        window.location = '/sideeffect';
+      }
+    });
+  };
+
+  const isInputValid = () => {
+    if (!movement || !activityAndDisease || !dailyRoutines || !eating || !awareness) {
+      Swal.fire({
+        icon: 'error',
+        title: 'ข้อมูลไม่ถูกต้อง',
+        text: 'กรุณากรอกข้อมูลให้ครบถ้วน',
+      });
+      return false; 
+    }
+    return true; 
+  };
+
   if (isLoaded) return <div>Loading</div>;
   else {
     return (
       <div>
         <div class="fullscreen-block">
+        <div class="backpage">
+              <IconButton aria-label="Back">
+            <ArrowBackIosIcon onClick={handleBack} sx={{ fontSize: 60 }} style={{ color: 'black' }} />
+            </IconButton>
+            </div>
           <div class="username">
             <IconButton sx={{ color: 'black' }}>
               <Typography variant="h5" component="div" fontFamily={'lightkanit'}>
@@ -1111,7 +1159,7 @@ function App() {
 
               <div class="home">
                 <IconButton aria-label="Home">
-                  <HomeIcon sx={{ fontSize: 40 }} style={{ color: 'white' }} />
+                  <HomeIcon onClick={handleHome} sx={{ fontSize: 40 }} style={{ color: 'white' }} />
                 </IconButton>
               </div>
 
@@ -1129,7 +1177,7 @@ function App() {
 
               <div class="history">
                 <IconButton aria-label="History">
-                  <UpdateIcon sx={{ fontSize: 40 }} style={{ color: 'disabled' }} />
+                  <UpdateIcon onClick={handleHistory} sx={{ fontSize: 40 }} style={{ color: 'disabled' }} />
                 </IconButton>
               </div>
 

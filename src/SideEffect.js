@@ -123,6 +123,10 @@ const handleSubmit = async (event) => {
     window.location = '/login'
   }
 
+  const handleHome = (event) => {
+    window.location = '/Home';
+  };
+
   const handleRegister = (event) => {
     window.location = '/register'
   }
@@ -130,6 +134,10 @@ const handleSubmit = async (event) => {
   const handleAssessment = (event) => {
     window.location = '/asspatientfound'
   }
+
+  const handleHistory = (event) => {
+    window.location = '/History';
+  };
 
   const handleBack = (event) => {
     event.preventDefault();
@@ -145,7 +153,6 @@ const handleSubmit = async (event) => {
       cancelButtonText: 'ยกเลิก'
     }).then((result) => {
       if (result.isConfirmed) {
-        localStorage.removeItem('token2');
         window.location = '/assbpi';
       }
     });
@@ -261,7 +268,8 @@ const handleSubmit = async (event) => {
             <Typography  fontSize={25} marginLeft={5} fontFamily={'kanit'}>S = ไม่ตื่น</Typography>
             </div>
 
-            <Typography component="h1"  sx={{ fontSize: 40 }} marginLeft={'10'} marginTop={'20px'} align="center" color={'black'} fontFamily={'kanit'}>
+            <Box sx={{ height: 40 }} />
+            <Typography component="h1"  sx={{ fontSize: 40 }} marginRight={'230px'} marginTop={'20px'} align="center" color={'black'} fontFamily={'kanit'}>
             2. คลื่นไส้ อาเจียน
             </Typography>
 
@@ -335,7 +343,8 @@ const handleSubmit = async (event) => {
             <Typography  fontSize={25} marginLeft={5} fontFamily={'kanit'}>3 = มีอาการและต้องการรักษาและไม่สามารถควบคุมได้ด้วยยา</Typography>
             </div>
 
-            <Typography component="h1"  sx={{ fontSize: 40 }} marginLeft={'10'} marginTop={'20px'} align="center" color={'black'} fontFamily={'kanit'}>
+            <Box sx={{ height: 40 }} />
+            <Typography component="h1"  sx={{ fontSize: 40 }} marginRight={'230px'} marginTop={'20px'} align="center" color={'black'} fontFamily={'kanit'}>
             3. ท้องผูก (sfi72)
             </Typography>
 
@@ -423,8 +432,12 @@ const handleSubmit = async (event) => {
             <Typography  fontSize={25} marginLeft={5} fontFamily={'kanit'}>4 = ไม่มีการถ่ายอุจจาระและมีอาการท้องอืดถึงแม้ว่าจะได้รับยาระบายทั้งหมด</Typography>
             </div>
 
-            <Typography component="h1"  sx={{ fontSize: 40 }} marginLeft={'10'} marginTop={'20px'} align="center" color={'black'} fontFamily={'kanit'}>
-            ระดับความพึงพอใจต่อประสิทธิภาพการระงับปวด
+            <Box sx={{ height: 40 }} />
+            <Typography component="h1"  sx={{ fontSize: 40 }} marginRight={'230px'} marginTop={'20px'} align="center" color={'black'} fontFamily={'kanit'}>
+            ระดับความพึงพอใจ
+            </Typography>
+            <Typography component="h1"  sx={{ fontSize: 40 }} marginRight={'230px'} marginTop={'20px'} align="center" color={'black'} fontFamily={'kanit'}>
+            ต่อประสิทธิภาพการระงับปวด
             </Typography>
 
             <div className='radioSatisfied'>
@@ -515,7 +528,8 @@ const handleSubmit = async (event) => {
               margin: 'auto',
               transform: 'translateY(120%)',
               display: 'block',
-              marginBottom: '120px', 
+              marginBottom: '120px',
+              marginLeft: '280px', 
               width: '200px' 
             }}
           >
@@ -536,7 +550,7 @@ const handleSubmit = async (event) => {
             
             <div class="home">
             <IconButton aria-label="Home">
-             <HomeIcon  sx={{ fontSize: 40 }} style={{ color: 'white' }} />
+             <HomeIcon onClick={handleHome} sx={{ fontSize: 40 }} style={{ color: 'white' }} />
             </IconButton>      
             </div>
 
@@ -554,7 +568,7 @@ const handleSubmit = async (event) => {
 
             <div class="history">
             <IconButton aria-label="History">
-            <UpdateIcon  sx={{ fontSize: 40 }} style={{ color: 'disabled' }} />
+            <UpdateIcon onClick={handleHistory} sx={{ fontSize: 40 }} style={{ color: 'disabled' }} />
             </IconButton> 
             </div>
             

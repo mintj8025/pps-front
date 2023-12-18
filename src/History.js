@@ -68,7 +68,6 @@ export function App() {
     { field: 'patient_lname', headerName: 'Lastname', flex: 1 , minWidth: 140 },
     { field: 'patient_status', headerName: 'Status', flex: 1 , minWidth: 80 },
     { field: 'patient_visit', headerName: 'Visit', flex: 1 , minWidth: 80 },
-    { field: 'assessment_status', headerName: 'Assessment status', flex: 1 , minWidth: 220 },
     { field: 'nrs', headerName: 'NRS', flex: 1 , minWidth: 90 },
     { field: 'activity', headerName: 'กิจกรรม', flex: 1 , minWidth: 90 },
     { field: 'emotion', headerName: 'อารมณ์', flex: 1 , minWidth: 90 },
@@ -100,6 +99,8 @@ export function App() {
     { field: 'duration', headerName: 'Duration', flex: 1 , minWidth: 90 },
     { field: 'assessor_fname', headerName: 'Assessor firstname', flex: 1 , minWidth: 140 },
     { field: 'assessor_lname', headerName: 'Assessor lastname', flex: 1 , minWidth: 140 },
+    { field: 'assessment_status', headerName: 'Assessment status', flex: 1 , minWidth: 220 },
+
   ];
 
   const [selectedRow, setSelectedRow] = useState(null);
@@ -150,12 +151,20 @@ export function App() {
     window.location = '/login';
   };
 
+  const handleHome = (event) => {
+    window.location = '/Home';
+  };
+
   const handleRegister = (event) => {
     window.location = '/register';
   };
 
   const handleAssPatientFound = (event) => {
     window.location = '/asspatientfound';
+  };
+
+  const handleHistory = (event) => {
+    window.location = '/History';
   };
 
   if (isLoaded) return <div>Loading</div>;
@@ -201,7 +210,7 @@ export function App() {
 
             <div class="home">
               <IconButton aria-label="Home">
-                <HomeIcon sx={{ fontSize: 40 }} style={{ color: 'white' }} />
+                <HomeIcon onClick={handleHome} sx={{ fontSize: 40 }} style={{ color: 'white' }} />
               </IconButton>
             </div>
 
@@ -219,7 +228,7 @@ export function App() {
 
             <div class="history">
               <IconButton aria-label="History">
-                <UpdateIcon sx={{ fontSize: 40 }} style={{ color: 'disabled' }} />
+                <UpdateIcon onClick={handleHistory} sx={{ fontSize: 40 }} style={{ color: 'disabled' }} />
               </IconButton>
             </div>
 

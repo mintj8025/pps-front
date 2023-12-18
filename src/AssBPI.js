@@ -108,6 +108,10 @@ function App() {
     window.location = '/login'
   }
 
+  const handleHome = (event) => {
+    window.location = '/Home';
+  };
+
   const handleRegister = (event) => {
     window.location = '/register'
   }
@@ -115,6 +119,10 @@ function App() {
   const handleAssessment = (event) => {
     window.location = '/asspatientfound'
   }
+
+  const handleHistory = (event) => {
+    window.location = '/History';
+  };
 
   const controlProps1 = (item) => ({
     checked: activity === item,
@@ -233,8 +241,7 @@ function App() {
       cancelButtonText: 'ยกเลิก'
     }).then((result) => {
       if (result.isConfirmed) {
-        localStorage.removeItem('token2');
-        window.location = '/asspatientfound';
+        window.location = '/assnrs';
       }
     });
   };
@@ -264,6 +271,7 @@ function App() {
             การดำเนินชีวิตประจำวันของคนไข้ในด้านต่างๆมากน้อยเพียงใด
             </Typography>
 
+            <Box sx={{ height: 60 }} />
             <Typography component="h1"  sx={{ fontSize: 40 }} marginLeft={'0px'} marginTop={'20px'} align="center" color={'black'} fontFamily={'kanit'}>
             1. กิจกรรมโดยทั่วไป
             </Typography>
@@ -280,6 +288,7 @@ function App() {
             {renderRadioGroup(data, controlProps1)}
             </div>
 
+            <Box sx={{ height: 100 }} />
             <Typography component="h1"  sx={{ fontSize: 40 }} marginLeft={'0px'} marginTop={'20px'} align="center" color={'black'} fontFamily={'kanit'}>
             2. อารมณ์
             </Typography>
@@ -295,6 +304,7 @@ function App() {
             {renderRadioGroup(data, controlProps2)}
             </div>
           
+            <Box sx={{ height: 100 }} />
             <Typography component="h1"  sx={{ fontSize: 40 }} marginLeft={'0px'} marginTop={'20px'} align="center" color={'black'} fontFamily={'kanit'}>
             3. ความสามารถในการเดิน
             </Typography>
@@ -310,6 +320,7 @@ function App() {
             {renderRadioGroup(data, controlProps3)}
             </div>
 
+            <Box sx={{ height: 100 }} />
             <Typography component="h1"  sx={{ fontSize: 40 }} marginLeft={'0px'} marginTop={'20px'} align="center" color={'black'} fontFamily={'kanit'}>
             4. งานประจำวัน
             </Typography>
@@ -328,6 +339,7 @@ function App() {
             {renderRadioGroup(data, controlProps4)}
             </div>
             
+            <Box sx={{ height: 100 }} />
             <Typography component="h1"  sx={{ fontSize: 40 }} marginLeft={'0px'} marginTop={'20px'} align="center" color={'black'} fontFamily={'kanit'}>
             5. ความสัมพันธ์กับผู้อื่น
             </Typography>
@@ -343,6 +355,7 @@ function App() {
             {renderRadioGroup(data, controlProps5)}
             </div>
 
+            <Box sx={{ height: 100 }} />
             <Typography component="h1"  sx={{ fontSize: 40 }} marginLeft={'0px'} marginTop={'20px'} align="center" color={'black'} fontFamily={'kanit'}>
             6. การนอนหลับ
             </Typography>
@@ -358,6 +371,7 @@ function App() {
             {renderRadioGroup(data, controlProps6)}
             </div>
             
+            <Box sx={{ height: 100 }} />
             <Typography component="h1"  sx={{ fontSize: 40 }} marginLeft={'0px'} marginTop={'20px'} align="center" color={'black'} fontFamily={'kanit'}>
             7. ความสุขในชีวิตประจำวัน
             </Typography>
@@ -405,7 +419,7 @@ function App() {
             
             <div class="home">
             <IconButton aria-label="Home">
-             <HomeIcon  sx={{ fontSize: 40 }} style={{ color: 'white' }} />
+             <HomeIcon onClick={handleHome} sx={{ fontSize: 40 }} style={{ color: 'white' }} />
             </IconButton>      
             </div>
 
@@ -423,7 +437,7 @@ function App() {
 
             <div class="history">
             <IconButton aria-label="History">
-            <UpdateIcon  sx={{ fontSize: 40 }} style={{ color: 'disabled' }} />
+            <UpdateIcon onClick={handleHistory} sx={{ fontSize: 40 }} style={{ color: 'disabled' }} />
             </IconButton> 
             </div>
             
