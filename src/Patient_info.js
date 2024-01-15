@@ -119,7 +119,7 @@ export function App() {
       showCancelButton: true,
       confirmButtonColor: '#d33',
       cancelButtonColor: '#3085d6',
-      confirmButtonText: 'ใช่, ยกเลิก!',
+      confirmButtonText: 'ใช่',
       cancelButtonText: 'ยกเลิก',
     }).then((result) => {
       if (result.isConfirmed) {
